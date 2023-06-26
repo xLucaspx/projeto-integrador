@@ -5,12 +5,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Nota {
+public abstract class Nota {
 	private String numero;
 	private LocalDate data;
 	private ArrayList<Produto> itens;
-	
-	public Nota() {
+
+	public Nota(String numero, LocalDate data) {
 		this.itens = new ArrayList<>();
 	}
 
@@ -36,5 +36,11 @@ public class Nota {
 
 	public void setItens(ArrayList<Produto> produtos) {
 		this.itens = (produtos);
+	}
+
+	public void addItens(Produto... produtos) {
+		for (Produto produto : produtos) {
+			itens.add(produto);
+		}
 	}
 }

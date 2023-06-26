@@ -1,5 +1,7 @@
 package models;
 
+import utils.Validator;
+
 public class Endereco {
 	private String cep;
 	private String logradouro;
@@ -9,11 +11,22 @@ public class Endereco {
 	private String cidade;
 	private String uf;
 
+	public Endereco(String cep, String logradouro, String bairro, String cidade, String uf) {
+		setCep(cep);
+		setLogradouro(logradouro);
+		setBairro(bairro);
+		setCidade(cidade);
+		setUf(uf);
+	}
+
 	public String getCep() {
 		return cep;
 	}
 
 	public void setCep(String cep) {
+		if (!Validator.validaCep(cep))
+			throw new IllegalArgumentException("Valor inválido inserido para CEP! Valor inserido: " + cep);
+
 		this.cep = cep;
 	}
 
@@ -62,9 +75,26 @@ public class Endereco {
 	}
 
 	public void setUf(String uf) {
-		if (uf.length() != 2)
-			throw new IllegalArgumentException("Valor inválido para UF");
-		
+		uf = uf.toUpperCase();
+
+		if (!Validator.validaUf(uf))
+			throw new IllegalArgumentException("Valor inválido inserido para UF! Valor inserido: " + uf);
+
 		this.uf = uf;
+	}
+
+	@Override
+	public String toString() {
+		String endereco = logradouro + ", ";
+
+		if (numero != null && !numero.trim().isEmpty())
+			endereco += numero + ", ";
+
+		if (complemento != null && !complemento.trim().isEmpty())
+			endereco += complemento + ", ";
+
+		endereco += String.format("bairro %s, %s - %s; CEP: %s", bairro, cidade, uf, cep);
+
+		return endereco;
 	}
 }

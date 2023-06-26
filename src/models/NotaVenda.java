@@ -1,13 +1,15 @@
 package models;
 
-public class NotaVenda extends Nota {
-	private Fornecedor fornecedor;
+import java.time.LocalDate;
 
-	public Fornecedor getFornecedor() {
-		return fornecedor;
+public class NotaVenda extends Nota {
+
+	public NotaVenda(String numero, LocalDate data) {
+		super(numero, data);
 	}
 
-	public void setFornecedor(Fornecedor fornecedor) {
-		this.fornecedor = fornecedor;
+	public NotaVenda(String numero, LocalDate data, Produto... produtos) {
+		super(numero, data);
+		addItens(produtos);
 	}
 }

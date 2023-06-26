@@ -1,5 +1,7 @@
 package models;
 
+import utils.Validator;
+
 public class Fornecedor {
 	private String cnpj;
 	private String razaoSocial;
@@ -8,14 +10,24 @@ public class Fornecedor {
 	private String telefone;
 	private Endereco endereco;
 
+	public Fornecedor(String cnpj, String razaoSocial, String nomeFantasia, String email, String telefone,
+			Endereco endereco) {
+		setCnpj(cnpj);
+		setRazaoSocial(razaoSocial);
+		setNomeFantasia(nomeFantasia);
+		setEmail(email);
+		setTelefone(telefone);
+		setEndereco(endereco);
+	}
+
 	public String getCnpj() {
 		return cnpj;
 	}
 
 	public void setCnpj(String cnpj) {
-		if (cnpj.length() != 14)
-			throw new IllegalArgumentException("Valor inválido para CNPJ; insira apenas números!");
-		
+		if (!Validator.validaCnpj(cnpj))
+			throw new IllegalArgumentException("Valor inválido inserido para CNPJ! Valor inserido: " + cnpj);
+
 		this.cnpj = cnpj;
 	}
 
@@ -40,9 +52,9 @@ public class Fornecedor {
 	}
 
 	public void setEmail(String email) {
-		if (!email.matches("^(?=.{1,64}@)[A-Za-z0-9_-]+(\\\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\\\\.[A-Za-z0-9-]+)*(\\\\.[A-Za-z]{2,})$"))
-			throw new IllegalArgumentException("O email inserido é inválido");
-		
+		if (!Validator.validaEmail(email))
+			throw new IllegalArgumentException("Valor inválido inserido para e-mail! Valor inserido: " + email);
+
 		this.email = email;
 	}
 
@@ -51,9 +63,9 @@ public class Fornecedor {
 	}
 
 	public void setTelefone(String telefone) {
-		if (!telefone.matches("^\\(?(?:[14689][1-9]|2[12478]|3[1234578]|5[1345]|7[134579])\\)? ?(?:[2-8]|9[1-9])[0-9]{3}\\-?[0-9]{4}$"))
-			throw new IllegalArgumentException("O telefone inserido é inválido");
-		
+		if (!Validator.validaTelefone(telefone))
+			throw new IllegalArgumentException("Valor inválido inserido para telefone! Valor inserido: " + telefone);
+
 		this.telefone = telefone;
 	}
 
@@ -63,5 +75,11 @@ public class Fornecedor {
 
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
+	}
+
+	@Override
+	public String toString() {
+		return String.format("CNPJ: %s\nRazão social: %s\nNome fantasia: %s\nEmail: %s\nTelefone: %s\nEndereço: %s", cnpj,
+				razaoSocial, nomeFantasia, email, telefone, endereco);
 	}
 }
