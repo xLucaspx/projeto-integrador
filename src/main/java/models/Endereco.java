@@ -1,6 +1,10 @@
 package models;
 
-import utils.Validator;
+import static utils.Validator.validaCep;
+import static utils.Validator.validaString;
+
+import exceptions.ValidationException;
+import utils.Validator;;
 
 public class Endereco {
 	private String cep;
@@ -23,9 +27,8 @@ public class Endereco {
 		return cep;
 	}
 
-	public void setCep(String cep) {
-		if (!Validator.validaCep(cep))
-			throw new IllegalArgumentException("Valor inválido inserido para CEP! Valor inserido: " + cep);
+	private void setCep(String cep) {
+		if (!validaCep(cep)) throw new ValidationException("Valor inválido inserido para CEP! Valor inserido: " + cep);
 
 		this.cep = cep;
 	}
@@ -34,7 +37,9 @@ public class Endereco {
 		return logradouro;
 	}
 
-	public void setLogradouro(String logradouro) {
+	private void setLogradouro(String logradouro) {
+		if (!validaString(logradouro)) throw new ValidationException("Valor inválido inserido para logradouro!");
+
 		this.logradouro = logradouro;
 	}
 
@@ -43,6 +48,8 @@ public class Endereco {
 	}
 
 	public void setComplemento(String complemento) {
+		if (!validaString(complemento)) throw new ValidationException("Valor inválido inserido para complemento!");
+
 		this.complemento = complemento;
 	}
 
@@ -51,6 +58,8 @@ public class Endereco {
 	}
 
 	public void setNumero(String numero) {
+		if (!validaString(numero)) throw new ValidationException("Valor inválido inserido para número!");
+
 		this.numero = numero;
 	}
 
@@ -58,7 +67,9 @@ public class Endereco {
 		return bairro;
 	}
 
-	public void setBairro(String bairro) {
+	private void setBairro(String bairro) {
+		if (!validaString(bairro)) throw new ValidationException("Valor inválido inserido para bairro!");
+
 		this.bairro = bairro;
 	}
 
@@ -66,7 +77,9 @@ public class Endereco {
 		return cidade;
 	}
 
-	public void setCidade(String cidade) {
+	private void setCidade(String cidade) {
+		if (!validaString(cidade)) throw new ValidationException("Valor inválido inserido para cidade!");
+
 		this.cidade = cidade;
 	}
 
@@ -74,7 +87,9 @@ public class Endereco {
 		return uf;
 	}
 
-	public void setUf(String uf) {
+	private void setUf(String uf) {
+		if (!validaString(uf)) throw new ValidationException("Valor inválido inserido para UF!");
+
 		uf = uf.toUpperCase();
 
 		if (!Validator.validaUf(uf))
@@ -87,11 +102,9 @@ public class Endereco {
 	public String toString() {
 		String endereco = logradouro + ", ";
 
-		if (numero != null && !numero.trim().isEmpty())
-			endereco += numero + ", ";
+		if (numero != null && !numero.trim().isEmpty()) endereco += numero + ", ";
 
-		if (complemento != null && !complemento.trim().isEmpty())
-			endereco += complemento + ", ";
+		if (complemento != null && !complemento.trim().isEmpty()) endereco += complemento + ", ";
 
 		endereco += String.format("bairro %s, %s - %s; CEP: %s", bairro, cidade, uf, cep);
 

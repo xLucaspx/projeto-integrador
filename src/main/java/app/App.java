@@ -23,8 +23,8 @@ public class App {
 		System.out.println("\n" + f1);
 		System.out.println("\n" + f2);
 
-		Produto p1 = new Produto("567787632", "Água da Pedra - com gás - 500ml", Formato.UNIDADE, 3, 1.75f, 3.25f);
-		Produto p2 = new Produto("678892712", "Água da Pedra - sem gás - 1.5l", Formato.UNIDADE, 1, 2.25f, 4.95f, 0.3f);
+		Produto p1 = new Produto("567787632", "Água da Pedra - com gás - 500ml", Formato.UNIDADE, 3, 3.75f, 1.25f);
+		Produto p2 = new Produto("678892712", "Água da Pedra - sem gás - 1.5l", Formato.UNIDADE, 1, 4.25f, 2.95f, 0.3f);
 
 		System.out.println("\n" + p1);
 		System.out.println("\n" + p2);
