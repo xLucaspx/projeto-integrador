@@ -20,7 +20,7 @@ CREATE TABLE produto (
 	descricao VARCHAR(50) NOT NULL,
 	preco_custo DECIMAL(7, 2) NOT NULL,
 	preco_venda DECIMAL(7, 2) NOT NULL,
-	formato VARCHAR(3) NOT NULL,
+	formato ENUM("Unidade", "Kilograma", "Grama", "Miligrama", "Litro", "Mililitro") NOT NULL,
 	estoque DECIMAL(7, 3) NOT NULL
 );
 
