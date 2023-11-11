@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package dao;
 
 import java.sql.Connection;
@@ -10,10 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import models.Produto;
 
-/**
- *
- * @author 182220008
- */
 public class ProdutoDao {
 
     private Connection con;
@@ -57,7 +48,8 @@ public class ProdutoDao {
         String sql = "DELETE FROM produto WHERE codigo =?";
         try (PreparedStatement ps = con.prepareStatement(sql)){
             ps.setString(1, p.getCodigo());
-            
+
+            ps.execute();
         }catch (SQLException e){
             throw new RuntimeException(e);
         }
