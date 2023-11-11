@@ -8,6 +8,7 @@ import models.Formato;
 import models.Fornecedor;
 import models.Produto;
 
+
 public class App {
 	public static void main(String... args) {
 		Endereco e1 = new Endereco("90000-000", "Av. João Inacio", "Navegantes", "Canoas", "PR");
