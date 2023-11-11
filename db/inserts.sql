@@ -1,16 +1,16 @@
 USE projeto_integrador;
 
 INSERT INTO produto VALUES
-	("1", "Presunto Fatiado Soltíssimo", 5.2, 9.8, "gr", 100),
-	("2", "Mousse Chocolate Meio Amargo", 1.2, 3.5, "gr", 50),
-	("3", "Wafers Brigadeiro", 1.2, 3.5, "gr", 80),
-	("4", "Leite Condensado", 3.2, 9.9, "gr", 100),
-	("5", "Limpol Detergente", 1.1, 2.3, "ml", 100),
-	("6", "Ype Tira Manchas", 2.3, 7.8, "ml", 80),
-	("7", "Biscoito Recheado Chocolate", 1.1, 3.8, "gr", 95),
-	("8", "Linguiça Toscana", 5.3, 19.8, "kg", 90),
-	("9", "Café Tradicional em Pó", 5.8, 17.9, "kg", 200),
-	("10", "Arroz Prato Fino", 1.1, 4.5, "kg", 150);
+	("1", "Presunto Fatiado Soltíssimo", 5.2, 9.8, "Grama", 100),
+	("2", "Mousse Chocolate Meio Amargo", 1.2, 3.5, "Grama", 50),
+	("3", "Wafers Brigadeiro", 1.2, 3.5, "Grama", 80),
+	("4", "Leite Condensado", 3.2, 9.9, "Grama", 100),
+	("5", "Limpol Detergente", 1.1, 2.3, "Mililitro", 100),
+	("6", "Ype Tira Manchas", 2.3, 7.8, "Mililitro", 80),
+	("7", "Biscoito Recheado Chocolate", 1.1, 3.8, "Grama", 95),
+	("8", "Linguiça Toscana", 5.3, 19.8, "Kilograma", 90),
+	("9", "Café Tradicional em Pó", 5.8, 17.9, "Kilograma", 200),
+	("10", "Arroz Prato Fino", 1.1, 4.5, "Kilograma", 150);
 
 INSERT INTO fornecedor VALUES
 	("00000000000000", "BRF S.A - SADIA", "BRF@GMAIL.COM", "123456789101", "98765432", "RUA X", 10, "", "BAIRRO", "CIDADE", "UF"),
