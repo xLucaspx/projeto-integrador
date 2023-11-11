@@ -32,7 +32,7 @@ public class NotaVendaDao {
     try (PreparedStatement ps = con.prepareStatement(sql)) {
       ps.setString(1, numeroNota);
       ps.setString(2, produto.getCodigo());
-      ps.setDouble(3, produto.getQuantidade());
+      ps.setDouble(3, produto.getEstoque());
       ps.setFloat(4, produto.getPrecoVenda());
 
       ps.execute();

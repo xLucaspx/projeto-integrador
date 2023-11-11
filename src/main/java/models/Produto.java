@@ -5,21 +5,23 @@ import static utils.Validator.validaString;
 import exceptions.ValidationException;
 
 public class Produto {
+
   private String codigo;
   private String descricao;
   private Formato formato;
-  private double quantidade;
+  private double estoque;
   private float precoCusto;
   private float precoVenda;
 
-  public Produto(String codigo, String descricao, Formato formato, double quantidade, float precoVenda,
+  public Produto(String codigo, String descricao, Formato formato, double estoque, float precoVenda,
     float precoCusto) {
     setCodigo(codigo);
     setDescricao(descricao);
     setFormato(formato);
-    setQuantidade(quantidade);
+    setEstoque(estoque);
     setPrecoVenda(precoVenda);
     setPrecoCusto(precoCusto);
+
   }
 
   public String getCodigo() {
@@ -30,7 +32,6 @@ public class Produto {
     if (!validaString(codigo))
       throw new ValidationException("O código inserido é inválido!");
 
-    this.codigo = codigo;
   }
 
   public String getDescricao() {
@@ -41,7 +42,6 @@ public class Produto {
     if (!validaString(descricao))
       throw new ValidationException("A descrição inserida é inválida!");
 
-    this.descricao = descricao;
   }
 
   public float getPrecoCusto() {
@@ -54,7 +54,6 @@ public class Produto {
     if (precoCusto >= precoVenda)
       throw new ValidationException("O preço de custo deve ser menor do que o preço de venda!");
 
-    this.precoCusto = precoCusto;
   }
 
   public Formato getFormato() {
@@ -65,18 +64,17 @@ public class Produto {
     if (formato == null)
       throw new ValidationException("O formato selecionado é inválido!");
 
-    this.formato = formato;
   }
 
-  public double getQuantidade() {
-    return quantidade;
+  public double getEstoque() {
+    return estoque;
   }
 
-  private void setQuantidade(double quantidade) {
-    if (quantidade <= 0)
+  private void setEstoque(double estoque) {
+    if (estoque < 0)
       throw new ValidationException("A quantidade inserida é inválida; por favor, insira um valor maior do que 0!");
 
-    this.quantidade = quantidade;
+    this.estoque = estoque;
   }
 
   public float getPrecoVenda() {
@@ -86,6 +84,7 @@ public class Produto {
   private void setPrecoVenda(float precoVenda) {
     if (precoVenda <= 0)
       throw new ValidationException("O preço de venda inserido é inválido; por favor, insira um valor maior do que 0!");
+
     if (precoVenda <= precoCusto)
       throw new ValidationException("O preço de venda não pode ser menor do que o preço de custo!");
 
@@ -96,7 +95,7 @@ public class Produto {
   public String toString() {
     String produto = String.format(
       "Código: %s\nDescrição: %s\nQuantidade: %.2f\nFormato: %s\nPreço custo: R$ %.2f\nPreço venda: R$ %.2f",
-      codigo, descricao, quantidade, formato, precoCusto, precoVenda);
+      codigo, descricao, estoque, formato, precoCusto, precoVenda);
 
     return produto;
   }

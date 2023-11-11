@@ -22,6 +22,7 @@ SELECT
 	n.numero AS `Número`,
 	data_venda AS `Data`,
 	descricao AS `Produto`,
+  formato AS `Formato`,
 	i.quantidade AS `Quantidade`,
 	CONCAT('R$ ', FORMAT(preco, 2)) AS `Preço un.`,
 	CONCAT('R$ ', FORMAT((i.quantidade * preco), 2)) AS `Total`

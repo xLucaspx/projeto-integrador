@@ -21,7 +21,7 @@ public class ProdutoDao {
             ps.setFloat(3, p.getPrecoCusto());
             ps.setFloat(4, p.getPrecoVenda());
             ps.setInt(5, p.getFormato().getCodigo());
-            ps.setDouble(6, p.getQuantidade());
+            ps.setDouble(6, p.getEstoque());
             ps.execute();
 
         } catch (SQLException e) {
@@ -36,7 +36,7 @@ public class ProdutoDao {
             ps.setFloat(2, p.getPrecoCusto());
             ps.setFloat(3, p.getPrecoVenda());
             ps.setInt(4, p.getFormato().getCodigo());
-            ps.setDouble(5, p.getQuantidade());
+            ps.setDouble(5, p.getEstoque());
             ps.setString(6, p.getCodigo());
             ps.execute();
 

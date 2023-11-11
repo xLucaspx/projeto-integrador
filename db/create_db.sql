@@ -40,7 +40,7 @@ CREATE TABLE item_nota_compra (
 	PRIMARY KEY (numero_nota , codigo_produto),
 	KEY codigo_produto (codigo_produto),
 	CONSTRAINT FK_numero_nota_compra FOREIGN KEY (numero_nota)
-		REFERENCES nota_compra (numero),
+		REFERENCES nota_compra (numero) ON DELETE CASCADE,
 	CONSTRAINT FK_codigo_produto_compra FOREIGN KEY (codigo_produto)
 		REFERENCES produto (codigo)
 );
@@ -58,7 +58,7 @@ CREATE TABLE item_nota_venda (
 	PRIMARY KEY (numero_nota , codigo_produto),
 	KEY codigo_Produto (codigo_produto),
 	CONSTRAINT FK_numero_nota_venda FOREIGN KEY (numero_nota)
-		REFERENCES nota_venda (numero),
+		REFERENCES nota_venda (numero) ON DELETE CASCADE,
 	CONSTRAINT FK_codigo_produto_venda FOREIGN KEY (codigo_produto)
 		REFERENCES produto (codigo)
 );
