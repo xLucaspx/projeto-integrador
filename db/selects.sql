@@ -1,14 +1,15 @@
 USE projeto_integrador;
 
-SELECT
+SELECT 
 	n.numero AS `Número`,
-    data_compra AS `Data`,
-	razao_social AS `Fornecedor`,
-    descricao AS `Produto`,
-    i.quantidade AS `Quantidade`,
-    CONCAT("R$ ", FORMAT(preco, 2)) AS `Preço un.`,
-    CONCAT("R$ ", FORMAT((i.quantidade * preco), 2)) AS `Total`
-FROM nota_compra n
+	data_compra AS `Data`,
+	f.nome AS `Fornecedor`,
+	descricao AS `Produto`,
+	i.quantidade AS `Quantidade`,
+	CONCAT('R$ ', FORMAT(preco, 2)) AS `Preço un.`,
+	CONCAT('R$ ', FORMAT((i.quantidade * preco), 2)) AS `Total`
+FROM
+	nota_compra n
 		INNER JOIN
 	item_nota_compra i ON n.numero = i.numero_nota
 		INNER JOIN
@@ -16,15 +17,16 @@ FROM nota_compra n
 		INNER JOIN
 	produto p ON i.codigo_produto = p.codigo
 ORDER BY n.numero;
-    
-SELECT
+
+SELECT 
 	n.numero AS `Número`,
-    data_venda AS `Data`,
-    descricao AS `Produto`,
-    i.quantidade AS `Quantidade`,
-    CONCAT("R$ ", FORMAT(preco, 2)) AS `Preço un.`,
-    CONCAT("R$ ", FORMAT((i.quantidade * preco), 2)) AS `Total`
-FROM nota_venda n
+	data_venda AS `Data`,
+	descricao AS `Produto`,
+	i.quantidade AS `Quantidade`,
+	CONCAT('R$ ', FORMAT(preco, 2)) AS `Preço un.`,
+	CONCAT('R$ ', FORMAT((i.quantidade * preco), 2)) AS `Total`
+FROM
+	nota_venda n
 		INNER JOIN
 	item_nota_compra i ON n.numero = i.numero_nota
 		INNER JOIN

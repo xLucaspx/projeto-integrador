@@ -1,6 +1,16 @@
-/bin/
+application.properties
+application.yml
 
-.settings
+/bin/
+/target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
 .classpath
 .project
-/target/
+.settings
+
+nbactions.xml
+
+.vscode/
