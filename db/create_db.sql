@@ -8,7 +8,7 @@ CREATE TABLE fornecedor (
 	telefone VARCHAR(20) NOT NULL,
 	cep VARCHAR(9) NOT NULL,
 	endereco VARCHAR(45) NOT NULL,
-	numero VARCHAR(10) NOT NULL,
+	numero VARCHAR(10),
 	complemento VARCHAR(45),
 	bairro VARCHAR(45) NOT NULL,
 	cidade VARCHAR(45) NOT NULL,

@@ -23,7 +23,7 @@ public class FornecedorDao {
             ps.setString(3, f.getEmail());
             ps.setString(4, f.getTelefone());
             ps.setString(5, f.getEndereco().getCep());
-            ps.setObject(6, f.getEndereco());
+            ps.setString(6, f.getEndereco().getLogradouro());
             ps.setString(7, f.getEndereco().getNumero());
             ps.setString(8, f.getEndereco().getComplemento());
             ps.setString(9, f.getEndereco().getBairro());
@@ -43,13 +43,15 @@ public class FornecedorDao {
             ps.setString(2, f.getEmail());
             ps.setString(3, f.getTelefone());
             ps.setString(4, f.getEndereco().getCep());
-            ps.setObject(5, f.getEndereco());
-            ps.setString(5, f.getEndereco().getNumero());
+            ps.setString(5, f.getEndereco().getLogradouro());
+            ps.setString(6, f.getEndereco().getNumero());
             ps.setString(7, f.getEndereco().getComplemento());
             ps.setString(8, f.getEndereco().getBairro());
             ps.setString(9, f.getEndereco().getCidade());
             ps.setString(10, f.getEndereco().getUf());
             ps.setString(11, f.getCnpj());
+            
+            ps.execute();
             
         } catch (SQLException e) {
             throw new RuntimeException(e);
