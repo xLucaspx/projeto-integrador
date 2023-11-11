@@ -15,9 +15,9 @@ public class App {
 		System.out.println(e1);
 		System.out.println("\n" + e2);
 
-		Fornecedor f1 = new Fornecedor("14.167.876/0001-47", "Aqui a Razão Social", "Aqui o Nome Fantasia",
+		Fornecedor f1 = new Fornecedor("14.167.876/0001-47","Aqui o Nome Fantasia",
 				"empresa@email.com", "(51) 99876-5543", e2);
-		Fornecedor f2 = new Fornecedor("14167876/000147", "Aqui RS", "Aqui NF", "fulano@dominio.sub.com.br", "5133456788",
+		Fornecedor f2 = new Fornecedor("14167876/000147", "Aqui NF", "fulano@dominio.sub.com.br", "5133456788",
 				e1);
 
 		System.out.println("\n" + f1);
@@ -25,6 +25,7 @@ public class App {
 
 		Produto p1 = new Produto("567787632", "Água da Pedra - com gás - 500ml", Formato.UNIDADE, 3, 3.75f, 1.25f);
 		
+                
 
 		System.out.println("\n" + p1);
 		
