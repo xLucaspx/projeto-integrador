@@ -33,7 +33,7 @@ public class App {
 		
                 Connection con = ConnectionFactory.getConnection();
                 FornecedorDao f = new FornecedorDao(con);
-                f.edita(f2);
+                f.exclui(f2);
 
 		System.out.println("\n" + p1);
 		

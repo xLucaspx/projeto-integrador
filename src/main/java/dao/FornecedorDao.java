@@ -62,6 +62,8 @@ public class FornecedorDao {
         try(PreparedStatement ps = con.prepareStatement(sql)){
             ps.setString(1, f.getCnpj());
             
+            ps.execute();
+            
         }catch (SQLException e){
             throw new RuntimeException(e);
         }
