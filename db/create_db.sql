@@ -8,7 +8,7 @@ CREATE TABLE fornecedor (
 	telefone VARCHAR(20) NOT NULL,
 	cep VARCHAR(9) NOT NULL,
 	endereco VARCHAR(45) NOT NULL,
-	numero VARCHAR(10) NOT NULL,
+	numero VARCHAR(10),
 	complemento VARCHAR(45),
 	bairro VARCHAR(45) NOT NULL,
 	cidade VARCHAR(45) NOT NULL,
@@ -20,7 +20,7 @@ CREATE TABLE produto (
 	descricao VARCHAR(50) NOT NULL,
 	preco_custo DECIMAL(7, 2) NOT NULL,
 	preco_venda DECIMAL(7, 2) NOT NULL,
-	formato VARCHAR(3) NOT NULL,
+	formato ENUM("Unidade", "Kilograma", "Grama", "Miligrama", "Litro", "Mililitro") NOT NULL,
 	estoque DECIMAL(7, 3) NOT NULL
 );
 

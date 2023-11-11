@@ -3,83 +3,80 @@ package models;
 import utils.Validator;
 
 public class Fornecedor {
-	private String cnpj;
-	private String razaoSocial;
-	private String nomeFantasia;
-	private String email;
-	private String telefone;
-	private Endereco endereco;
 
-	public Fornecedor(String cnpj, String razaoSocial, String nomeFantasia, String email, String telefone,
-			Endereco endereco) {
-		setCnpj(cnpj);
-		setRazaoSocial(razaoSocial);
-		setNomeFantasia(nomeFantasia);
-		setEmail(email);
-		setTelefone(telefone);
-		setEndereco(endereco);
-	}
+    private String cnpj;
+    private String nome;
+    private String email;
+    private String telefone;
+    private Endereco endereco;
 
-	public String getCnpj() {
-		return cnpj;
-	}
+    public Fornecedor(String cnpj, String nome, String email, String telefone,
+            Endereco endereco) {
+        setCnpj(cnpj);
+        setNome(nome);
+        setEmail(email);
+        setTelefone(telefone);
+        setEndereco(endereco);
+    }
 
-	public void setCnpj(String cnpj) {
-		if (!Validator.validaCnpj(cnpj))
-			throw new IllegalArgumentException("Valor inválido inserido para CNPJ! Valor inserido: " + cnpj);
+    public String getCnpj() {
+        return cnpj;
+    }
 
-		this.cnpj = cnpj;
-	}
+    public void setCnpj(String cnpj) {
+        if (!Validator.validaCnpj(cnpj)) {
+            throw new IllegalArgumentException("Valor inválido inserido para CNPJ! Valor inserido: " + cnpj);
+        }
 
-	public String getRazaoSocial() {
-		return razaoSocial;
-	}
+        this.cnpj = cnpj;
+    }
 
-	public void setRazaoSocial(String razaoSocial) {
-		this.razaoSocial = razaoSocial;
-	}
+    public String getNome() {
+        return nome;
+    }
 
-	public String getNomeFantasia() {
-		return nomeFantasia;
-	}
+    public void setNome(String nome) {
+        if(!Validator.validaString(nome)){
+            throw new IllegalArgumentException("Valor inválido inserido para nome: "+ nome);
+        }        
+        this.nome = nome;
+    }
 
-	public void setNomeFantasia(String nomeFantasia) {
-		this.nomeFantasia = nomeFantasia;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public void setEmail(String email) {
+        if (!Validator.validaEmail(email)) {
+            throw new IllegalArgumentException("Valor inválido inserido para e-mail! Valor inserido: " + email);
+        }
 
-	public void setEmail(String email) {
-		if (!Validator.validaEmail(email))
-			throw new IllegalArgumentException("Valor inválido inserido para e-mail! Valor inserido: " + email);
+        this.email = email;
+    }
 
-		this.email = email;
-	}
+    public String getTelefone() {
+        return telefone;
+    }
 
-	public String getTelefone() {
-		return telefone;
-	}
+    public void setTelefone(String telefone) {
+        if (!Validator.validaTelefone(telefone)) {
+            throw new IllegalArgumentException("Valor inválido inserido para telefone! Valor inserido: " + telefone);
+        }
 
-	public void setTelefone(String telefone) {
-		if (!Validator.validaTelefone(telefone))
-			throw new IllegalArgumentException("Valor inválido inserido para telefone! Valor inserido: " + telefone);
+        this.telefone = telefone;
+    }
 
-		this.telefone = telefone;
-	}
+    public Endereco getEndereco() {
+        return endereco;
+    }
 
-	public Endereco getEndereco() {
-		return endereco;
-	}
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }
 
-	public void setEndereco(Endereco endereco) {
-		this.endereco = endereco;
-	}
-
-	@Override
-	public String toString() {
-		return String.format("CNPJ: %s\nRazão social: %s\nNome fantasia: %s\nEmail: %s\nTelefone: %s\nEndereço: %s", cnpj,
-				razaoSocial, nomeFantasia, email, telefone, endereco);
-	}
+    @Override
+    public String toString() {
+        return String.format("CNPJ: %s\nNome : %s\nEmail: %s\nTelefone: %s\nEndereço: %s", cnpj,
+                nome, email, telefone, endereco);
+    }
 }
