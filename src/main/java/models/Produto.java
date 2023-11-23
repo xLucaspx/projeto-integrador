@@ -21,7 +21,6 @@ public class Produto {
         setEstoque(estoque);
         setPrecoVenda(precoVenda);
         setPrecoCusto(precoCusto);
-
     }
 
     public String getCodigo() {
