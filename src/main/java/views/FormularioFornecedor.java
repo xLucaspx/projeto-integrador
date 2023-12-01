@@ -62,15 +62,9 @@ public class FormularioFornecedor extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Telefone");
 
-        jTextField1.setText("jTextField1");
-
         jLabel2.setText("CEP");
 
-        jTextField2.setText("jTextField2");
-
         jLabel3.setText("UF");
-
-        jTextField3.setText("jTextField3");
 
         jLabel4.setText("Cidade");
 
