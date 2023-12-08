@@ -1,16 +1,10 @@
 package app;
 
-import dao.FornecedorDao;
-import factory.ConnectionFactory;
-import java.sql.Connection;
-import models.Endereco;
-import models.Formato;
-import models.Fornecedor;
-import models.Produto;
+import view.FormularioProduto;
 
 public class App {
 	public static void main(String... args) {
-		Endereco e1 = new Endereco("90000-000", "Av. João Inacio", "Navegantes", "Canoas", "PR");
+		/*Endereco e1 = new Endereco("90000-000", "Av. João Inacio", "Navegantes", "Canoas", "PR");
 		Endereco e2 = new Endereco("90040-191", "Av. Venâncio Aires", "Azenha", "Porto Alegre", "RS");
 		e1.setNumero("12");
 		e1.setComplemento("Próximo ao Orfeu");
@@ -36,6 +30,7 @@ public class App {
 		f.exclui(f2);
 
 		System.out.println("\n" + p1);
-
+                */
+                
 	}
 }
