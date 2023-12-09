@@ -1,7 +1,7 @@
 package app;
 
-import views.FormularioProduto;
 import views.TelaPrincipal;
+
 
 public class App {
 	public static void main(String... args) {
