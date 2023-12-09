@@ -1,6 +1,7 @@
 package app;
 
-import view.FormularioProduto;
+import views.FormularioProduto;
+import views.TelaPrincipal;
 
 public class App {
 	public static void main(String... args) {
@@ -31,6 +32,7 @@ public class App {
 
 		System.out.println("\n" + p1);
                 */
-                
+                TelaPrincipal view = new TelaPrincipal();
+                view.setVisible(true);
 	}
 }

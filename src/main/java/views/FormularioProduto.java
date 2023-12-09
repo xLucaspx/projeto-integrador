@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package view;
+package views;
 
 import javax.swing.DefaultComboBoxModel;
 import models.Formato;
@@ -38,6 +38,8 @@ public class FormularioProduto extends javax.swing.JInternalFrame {
         lbFormato = new javax.swing.JLabel();
         DefaultComboBoxModel<Formato> model = new DefaultComboBoxModel<>(Formato.values());
         cbFormato = new javax.swing.JComboBox<>();
+        btnCadastra = new javax.swing.JButton();
+        btnCancela = new javax.swing.JButton();
 
         lbFormProd.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         lbFormProd.setText("Formulário de produto");
@@ -67,6 +69,14 @@ public class FormularioProduto extends javax.swing.JInternalFrame {
             }
         });
 
+        btnCadastra.setBackground(new java.awt.Color(0, 102, 204));
+        btnCadastra.setForeground(new java.awt.Color(255, 255, 255));
+        btnCadastra.setText("Cadastrar");
+
+        btnCancela.setBackground(new java.awt.Color(204, 0, 0));
+        btnCancela.setForeground(new java.awt.Color(255, 255, 255));
+        btnCancela.setText("Cancelar");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -74,14 +84,18 @@ public class FormularioProduto extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(73, 73, 73)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnCadastra, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 258, Short.MAX_VALUE)
+                        .addComponent(btnCancela, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(lbFormato)
                     .addComponent(lbDescricao)
                     .addComponent(tfDescricao)
                     .addComponent(lbFormProd)
                     .addComponent(tfCodigo)
                     .addComponent(lbCodigo)
-                    .addComponent(cbFormato, 0, 470, Short.MAX_VALUE))
-                .addContainerGap(159, Short.MAX_VALUE))
+                    .addComponent(cbFormato, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(111, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -96,11 +110,15 @@ public class FormularioProduto extends javax.swing.JInternalFrame {
                 .addComponent(lbDescricao)
                 .addGap(29, 29, 29)
                 .addComponent(tfDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47)
+                .addGap(38, 38, 38)
                 .addComponent(lbFormato)
                 .addGap(18, 18, 18)
                 .addComponent(cbFormato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(131, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCadastra)
+                    .addComponent(btnCancela))
+                .addContainerGap())
         );
 
         pack();
@@ -121,6 +139,8 @@ public class FormularioProduto extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCadastra;
+    private javax.swing.JButton btnCancela;
     private javax.swing.JComboBox<Formato> cbFormato;
     private javax.swing.JLabel lbCodigo;
     private javax.swing.JLabel lbDescricao;
