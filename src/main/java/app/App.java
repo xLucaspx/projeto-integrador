@@ -32,7 +32,7 @@ public class App {
 
 		System.out.println("\n" + p1);
                 */
-                TelaPrincipal view = new TelaPrincipal();
-                view.setVisible(true);
+		TelaPrincipal view = new TelaPrincipal();
+		view.setVisible(true);
 	}
 }
