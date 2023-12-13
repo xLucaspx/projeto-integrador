@@ -57,7 +57,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         labelVendas.setForeground(new java.awt.Color(255, 255, 255));
         labelVendas.setText("Vendas");
 
-        btnRegistroVenda.setForeground(new java.awt.Color(0, 0, 102));
+        btnRegistroVenda.setForeground(new java.awt.Color(255, 255, 255));
         btnRegistroVenda.setText("Registrar venda");
 
         btnListaNFCompra.setText("Listar notas de compra");

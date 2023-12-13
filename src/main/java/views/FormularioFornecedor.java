@@ -5,15 +5,18 @@
  */
 package views;
 
+import controller.FornecedorController;
+import jdk.internal.agent.Agent;
+import models.Fornecedor;
+
 /**
  *
  * @author 180701103
  */
 public class FormularioFornecedor extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form FormularioFornecedor
-     */
+   private Fornecedor fornecedor;
+   
     public FormularioFornecedor() {
         initComponents();
     }
@@ -77,10 +80,20 @@ public class FormularioFornecedor extends javax.swing.JInternalFrame {
         btnCadastra.setBackground(new java.awt.Color(0, 102, 204));
         btnCadastra.setForeground(new java.awt.Color(255, 255, 255));
         btnCadastra.setText("Cadastrar");
+        btnCadastra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadastraActionPerformed(evt);
+            }
+        });
 
         btnCancela.setBackground(new java.awt.Color(204, 0, 0));
         btnCancela.setForeground(new java.awt.Color(255, 255, 255));
         btnCancela.setText("Cancelar");
+        btnCancela.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -189,6 +202,15 @@ public class FormularioFornecedor extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnCadastraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastraActionPerformed
+        FornecedorController fc = new FornecedorController();
+        fc.cadastra(fornecedor);
+    }//GEN-LAST:event_btnCadastraActionPerformed
+
+    private void btnCancelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelaActionPerformed
+        //fechar internalFrame
+    }//GEN-LAST:event_btnCancelaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
