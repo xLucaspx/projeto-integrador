@@ -1,11 +1,18 @@
 package controller;
 
+import dao.FornecedorDao;
 import models.Fornecedor;
 
 public class FornecedorController {
 
-	public void cadastra(Fornecedor fornecedor) {
-		// falta validação
-		throw new RuntimeException(String.format("Erro ao cadastrar fornecedor."));
-	}
+    private final FornecedorDao dao;
+
+    public FornecedorController(FornecedorDao dao) {
+        this.dao = dao;
+    }
+    
+    public void cadastra(Fornecedor fornecedor) {
+        dao.cadastra(fornecedor);        
+    }
+    
 }
