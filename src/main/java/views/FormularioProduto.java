@@ -1,14 +1,22 @@
 package views;
 
+import controller.ProdutoController;
+import factory.ControllerFactory;
 import javax.swing.DefaultComboBoxModel;
 
 import models.Formato;
+import models.Produto;
 
 public class FormularioProduto extends javax.swing.JInternalFrame {
 
-	public FormularioProduto() {
-		initComponents();
-	}
+  private Produto produto;
+  private final ProdutoController produtoController;
+
+  public FormularioProduto(ControllerFactory controllerFactory, Produto produto) {
+    this.produtoController = controllerFactory.createProdutoController();
+    this.produto = produto;
+    initComponents();
+  }
 
   // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
   private void initComponents() {
@@ -24,13 +32,15 @@ public class FormularioProduto extends javax.swing.JInternalFrame {
     btnCadastra = new javax.swing.JButton();
     btnCancela = new javax.swing.JButton();
 
+    setTitle("Formulário de produto");
+
     lbFormProd.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
     lbFormProd.setText("Formulário de produto");
 
     lbCodigo.setText("Código ");
 
+    tfCodigo.setText(produto!=null? produto.getCodigo() : "");
     tfCodigo.setMinimumSize(null);
-    tfCodigo.setPreferredSize(null);
     tfCodigo.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
         tfCodigoActionPerformed(evt);
@@ -39,8 +49,8 @@ public class FormularioProduto extends javax.swing.JInternalFrame {
 
     lbDescricao.setText("Descrição");
 
+    tfDescricao.setText(produto!=null? produto.getDescricao(): "");
     tfDescricao.setMinimumSize(null);
-    tfDescricao.setPreferredSize(null);
     tfDescricao.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
         tfDescricaoActionPerformed(evt);
@@ -114,11 +124,11 @@ public class FormularioProduto extends javax.swing.JInternalFrame {
   }// </editor-fold>//GEN-END:initComponents
 
 	private void tfCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfCodigoActionPerformed
-		// TODO add your handling code here:
+    // TODO add your handling code here:
 	}//GEN-LAST:event_tfCodigoActionPerformed
 
 	private void tfDescricaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfDescricaoActionPerformed
-		// TODO add your handling code here:
+    // TODO add your handling code here:
 	}//GEN-LAST:event_tfDescricaoActionPerformed
 
 	private void cbFormatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbFormatoActionPerformed

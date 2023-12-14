@@ -1,6 +1,7 @@
 package factory;
 
 import dao.FornecedorDao;
+import dao.ProdutoDao;
 import java.sql.Connection;
 import static factory.ConnectionFactory.getConnection;
 
@@ -14,5 +15,8 @@ public class DaoFactory {
   
   public FornecedorDao createFornecedorDao(){
     return new FornecedorDao(connection);
+  }
+  public ProdutoDao createProdutoDao(){
+    return new ProdutoDao(connection);
   }
 }

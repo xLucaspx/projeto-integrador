@@ -94,8 +94,7 @@ public class ListarFornecedor extends javax.swing.JInternalFrame {
   }//GEN-LAST:event_btnDetalhesActionPerformed
 
   private void btnEditaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditaActionPerformed
-    FornecedorController fc = new FornecedorController();
-    fc.edita(fornecedor);
+    
   }//GEN-LAST:event_btnEditaActionPerformed
 
   // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -2,6 +2,7 @@
 package factory;
 
 import controller.FornecedorController;
+import controller.ProdutoController;
 
 
 public class ControllerFactory {
@@ -13,5 +14,8 @@ public class ControllerFactory {
   
   public FornecedorController createFornecedorController(){
     return new FornecedorController(daoFactory.createFornecedorDao());
+  }
+  public ProdutoController createProdutoController(){
+    return new ProdutoController(daoFactory.createProdutoDao());
   }
 }
