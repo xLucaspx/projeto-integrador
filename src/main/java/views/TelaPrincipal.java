@@ -1,6 +1,8 @@
 package views;
 
 import factory.ControllerFactory;
+import views.constants.Colors;
+import views.constants.Fonts;
 
 public class TelaPrincipal extends javax.swing.JFrame {
 
@@ -34,25 +36,33 @@ public class TelaPrincipal extends javax.swing.JFrame {
     jDesktopPane1 = new javax.swing.JDesktopPane();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+    setTitle("Sistema de controle de Estoque");
     setBackground(new java.awt.Color(153, 204, 255));
 
-    jPanelPrincipal.setBackground(new java.awt.Color(51, 153, 255));
+    jPanelPrincipal.setBackground(Colors.LIGHT_BLUE);
 
-    jPanelVendas.setBackground(new java.awt.Color(0, 51, 153));
+    jPanelVendas.setBackground(Colors.BLUE);
 
-    labelVendas.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-    labelVendas.setForeground(new java.awt.Color(255, 255, 255));
+    labelVendas.setFont(Fonts.LARGE_FONT);
+    labelVendas.setForeground(Colors.WHITE);
     labelVendas.setText("Vendas");
 
-    btnRegistroVenda.setForeground(new java.awt.Color(255, 255, 255));
+    btnRegistroVenda.setBackground(Colors.DARK_BLUE);
+    btnRegistroVenda.setFont(Fonts.MEDIUM_FONT);
+    btnRegistroVenda.setForeground(Colors.WHITE);
     btnRegistroVenda.setText("Registrar venda");
+    btnRegistroVenda.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
     btnRegistroVenda.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
         btnRegistroVendaActionPerformed(evt);
       }
     });
 
+    btnListaNFCompra.setBackground(Colors.DARK_BLUE);
+    btnListaNFCompra.setFont(Fonts.MEDIUM_FONT);
+    btnListaNFCompra.setForeground(Colors.WHITE);
     btnListaNFCompra.setText("Listar notas de compra");
+    btnListaNFCompra.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
     javax.swing.GroupLayout jPanelVendasLayout = new javax.swing.GroupLayout(jPanelVendas);
     jPanelVendas.setLayout(jPanelVendasLayout);
@@ -76,15 +86,23 @@ public class TelaPrincipal extends javax.swing.JFrame {
         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
 
-    jPanelCompras.setBackground(new java.awt.Color(0, 51, 153));
+    jPanelCompras.setBackground(Colors.BLUE);
     jPanelCompras.setForeground(new java.awt.Color(0, 51, 153));
 
+    btnRegitraCompra.setBackground(Colors.DARK_BLUE);
+    btnRegitraCompra.setFont(Fonts.MEDIUM_FONT);
+    btnRegitraCompra.setForeground(Colors.WHITE);
     btnRegitraCompra.setText("Registrar compra");
+    btnRegitraCompra.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
+    btnListaNfCompra.setBackground(Colors.DARK_BLUE);
+    btnListaNfCompra.setFont(Fonts.MEDIUM_FONT);
+    btnListaNfCompra.setForeground(Colors.WHITE);
     btnListaNfCompra.setText("Listar notas de compra");
+    btnListaNfCompra.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-    labelCompras1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-    labelCompras1.setForeground(new java.awt.Color(255, 255, 255));
+    labelCompras1.setFont(Fonts.LARGE_FONT);
+    labelCompras1.setForeground(Colors.WHITE);
     labelCompras1.setText("Compras");
 
     javax.swing.GroupLayout jPanelComprasLayout = new javax.swing.GroupLayout(jPanelCompras);
@@ -109,15 +127,23 @@ public class TelaPrincipal extends javax.swing.JFrame {
         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
 
-    jPanelProdutos.setBackground(new java.awt.Color(0, 51, 153));
+    jPanelProdutos.setBackground(Colors.BLUE);
 
-    labelProdutos.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-    labelProdutos.setForeground(new java.awt.Color(255, 255, 255));
+    labelProdutos.setFont(Fonts.LARGE_FONT);
+    labelProdutos.setForeground(Colors.WHITE);
     labelProdutos.setText("Produtos");
 
+    btnCadastraProduto.setBackground(Colors.DARK_BLUE);
+    btnCadastraProduto.setFont(Fonts.MEDIUM_FONT);
+    btnCadastraProduto.setForeground(Colors.WHITE);
     btnCadastraProduto.setText("Cadastrar produto");
+    btnCadastraProduto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
+    btnListaProdutos.setBackground(Colors.DARK_BLUE);
+    btnListaProdutos.setFont(Fonts.MEDIUM_FONT);
+    btnListaProdutos.setForeground(Colors.WHITE);
     btnListaProdutos.setText("Listar prodtos");
+    btnListaProdutos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
     javax.swing.GroupLayout jPanelProdutosLayout = new javax.swing.GroupLayout(jPanelProdutos);
     jPanelProdutos.setLayout(jPanelProdutosLayout);
@@ -141,15 +167,23 @@ public class TelaPrincipal extends javax.swing.JFrame {
         .addGap(0, 6, Short.MAX_VALUE))
     );
 
-    jPanelFornecedores.setBackground(new java.awt.Color(0, 51, 153));
+    jPanelFornecedores.setBackground(Colors.BLUE);
 
-    labelProdutos1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-    labelProdutos1.setForeground(new java.awt.Color(255, 255, 255));
+    labelProdutos1.setFont(Fonts.LARGE_FONT);
+    labelProdutos1.setForeground(Colors.WHITE);
     labelProdutos1.setText("Fornecedores");
 
+    btnCadastraFornecedor.setBackground(Colors.DARK_BLUE);
+    btnCadastraFornecedor.setFont(Fonts.MEDIUM_FONT);
+    btnCadastraFornecedor.setForeground(Colors.WHITE);
     btnCadastraFornecedor.setText("Cadastrar fornecedor");
+    btnCadastraFornecedor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
+    btnListaFornecedor.setBackground(Colors.DARK_BLUE);
+    btnListaFornecedor.setFont(Fonts.MEDIUM_FONT);
+    btnListaFornecedor.setForeground(Colors.WHITE);
     btnListaFornecedor.setText("Listar Fornecedores");
+    btnListaFornecedor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
     javax.swing.GroupLayout jPanelFornecedoresLayout = new javax.swing.GroupLayout(jPanelFornecedores);
     jPanelFornecedores.setLayout(jPanelFornecedoresLayout);
