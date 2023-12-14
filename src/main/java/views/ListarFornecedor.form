@@ -44,14 +44,14 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jScrollPane1" min="-2" pref="192" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="jScrollPane1" pref="232" max="32767" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnExclui" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnEdita" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnSeleciona" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="62" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -80,7 +80,7 @@
             </Property>
           </Properties>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="String[] colunas = {&quot;cnpj&quot;,&quot;nome&quot;, &quot;email&quot;, &quot;telefone&quot;, &quot;endere&#xe7;o&quot;};&#xd;&#xa;    model = new DefaultTableModel(colunas, 0){&#xd;&#xa;        @Override&#xd;&#xa;        public boolean isCellEditable(int row, int column){&#xd;&#xa;            return false;&#xd;&#xa;        }&#xd;&#xa;    };&#xd;&#xa;"/>
+            <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="String[] colunas = {&quot;cnpj&quot;,&quot;nome&quot;, &quot;email&quot;, &quot;telefone&quot;, &quot;endere&#xe7;o&quot;};&#xd;&#xa;    DefaultTableModel model = new DefaultTableModel(colunas, 0){&#xd;&#xa;        @Override&#xd;&#xa;        public boolean isCellEditable(int row, int column){&#xd;&#xa;            return false;&#xd;&#xa;        }&#xd;&#xa;    };&#xd;&#xa;"/>
           </AuxValues>
         </Component>
       </SubComponents>
@@ -94,11 +94,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="editar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEditaActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnSeleciona">
       <Properties>
-        <Property name="text" type="java.lang.String" value="selecionar"/>
+        <Property name="text" type="java.lang.String" value="detalhes"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDetalhesActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

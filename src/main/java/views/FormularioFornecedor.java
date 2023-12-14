@@ -1,13 +1,17 @@
 package views;
 
 import controller.FornecedorController;
+import factory.ControllerFactory;
+import models.Endereco;
 import models.Fornecedor;
 
 public class FormularioFornecedor extends javax.swing.JInternalFrame {
 
 	private Fornecedor fornecedor;
-
-	public FormularioFornecedor() {
+  private final FornecedorController fornecedorController;
+  
+	public FormularioFornecedor(ControllerFactory controllerFactory) {
+    this.fornecedorController = controllerFactory.createFornecedorController();
 		initComponents();
 	}
 
@@ -205,14 +209,27 @@ public class FormularioFornecedor extends javax.swing.JInternalFrame {
 	}// </editor-fold>//GEN-END:initComponents
 
 	private void btnCadastraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastraActionPerformed
-		FornecedorController fc = new FornecedorController();
-		fc.cadastra(fornecedor);
+    
+		fornecedorController.cadastra(fornecedor);
 	}//GEN-LAST:event_btnCadastraActionPerformed
 
 	private void btnCancelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelaActionPerformed
 		// fechar internalFrame
 	}//GEN-LAST:event_btnCancelaActionPerformed
 
+  private Fornecedor criaFornecedor(){
+    String cnpj = inputCnpj.getText();
+    String nome = inputNome.getText();
+    String email = inputEmail.getText();
+    String fone = inputFone.getText();
+    String endereco = inputEndereco.getText();
+    String cep = inputEndereco.get
+    String complemento = inputComplemento.getText();
+    String numero = inputNumero.getText();
+    
+    return new Fornecedor(cnpj, nome, email, fone, new Endereco(cep, endereco, bairro, cidade, uf) );
+  }
+  
 	// Variables declaration - do not modify//GEN-BEGIN:variables
 	private javax.swing.JButton btnCadastra;
 	private javax.swing.JButton btnCancela;
