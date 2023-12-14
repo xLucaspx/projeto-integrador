@@ -101,7 +101,6 @@ public class ProdutoDao {
 				produtos.add(p);
 			}
 			return Collections.unmodifiableList(produtos);
-
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
