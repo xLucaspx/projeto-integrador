@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import models.Formato;
 
 import models.Produto;
 
@@ -94,10 +95,11 @@ public class ProdutoDao {
 				String descricao = rs.getString("descricao");
 				float precoCusto = rs.getFloat("preco_custo");
 				float precoVenda = rs.getFloat("preco_venda");
-				String formato = rs.getString("formato");
+				String nomeFormato = rs.getString("formato");
 				double estoque = rs.getFloat("estoque");
-
-				Produto p = new Produto(codigo, descricao, null, estoque, precoVenda, precoCusto);
+                                
+                                Formato formato = Formato.valueOf(nomeFormato.toUpperCase());
+				Produto p = new Produto(codigo, descricao, formato, estoque, precoVenda, precoCusto);
 				produtos.add(p);
 			}
 			return Collections.unmodifiableList(produtos);
