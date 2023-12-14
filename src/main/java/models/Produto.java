@@ -13,15 +13,13 @@ public class Produto {
 	private float precoCusto;
 	private float precoVenda;
 
-	public Produto(String codigo, String descricao, Formato formato, double estoque, float precoVenda,
-			float precoCusto) {
+	public Produto(String codigo, String descricao, Formato formato, double estoque, float precoVenda, float precoCusto) {
 		setCodigo(codigo);
 		setDescricao(descricao);
 		setFormato(formato);
 		setEstoque(estoque);
 		setPrecoVenda(precoVenda);
 		setPrecoCusto(precoCusto);
-
 	}
 
 	public String getCodigo() {
@@ -29,10 +27,8 @@ public class Produto {
 	}
 
 	private void setCodigo(String codigo) {
-		if (!validaString(codigo))
-			throw new ValidationException("O código inserido é inválido!");
+		if (!validaString(codigo)) throw new ValidationException("O código inserido é inválido!");
 
-		this.codigo = codigo;
 	}
 
 	public String getDescricao() {
@@ -40,10 +36,8 @@ public class Produto {
 	}
 
 	private void setDescricao(String descricao) {
-		if (!validaString(descricao))
-			throw new ValidationException("A descrição inserida é inválida!");
+		if (!validaString(descricao)) throw new ValidationException("A descrição inserida é inválida!");
 
-		this.descricao = descricao;
 	}
 
 	public float getPrecoCusto() {
@@ -53,11 +47,9 @@ public class Produto {
 	private void setPrecoCusto(float precoCusto) {
 		if (precoCusto <= 0)
 			throw new ValidationException("O preço inserido é inválido; por favor, insira um valor maior do que 0!");
-
 		if (precoCusto >= precoVenda)
 			throw new ValidationException("O preço de custo deve ser menor do que o preço de venda!");
 
-		this.precoCusto = precoCusto;
 	}
 
 	public Formato getFormato() {
@@ -65,10 +57,8 @@ public class Produto {
 	}
 
 	private void setFormato(Formato formato) {
-		if (formato == null)
-			throw new ValidationException("O formato selecionado é inválido!");
+		if (formato == null) throw new ValidationException("O formato selecionado é inválido!");
 
-		this.formato = formato;
 	}
 
 	public double getEstoque() {
@@ -98,10 +88,8 @@ public class Produto {
 
 	@Override
 	public String toString() {
-		String produto = String.format(
-				"Código: %s\nDescrição: %s\nQuantidade: %.2f\nFormato: %s\nPreço custo: R$ %.2f\nPreço venda: R$ %.2f",
-				codigo, descricao, estoque, formato, precoCusto, precoVenda);
-
-		return produto;
+		return String.format(
+				"Código: %s%nDescrição: %s%nQuantidade: %.2f%nFormato: %s%nPreço custo: R$ %.2f%nPreço venda: R$ %.2f", codigo,
+				descricao, estoque, formato, precoCusto, precoVenda);
 	}
 }
