@@ -9,13 +9,13 @@ import models.Fornecedor;
 import views.constants.Colors;
 import views.constants.Fonts;
 
-public class ListarFornecedor extends javax.swing.JInternalFrame {
+public class ListaFornecedor extends javax.swing.JInternalFrame {
 
   private final FornecedorController fornecedorController;
   private ControllerFactory controllerFactory;
   private DefaultTableModel model;
 
-  public ListarFornecedor(ControllerFactory controllerFactory) {
+  public ListaFornecedor(ControllerFactory controllerFactory) {
     this.fornecedorController = controllerFactory.createFornecedorController();
     this.controllerFactory = controllerFactory;
     initComponents();
@@ -112,7 +112,6 @@ public class ListarFornecedor extends javax.swing.JInternalFrame {
     tabelaFornecedores.setModel(model);
     tabelaFornecedores.setGridColor(Colors.FONT_COLOR);
     tabelaFornecedores.setIntercellSpacing(new java.awt.Dimension(5, 5));
-    tabelaFornecedores.setRowHeight(25);
     tabelaFornecedores.setSelectionBackground(Colors.DARK_GREEN);
     tabelaFornecedores.setSelectionForeground(Colors.WHITE);
     tabelaFornecedores.setShowHorizontalLines(true);

@@ -6,19 +6,19 @@ import views.constants.Colors;
 import views.constants.Fonts;
 
 public class TelaPrincipal extends javax.swing.JFrame {
-
-    private final ControllerFactory controllerFactory;
-
-    public TelaPrincipal(ControllerFactory controllerFactory) {
-        this.controllerFactory = controllerFactory;
-        initComponents();
-        }
-
-    private void showInternalFrame(JInternalFrame frame) {
-        desktopPane.add(frame);
-        frame.moveToFront();
-        frame.requestFocus();
-    }
+  
+  private final ControllerFactory controllerFactory;
+  
+  public TelaPrincipal(ControllerFactory controllerFactory) {
+    this.controllerFactory = controllerFactory;
+    initComponents();
+  }
+  
+  private void showInternalFrame(JInternalFrame frame) {
+    desktopPane.add(frame);
+    frame.moveToFront();
+    frame.requestFocus();
+  }
   // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
   private void initComponents() {
 
@@ -154,8 +154,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
     btnListaProdutos.setBackground(Colors.DARK_BLUE);
     btnListaProdutos.setFont(Fonts.MEDIUM_FONT);
     btnListaProdutos.setForeground(Colors.WHITE);
-    btnListaProdutos.setText("Listar prodtos");
+    btnListaProdutos.setText("Listar produtos");
     btnListaProdutos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+    btnListaProdutos.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnListaProdutosActionPerformed(evt);
+      }
+    });
 
     javax.swing.GroupLayout jPanelProdutosLayout = new javax.swing.GroupLayout(jPanelProdutos);
     jPanelProdutos.setLayout(jPanelProdutosLayout);
@@ -284,20 +289,24 @@ public class TelaPrincipal extends javax.swing.JFrame {
   }// </editor-fold>//GEN-END:initComponents
 
   private void btnRegistroVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroVendaActionPerformed
-      //showInternalFrame(new FormularioRegistroVenda(controllerFactory));
+    //showInternalFrame(new FormularioRegistroVenda(controllerFactory));
   }//GEN-LAST:event_btnRegistroVendaActionPerformed
 
     private void btnCadastraProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastraProdutoActionPerformed
-        showInternalFrame(new FormularioProduto(controllerFactory));
+      showInternalFrame(new FormularioProduto(controllerFactory));
     }//GEN-LAST:event_btnCadastraProdutoActionPerformed
 
     private void btnCadastraFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastraFornecedorActionPerformed
-        showInternalFrame(new FormularioFornecedor(controllerFactory));
+      showInternalFrame(new FormularioFornecedor(controllerFactory));
     }//GEN-LAST:event_btnCadastraFornecedorActionPerformed
 
   private void btnListaFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListaFornecedorActionPerformed
-        showInternalFrame(new ListarFornecedor(controllerFactory));
+    showInternalFrame(new ListaFornecedor(controllerFactory));
   }//GEN-LAST:event_btnListaFornecedorActionPerformed
+
+  private void btnListaProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListaProdutosActionPerformed
+    showInternalFrame(new ListaProduto(controllerFactory));
+  }//GEN-LAST:event_btnListaProdutosActionPerformed
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JButton btnCadastraFornecedor;
