@@ -112,7 +112,7 @@ public class FornecedorDao {
         String cidade = rs.getString("cidade");
         String uf = rs.getString("uf");
 
-        Fornecedor f = new Fornecedor(cnpj, nome, email, telefone, new Endereco(cep, logradouro, bairro, cidade, uf));
+        Fornecedor f = new Fornecedor(cnpj, nome, email, telefone, new Endereco(cep, logradouro, bairro, cidade, uf, numero, complemento));
         fornecedores.add(f);
       }
       return Collections.unmodifiableList(fornecedores);
