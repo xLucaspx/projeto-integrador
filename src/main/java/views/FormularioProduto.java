@@ -1,149 +1,194 @@
 package views;
 
 import controller.ProdutoController;
+import exceptions.ValidationException;
 import factory.ControllerFactory;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.InputMap;
+import javax.swing.JOptionPane;
 
 import models.Formato;
 import models.Produto;
 
 public class FormularioProduto extends javax.swing.JInternalFrame {
 
-  private Produto produto;
-  private final ProdutoController produtoController;
+    private Produto produto;
+    private final ProdutoController produtoController;
 
-  public FormularioProduto(ControllerFactory controllerFactory, Produto produto) {
-    this.produtoController = controllerFactory.createProdutoController();
-    this.produto = produto;
-    initComponents();
-  }
+    public FormularioProduto(ControllerFactory controllerFactory, Produto produto) {
+        this.produtoController = controllerFactory.createProdutoController();
+        this.produto = produto;
+        initComponents();
+    }
 
-  // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-  private void initComponents() {
+    public FormularioProduto(ControllerFactory controllerFactory) {
+        this.produtoController = controllerFactory.createProdutoController();
+        initComponents();
+    }
 
-    lbFormProd = new javax.swing.JLabel();
-    lbCodigo = new javax.swing.JLabel();
-    tfCodigo = new javax.swing.JTextField();
-    lbDescricao = new javax.swing.JLabel();
-    tfDescricao = new javax.swing.JTextField();
-    lbFormato = new javax.swing.JLabel();
-    DefaultComboBoxModel<Formato> model = new DefaultComboBoxModel<>(Formato.values());
-    cbFormato = new javax.swing.JComboBox<>();
-    btnCadastra = new javax.swing.JButton();
-    btnCancela = new javax.swing.JButton();
+    private void cadastraProduto(Produto p) {
+        produtoController.cadastra(p);
+        JOptionPane.showMessageDialog(this, "Produto cadastrado com sucesso!", this.getTitle(), JOptionPane.INFORMATION_MESSAGE);
+    }
 
-    setTitle("Formulário de produto");
+    private void editaProduto(Produto p) {
+        produtoController.edita(p);
+        JOptionPane.showMessageDialog(this, "Produto alterado com sucesso!", this.getTitle(), JOptionPane.INFORMATION_MESSAGE);
+    }
 
-    lbFormProd.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-    lbFormProd.setText("Formulário de produto");
+    private Formato selecionaFormato() {
+        if (comboFormato.getSelectedIndex() < 0) {
+            throw new ValidationException("Selecione um formato");
+        }
+        return (Formato) comboFormato.getSelectedItem();
+    }
 
-    lbCodigo.setText("Código ");
+    private Produto criaProduto() {
+        String codigo = inputCodigo.getText();
+        String descricao = inputDescricao.getText();
+        Formato formato = selecionaFormato();
 
-    tfCodigo.setText(produto!=null? produto.getCodigo() : "");
-    tfCodigo.setMinimumSize(null);
-    tfCodigo.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(java.awt.event.ActionEvent evt) {
-        tfCodigoActionPerformed(evt);
-      }
-    });
+        return new Produto(codigo, descricao, formato, 0, 0, 0);
+    }
 
-    lbDescricao.setText("Descrição");
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
 
-    tfDescricao.setText(produto!=null? produto.getDescricao(): "");
-    tfDescricao.setMinimumSize(null);
-    tfDescricao.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(java.awt.event.ActionEvent evt) {
-        tfDescricaoActionPerformed(evt);
-      }
-    });
+        lbFormProd = new javax.swing.JLabel();
+        lbCodigo = new javax.swing.JLabel();
+        inputCodigo = new javax.swing.JTextField();
+        lbDescricao = new javax.swing.JLabel();
+        inputDescricao = new javax.swing.JTextField();
+        lbFormato = new javax.swing.JLabel();
+        DefaultComboBoxModel<Formato> model = new DefaultComboBoxModel<>(Formato.values());
+        comboFormato = new javax.swing.JComboBox<>();
+        btnSalvar = new javax.swing.JButton();
+        btnCancela = new javax.swing.JButton();
 
-    lbFormato.setText("Formato");
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+        setResizable(true);
+        setTitle("Formulário de produto");
+        setVisible(true);
 
-    cbFormato.setModel(model);
-    cbFormato.setMinimumSize(null);
-    cbFormato.setPreferredSize(null);
-    cbFormato.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(java.awt.event.ActionEvent evt) {
-        cbFormatoActionPerformed(evt);
-      }
-    });
+        lbFormProd.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        lbFormProd.setText("Formulário de produto");
 
-    btnCadastra.setBackground(new java.awt.Color(0, 102, 204));
-    btnCadastra.setForeground(new java.awt.Color(255, 255, 255));
-    btnCadastra.setText("Cadastrar");
+        lbCodigo.setText("Código ");
 
-    btnCancela.setBackground(new java.awt.Color(204, 0, 0));
-    btnCancela.setForeground(new java.awt.Color(255, 255, 255));
-    btnCancela.setText("Cancelar");
+        inputCodigo.setText(produto!=null? produto.getCodigo() : "");
+        inputCodigo.setMinimumSize(null);
 
-    javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-    getContentPane().setLayout(layout);
-    layout.setHorizontalGroup(
-      layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGroup(layout.createSequentialGroup()
-        .addGap(73, 73, 73)
-        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-          .addGroup(layout.createSequentialGroup()
-            .addComponent(btnCadastra, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 258, Short.MAX_VALUE)
-            .addComponent(btnCancela, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-          .addComponent(lbFormato)
-          .addComponent(lbDescricao)
-          .addComponent(tfDescricao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-          .addComponent(lbFormProd)
-          .addComponent(tfCodigo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-          .addComponent(lbCodigo)
-          .addComponent(cbFormato, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        .addContainerGap(111, Short.MAX_VALUE))
-    );
-    layout.setVerticalGroup(
-      layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGroup(layout.createSequentialGroup()
-        .addGap(49, 49, 49)
-        .addComponent(lbFormProd)
-        .addGap(28, 28, 28)
-        .addComponent(lbCodigo)
-        .addGap(18, 18, 18)
-        .addComponent(tfCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addGap(32, 32, 32)
-        .addComponent(lbDescricao)
-        .addGap(29, 29, 29)
-        .addComponent(tfDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addGap(38, 38, 38)
-        .addComponent(lbFormato)
-        .addGap(18, 18, 18)
-        .addComponent(cbFormato, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
-        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-          .addComponent(btnCadastra)
-          .addComponent(btnCancela))
-        .addContainerGap())
-    );
+        lbDescricao.setText("Descrição");
 
-    pack();
-  }// </editor-fold>//GEN-END:initComponents
+        inputDescricao.setText(produto!=null? produto.getDescricao(): "");
+        inputDescricao.setMinimumSize(null);
 
-	private void tfCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfCodigoActionPerformed
-    // TODO add your handling code here:
-	}//GEN-LAST:event_tfCodigoActionPerformed
+        lbFormato.setText("Formato");
 
-	private void tfDescricaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfDescricaoActionPerformed
-    // TODO add your handling code here:
-	}//GEN-LAST:event_tfDescricaoActionPerformed
+        comboFormato.setModel(model);
+        comboFormato.setSelectedItem(produto != null ? produto.getFormato() : null);
+        comboFormato.setMinimumSize(null);
+        comboFormato.setPreferredSize(null);
 
-	private void cbFormatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbFormatoActionPerformed
+        btnSalvar.setBackground(new java.awt.Color(0, 102, 204));
+        btnSalvar.setForeground(new java.awt.Color(255, 255, 255));
+        btnSalvar.setText("Salvar");
+        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarActionPerformed(evt);
+            }
+        });
 
-	}//GEN-LAST:event_cbFormatoActionPerformed
+        btnCancela.setBackground(new java.awt.Color(204, 0, 0));
+        btnCancela.setForeground(new java.awt.Color(255, 255, 255));
+        btnCancela.setText("Cancelar");
+        btnCancela.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelaActionPerformed(evt);
+            }
+        });
 
-  // Variables declaration - do not modify//GEN-BEGIN:variables
-  private javax.swing.JButton btnCadastra;
-  private javax.swing.JButton btnCancela;
-  private javax.swing.JComboBox<Formato> cbFormato;
-  private javax.swing.JLabel lbCodigo;
-  private javax.swing.JLabel lbDescricao;
-  private javax.swing.JLabel lbFormProd;
-  private javax.swing.JLabel lbFormato;
-  private javax.swing.JTextField tfCodigo;
-  private javax.swing.JTextField tfDescricao;
-  // End of variables declaration//GEN-END:variables
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(50, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 258, Short.MAX_VALUE)
+                        .addComponent(btnCancela, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lbFormato)
+                    .addComponent(lbDescricao)
+                    .addComponent(inputDescricao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbFormProd)
+                    .addComponent(inputCodigo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbCodigo)
+                    .addComponent(comboFormato, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(50, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(35, Short.MAX_VALUE)
+                .addComponent(lbFormProd)
+                .addGap(28, 28, 28)
+                .addComponent(lbCodigo)
+                .addGap(18, 18, 18)
+                .addComponent(inputCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
+                .addComponent(lbDescricao)
+                .addGap(29, 29, 29)
+                .addComponent(inputDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38)
+                .addComponent(lbFormato)
+                .addGap(18, 18, 18)
+                .addComponent(comboFormato, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSalvar)
+                    .addComponent(btnCancela))
+                .addContainerGap(50, Short.MAX_VALUE))
+        );
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+        try {
+            Produto p = criaProduto();
+            if (produto != null) {
+                editaProduto(p);
+            } else {
+                cadastraProduto(p);
+            }
+            dispose();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Erro ao salvar produto:\n" + e.getMessage(), this.getTitle(), JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnSalvarActionPerformed
+
+    private void btnCancelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelaActionPerformed
+        String[] options = {"Sim", "Não"};
+        int resp = JOptionPane.showOptionDialog(this, "Está certo que deseja cancelar a operação?\nTodas os dados serão perdidos!", this.getTitle(), JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
+        if (resp != 0) {
+            return;
+        }
+        dispose();
+    }//GEN-LAST:event_btnCancelaActionPerformed
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCancela;
+    private javax.swing.JButton btnSalvar;
+    private javax.swing.JComboBox<Formato> comboFormato;
+    private javax.swing.JTextField inputCodigo;
+    private javax.swing.JTextField inputDescricao;
+    private javax.swing.JLabel lbCodigo;
+    private javax.swing.JLabel lbDescricao;
+    private javax.swing.JLabel lbFormProd;
+    private javax.swing.JLabel lbFormato;
+    // End of variables declaration//GEN-END:variables
 }

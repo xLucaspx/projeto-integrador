@@ -12,5 +12,6 @@ application.yml
 .settings
 
 nbactions.xml
+nb-configuration.xml
 
 .vscode/
