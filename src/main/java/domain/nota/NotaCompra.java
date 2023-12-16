@@ -1,6 +1,8 @@
-package models;
+package domain.nota;
 
 import java.time.LocalDate;
+
+import domain.fornecedor.Fornecedor;
 
 public class NotaCompra extends Nota {
 	private Fornecedor fornecedor;

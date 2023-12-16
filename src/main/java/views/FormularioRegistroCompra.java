@@ -1,6 +1,6 @@
 package views;
 
-import models.Fornecedor;
+import domain.fornecedor.Fornecedor;
 
 public class FormularioRegistroCompra extends javax.swing.JInternalFrame {
 

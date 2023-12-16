@@ -1,5 +1,8 @@
 package app;
 
+import domain.produto.DadosBasicosProduto;
+import domain.produto.Formato;
+import domain.produto.Produto;
 import factory.ControllerFactory;
 import views.TelaPrincipal;
 

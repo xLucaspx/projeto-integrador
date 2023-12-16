@@ -1,9 +1,11 @@
-package models;
+package domain.nota;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import domain.produto.Produto;
 
 public abstract class Nota {
 	private String numero;

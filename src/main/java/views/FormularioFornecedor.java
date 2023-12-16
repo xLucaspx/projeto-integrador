@@ -1,36 +1,38 @@
 package views;
 
-import controller.FornecedorController;
-import factory.ControllerFactory;
 import javax.swing.JOptionPane;
-import models.Endereco;
-import models.Fornecedor;
+
+import controller.FornecedorController;
+import domain.fornecedor.DadosBasicosFornecedor;
+import domain.fornecedor.Endereco;
+import domain.fornecedor.Fornecedor;
+import factory.ControllerFactory;
 
 public class FormularioFornecedor extends javax.swing.JInternalFrame {
-    
-    private Fornecedor fornecedor;
-    private final FornecedorController fornecedorController;
-    
-    public FormularioFornecedor(ControllerFactory controllerFactory) {
-        this.fornecedorController = controllerFactory.createFornecedorController();
-        initComponents();
-    }
-    
-    public FormularioFornecedor(ControllerFactory controllerFactory, Fornecedor fornecedor) {
-        this.fornecedorController = controllerFactory.createFornecedorController();
-        this.fornecedor = fornecedor;
-        initComponents();
-    }
-    
-    private void cadastraFornecedor(Fornecedor f) {
-        fornecedorController.cadastra(f);
-        JOptionPane.showMessageDialog(this, "Fornecedor cadastrado com sucesso!", this.getTitle(), JOptionPane.INFORMATION_MESSAGE);
-    }
 
-    private void editaFornecedor(Fornecedor f) {
-        fornecedorController.edita(f);
-        JOptionPane.showMessageDialog(this, "Fornecedor alterado com sucesso!", this.getTitle(), JOptionPane.INFORMATION_MESSAGE);
-    }
+  private Fornecedor fornecedor;
+  private final FornecedorController fornecedorController;
+
+  public FormularioFornecedor(ControllerFactory controllerFactory) {
+    this.fornecedorController = controllerFactory.createFornecedorController();
+    initComponents();
+  }
+
+  public FormularioFornecedor(ControllerFactory controllerFactory, Fornecedor fornecedor) {
+    this.fornecedorController = controllerFactory.createFornecedorController();
+    this.fornecedor = fornecedor;
+    initComponents();
+  }
+
+  private void cadastraFornecedor(DadosBasicosFornecedor dados) {
+    fornecedorController.cadastra(dados);
+    JOptionPane.showMessageDialog(this, "Fornecedor cadastrado com sucesso!", this.getTitle(), JOptionPane.INFORMATION_MESSAGE);
+  }
+
+  private void editaFornecedor(DadosBasicosFornecedor dados) {
+    fornecedorController.edita(dados);
+    JOptionPane.showMessageDialog(this, "Fornecedor alterado com sucesso!", this.getTitle(), JOptionPane.INFORMATION_MESSAGE);
+  }
   // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
   private void initComponents() {
 
@@ -91,31 +93,31 @@ public class FormularioFornecedor extends javax.swing.JInternalFrame {
 
     jLabel1.setText("Telefone");
 
-    inputCep.setText(fornecedor!=null? fornecedor.getEndereco().getCep(): "");
+    inputCep.setText(fornecedor!=null? fornecedor.getEndereco().cep(): "");
 
     jLabel2.setText("CEP");
 
-    inputUf.setText(fornecedor!=null? fornecedor.getEndereco().getUf(): "");
+    inputUf.setText(fornecedor!=null? fornecedor.getEndereco().uf(): "");
 
     jLabel3.setText("UF");
 
-    inputCidade.setText(fornecedor!=null? fornecedor.getEndereco().getCidade(): "");
+    inputCidade.setText(fornecedor!=null? fornecedor.getEndereco().cidade(): "");
     inputCidade.setMinimumSize(null);
 
     jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
     jLabel4.setText("Cidade");
 
-    inputEndereco.setText(fornecedor!=null? fornecedor.getEndereco().getLogradouro(): "");
+    inputEndereco.setText(fornecedor!=null? fornecedor.getEndereco().logradouro(): "");
     inputEndereco.setMinimumSize(null);
 
     jLabel5.setText("Endereço");
 
-    inputNumero.setText(fornecedor!=null? fornecedor.getEndereco().getNumero(): "");
+    inputNumero.setText(fornecedor!=null? fornecedor.getEndereco().numero(): "");
 
     jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
     jLabel6.setText("Número");
 
-    inputComplemento.setText(fornecedor!=null? fornecedor.getEndereco().getComplemento(): "");
+    inputComplemento.setText(fornecedor!=null? fornecedor.getEndereco().complemento(): "");
     inputComplemento.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
         inputComplementoActionPerformed(evt);
@@ -147,7 +149,7 @@ public class FormularioFornecedor extends javax.swing.JInternalFrame {
 
     lbBairro.setText("Bairro");
 
-    inputBairro.setText(fornecedor!=null? fornecedor.getEndereco().getBairro(): "");
+    inputBairro.setText(fornecedor!=null? fornecedor.getEndereco().bairro(): "");
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
     getContentPane().setLayout(layout);
@@ -259,47 +261,46 @@ public class FormularioFornecedor extends javax.swing.JInternalFrame {
   }// </editor-fold>//GEN-END:initComponents
 
 	private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-            try {
-                Fornecedor f = criaFornecedor();
-                if (fornecedor != null) {
-                    editaFornecedor(f);
-                } else {
-                    cadastraFornecedor(f);
-                }
-                dispose();
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, "Erro ao salvar fornecedor:\n" + e.getMessage(), this.getTitle(), JOptionPane.ERROR_MESSAGE);
-            }
+    try {
+      var dados = criaDadosFornecedor();
+      if (fornecedor != null) editaFornecedor(dados);
+      else cadastraFornecedor(dados);
+
+      dispose();
+    } catch (Exception e) {
+      JOptionPane.showMessageDialog(this, "Erro ao salvar fornecedor:\n" + e.getMessage(), this.getTitle(), JOptionPane.ERROR_MESSAGE);
+    }
 	}//GEN-LAST:event_btnSalvarActionPerformed
 
 	private void btnCancelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelaActionPerformed
-            String[] options = {"Sim", "Não"};
-            int resp = JOptionPane.showOptionDialog(this, "Está certo que deseja cancelar a operação?\nTodas os dados serão perdidos!", this.getTitle(), JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
-            if (resp != 0) {
-                return;
-            }
-            dispose();
+    String[] options = {"Sim", "Não"};
+    int resp = JOptionPane.showOptionDialog(this, "Está certo que deseja cancelar a operação?\nTodas os dados serão perdidos!", this.getTitle(), JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
+    if (resp != 0) {
+      return;
+    }
+    dispose();
 	}//GEN-LAST:event_btnCancelaActionPerformed
 
     private void inputComplementoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputComplementoActionPerformed
-        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_inputComplementoActionPerformed
-    
-    private Fornecedor criaFornecedor() {
-        String cnpj = inputCnpj.getText();
-        String nome = inputNome.getText();
-        String email = inputEmail.getText();
-        String fone = inputFone.getText();
-        String logradouro = inputEndereco.getText();
-        String cep = inputCep.getText();
-        String bairro = inputBairro.getText();
-        String cidade = inputCidade.getText();
-        String uf = inputUf.getText();
-        String complemento = inputComplemento.getText();
-        String numero = inputNumero.getText();
-        
-        return new Fornecedor(cnpj, nome, email, fone, new Endereco(cep, logradouro, bairro, cidade, uf, numero, complemento));
-    }
+
+  private DadosBasicosFornecedor criaDadosFornecedor() {
+    String cnpj = inputCnpj.getText();
+    String nome = inputNome.getText();
+    String email = inputEmail.getText();
+    String fone = inputFone.getText();
+    String logradouro = inputEndereco.getText();
+    String cep = inputCep.getText();
+    String bairro = inputBairro.getText();
+    String cidade = inputCidade.getText();
+    String uf = inputUf.getText();
+    String complemento = inputComplemento.getText();
+    String numero = inputNumero.getText();
+
+    var endereco = new Endereco(cep, logradouro, complemento, numero, bairro, cidade, uf);
+    return new DadosBasicosFornecedor(cnpj, nome, email, fone, endereco);
+  }
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JButton btnCancela;

@@ -230,7 +230,7 @@
     <Component class="javax.swing.JTextField" name="inputCep">
       <Properties>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="fornecedor!=null? fornecedor.getEndereco().getCep(): &quot;&quot;" type="code"/>
+          <Connection code="fornecedor!=null? fornecedor.getEndereco().cep(): &quot;&quot;" type="code"/>
         </Property>
       </Properties>
     </Component>
@@ -242,7 +242,7 @@
     <Component class="javax.swing.JTextField" name="inputUf">
       <Properties>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="fornecedor!=null? fornecedor.getEndereco().getUf(): &quot;&quot;" type="code"/>
+          <Connection code="fornecedor!=null? fornecedor.getEndereco().uf(): &quot;&quot;" type="code"/>
         </Property>
       </Properties>
     </Component>
@@ -254,7 +254,7 @@
     <Component class="javax.swing.JTextField" name="inputCidade">
       <Properties>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="fornecedor!=null? fornecedor.getEndereco().getCidade(): &quot;&quot;" type="code"/>
+          <Connection code="fornecedor!=null? fornecedor.getEndereco().cidade(): &quot;&quot;" type="code"/>
         </Property>
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="null"/>
@@ -270,7 +270,7 @@
     <Component class="javax.swing.JTextField" name="inputEndereco">
       <Properties>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="fornecedor!=null? fornecedor.getEndereco().getLogradouro(): &quot;&quot;" type="code"/>
+          <Connection code="fornecedor!=null? fornecedor.getEndereco().logradouro(): &quot;&quot;" type="code"/>
         </Property>
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="null"/>
@@ -285,7 +285,7 @@
     <Component class="javax.swing.JTextField" name="inputNumero">
       <Properties>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="fornecedor!=null? fornecedor.getEndereco().getNumero(): &quot;&quot;" type="code"/>
+          <Connection code="fornecedor!=null? fornecedor.getEndereco().numero(): &quot;&quot;" type="code"/>
         </Property>
       </Properties>
     </Component>
@@ -298,7 +298,7 @@
     <Component class="javax.swing.JTextField" name="inputComplemento">
       <Properties>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="fornecedor!=null? fornecedor.getEndereco().getComplemento(): &quot;&quot;" type="code"/>
+          <Connection code="fornecedor!=null? fornecedor.getEndereco().complemento(): &quot;&quot;" type="code"/>
         </Property>
       </Properties>
       <Events>
@@ -353,7 +353,7 @@
     <Component class="javax.swing.JTextField" name="inputBairro">
       <Properties>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="fornecedor!=null? fornecedor.getEndereco().getBairro(): &quot;&quot;" type="code"/>
+          <Connection code="fornecedor!=null? fornecedor.getEndereco().bairro(): &quot;&quot;" type="code"/>
         </Property>
       </Properties>
     </Component>

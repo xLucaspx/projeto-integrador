@@ -1,11 +1,13 @@
 package views;
 
-import controller.FornecedorController;
-import factory.ControllerFactory;
 import java.util.List;
+
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import models.Fornecedor;
+
+import controller.FornecedorController;
+import domain.fornecedor.Fornecedor;
+import factory.ControllerFactory;
 import views.constants.Colors;
 import views.constants.Fonts;
 

@@ -1,11 +1,13 @@
 package views;
 
-import controller.ProdutoController;
-import factory.ControllerFactory;
 import java.util.List;
+
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import models.Produto;
+
+import controller.ProdutoController;
+import domain.produto.Produto;
+import factory.ControllerFactory;
 import views.constants.Colors;
 import views.constants.Fonts;
 

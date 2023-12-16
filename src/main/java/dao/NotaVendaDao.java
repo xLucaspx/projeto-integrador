@@ -5,8 +5,8 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import models.NotaVenda;
-import models.Produto;
+import domain.nota.NotaVenda;
+import domain.produto.Produto;
 
 public class NotaVendaDao {
 	private Connection con;

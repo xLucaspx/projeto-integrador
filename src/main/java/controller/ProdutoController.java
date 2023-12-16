@@ -1,33 +1,35 @@
 package controller;
 
-import dao.ProdutoDao;
 import java.util.List;
-import models.Produto;
+
+import dao.ProdutoDao;
+import domain.produto.DadosBasicosProduto;
+import domain.produto.Produto;
 
 public class ProdutoController {
-  private final ProdutoDao produtoDao;
+	private final ProdutoDao produtoDao;
 
-  public ProdutoController(ProdutoDao produtoDao) {
-    this.produtoDao = produtoDao;
-  }
+	public ProdutoController(ProdutoDao produtoDao) {
+		this.produtoDao = produtoDao;
+	}
 
-  public void cadastra(Produto produto) {
-    produtoDao.cadastra(produto);
-  }
+	public void cadastra(DadosBasicosProduto dados) {
+		produtoDao.cadastra(dados);
+	}
 
-  public void edita(Produto produto) {
-    produtoDao.edita(produto);
-  }
+	public void edita(DadosBasicosProduto dados) {
+		produtoDao.edita(dados);
+	}
 
-  public void exclui(Produto produto) {
-    produtoDao.exclui(produto);
-  }
+	public void exclui(Produto produto) {
+		produtoDao.exclui(produto);
+	}
 
-  public List<Produto> listaTodos() {
-    return produtoDao.listaTodos();
-  }
+	public List<Produto> listaTodos() {
+		return produtoDao.listaTodos();
+	}
 
-  public Produto buscaPorCodigo(String codigo) {
-    return produtoDao.buscaPorCodigo(codigo);
-  }
+	public Produto buscaPorCodigo(String codigo) {
+		return produtoDao.buscaPorCodigo(codigo);
+	}
 }

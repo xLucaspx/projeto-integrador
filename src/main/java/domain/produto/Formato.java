@@ -1,8 +1,7 @@
-package models;
+package domain.produto;
 
 public enum Formato {
-	UNIDADE("Unidade", 1), KILOGRAMA("Kilograma", 2), GRAMA("Grama", 3), MILIGRAMA("Miligrama", 4), LITRO("Litro", 5),
-	MILILITRO("Mililitro", 6);
+	UNIDADE("Unidade", 1), KILOGRAMA("Kilograma", 2), LITRO("Litro", 3);
 
 	private String formato;
 	private int codigo;

@@ -1,6 +1,8 @@
-package models;
+package domain.nota;
 
 import java.time.LocalDate;
+
+import domain.produto.Produto;
 
 public class NotaVenda extends Nota {
 

@@ -1,4 +1,4 @@
-package models;
+package domain.fornecedor;
 
 import utils.Validator;
 

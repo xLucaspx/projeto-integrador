@@ -12,16 +12,17 @@ CREATE TABLE fornecedor (
 	complemento VARCHAR(45),
 	bairro VARCHAR(45) NOT NULL,
 	cidade VARCHAR(45) NOT NULL,
-	uf VARCHAR(2) NOT NULL
+	uf VARCHAR(2) NOT NULL,
+  ativo BOOLEAN NOT NULL DEFAULT TRUE
 );
 
 CREATE TABLE produto (
 	codigo VARCHAR(50) PRIMARY KEY,
 	descricao VARCHAR(50) NOT NULL,
-	preco_custo DECIMAL(7, 2) NOT NULL,
-	preco_venda DECIMAL(7, 2) NOT NULL,
-	formato ENUM("Unidade", "Kilograma", "Grama", "Miligrama", "Litro", "Mililitro") NOT NULL,
-	estoque DECIMAL(7, 3) NOT NULL
+	preco_custo DECIMAL(7, 2) DEFAULT 0,
+	preco_venda DECIMAL(7, 2) DEFAULT 0,
+	formato ENUM("Unidade", "Kilograma", "Litro") NOT NULL,
+	estoque DECIMAL(7, 3) DEFAULT 0
 );
 
 CREATE TABLE nota_compra (

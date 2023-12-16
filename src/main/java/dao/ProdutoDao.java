@@ -7,9 +7,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import models.Formato;
 
-import models.Produto;
+import domain.produto.DadosBasicosProduto;
+import domain.produto.Formato;
+import domain.produto.Produto;
 
 public class ProdutoDao {
 
@@ -19,15 +20,14 @@ public class ProdutoDao {
 		this.con = con;
 	}
 
-	public void cadastra(Produto p) {
-		String sql = "INSERT INTO produto (codigo, descricao, preco_custo, preco_venda, formato, estoque) VALUES (?,?,?,?,?,?)";
+	public void cadastra(DadosBasicosProduto dados) {
+		String sql = "INSERT INTO produto (codigo, descricao, formato) VALUES (?, ?, ?)";
+
 		try (PreparedStatement ps = con.prepareStatement(sql)) {
-			ps.setString(1, p.getCodigo());
-			ps.setString(2, p.getDescricao());
-			ps.setFloat(3, p.getPrecoCusto());
-			ps.setFloat(4, p.getPrecoVenda());
-			ps.setInt(5, p.getFormato().getCodigo());
-			ps.setDouble(6, p.getEstoque());
+			ps.setString(1, dados.codigo());
+			ps.setString(2, dados.descricao());
+			ps.setInt(3, dados.formato().getCodigo());
+
 			ps.execute();
 
 		} catch (SQLException e) {
@@ -35,15 +35,13 @@ public class ProdutoDao {
 		}
 	}
 
-	public void edita(Produto p) {
-		String sql = "UPDATE produto SET descricao=?, preco_custo=?, preco_venda=?, formato=?, estoque=? WHERE codigo = ?";
+	public void edita(DadosBasicosProduto dados) {
+		String sql = "UPDATE produto SET descricao = ?, formato = ? WHERE codigo = ?";
+
 		try (PreparedStatement ps = con.prepareStatement(sql)) {
-			ps.setString(1, p.getDescricao());
-			ps.setFloat(2, p.getPrecoCusto());
-			ps.setFloat(3, p.getPrecoVenda());
-			ps.setInt(4, p.getFormato().getCodigo());
-			ps.setDouble(5, p.getEstoque());
-			ps.setString(6, p.getCodigo());
+			ps.setString(1, dados.descricao());
+			ps.setInt(2, dados.formato().getCodigo());
+			ps.setString(3, dados.codigo());
 			ps.execute();
 
 		} catch (SQLException e) {
@@ -97,8 +95,8 @@ public class ProdutoDao {
 				float precoVenda = rs.getFloat("preco_venda");
 				String nomeFormato = rs.getString("formato");
 				double estoque = rs.getFloat("estoque");
-                                
-                                Formato formato = Formato.valueOf(nomeFormato.toUpperCase());
+
+				Formato formato = Formato.valueOf(nomeFormato.toUpperCase());
 				Produto p = new Produto(codigo, descricao, formato, estoque, precoVenda, precoCusto);
 				produtos.add(p);
 			}
