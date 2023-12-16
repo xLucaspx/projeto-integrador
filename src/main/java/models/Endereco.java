@@ -4,110 +4,130 @@ import static utils.Validator.validaCep;
 import static utils.Validator.validaString;
 
 import exceptions.ValidationException;
-import utils.Validator;;
+import utils.Validator;
+
+;
 
 public class Endereco {
-	private String cep;
-	private String logradouro;
-	private String complemento;
-	private String numero;
-	private String bairro;
-	private String cidade;
-	private String uf;
+  private String cep;
+  private String logradouro;
+  private String complemento;
+  private String numero;
+  private String bairro;
+  private String cidade;
+  private String uf;
 
-	public Endereco(String cep, String logradouro, String bairro, String cidade, String uf) {
-		setCep(cep);
-		setLogradouro(logradouro);
-		setBairro(bairro);
-		setCidade(cidade);
-		setUf(uf);
-	}
+  public Endereco(String cep, String logradouro, String bairro, String cidade, String uf) {
+    setCep(cep);
+    setLogradouro(logradouro);
+    setBairro(bairro);
+    setCidade(cidade);
+    setUf(uf);
+  }
 
-	public String getCep() {
-		return cep;
-	}
+  public Endereco(String cep, String logradouro, String bairro, String cidade, String uf, String numero, String complemento) {
+    setCep(cep);
+    setLogradouro(logradouro);
+    setBairro(bairro);
+    setCidade(cidade);
+    setUf(uf);
+    setNumero(numero);
+    setComplemento(complemento);
+  }
 
-	private void setCep(String cep) {
-		if (!validaCep(cep)) throw new ValidationException("Valor inválido inserido para CEP! Valor inserido: " + cep);
+  public String getCep() {
+    return cep;
+  }
 
-		this.cep = cep;
-	}
+  private void setCep(String cep) {
+    if (!validaCep(cep))
+      throw new ValidationException("Valor inválido inserido para CEP! Valor inserido: " + cep);
 
-	public String getLogradouro() {
-		return logradouro;
-	}
+    this.cep = cep;
+  }
 
-	private void setLogradouro(String logradouro) {
-		if (!validaString(logradouro)) throw new ValidationException("Valor inválido inserido para logradouro!");
+  public String getLogradouro() {
+    return logradouro;
+  }
 
-		this.logradouro = logradouro;
-	}
+  private void setLogradouro(String logradouro) {
+    if (!validaString(logradouro))
+      throw new ValidationException("Valor inválido inserido para logradouro!");
 
-	public String getComplemento() {
-		return complemento;
-	}
+    this.logradouro = logradouro;
+  }
 
-	public void setComplemento(String complemento) {
-		if (!validaString(complemento)) throw new ValidationException("Valor inválido inserido para complemento!");
+  public String getComplemento() {
+    return complemento;
+  }
 
-		this.complemento = complemento;
-	}
+  public void setComplemento(String complemento) {
+    if (!validaString(complemento))
+      throw new ValidationException("Valor inválido inserido para complemento!");
 
-	public String getNumero() {
-		return numero;
-	}
+    this.complemento = complemento;
+  }
 
-	public void setNumero(String numero) {
-		if (!validaString(numero)) throw new ValidationException("Valor inválido inserido para número!");
+  public String getNumero() {
+    return numero;
+  }
 
-		this.numero = numero;
-	}
+  public void setNumero(String numero) {
+    if (!validaString(numero))
+      throw new ValidationException("Valor inválido inserido para número!");
 
-	public String getBairro() {
-		return bairro;
-	}
+    this.numero = numero;
+  }
 
-	private void setBairro(String bairro) {
-		if (!validaString(bairro)) throw new ValidationException("Valor inválido inserido para bairro!");
+  public String getBairro() {
+    return bairro;
+  }
 
-		this.bairro = bairro;
-	}
+  private void setBairro(String bairro) {
+    if (!validaString(bairro))
+      throw new ValidationException("Valor inválido inserido para bairro!");
 
-	public String getCidade() {
-		return cidade;
-	}
+    this.bairro = bairro;
+  }
 
-	private void setCidade(String cidade) {
-		if (!validaString(cidade)) throw new ValidationException("Valor inválido inserido para cidade!");
+  public String getCidade() {
+    return cidade;
+  }
 
-		this.cidade = cidade;
-	}
+  private void setCidade(String cidade) {
+    if (!validaString(cidade))
+      throw new ValidationException("Valor inválido inserido para cidade!");
 
-	public String getUf() {
-		return uf;
-	}
+    this.cidade = cidade;
+  }
 
-	private void setUf(String uf) {
-		if (!validaString(uf)) throw new ValidationException("Valor inválido inserido para UF!");
+  public String getUf() {
+    return uf;
+  }
 
-		uf = uf.toUpperCase();
+  private void setUf(String uf) {
+    if (!validaString(uf))
+      throw new ValidationException("Valor inválido inserido para UF!");
 
-		if (!Validator.validaUf(uf))
-			throw new IllegalArgumentException("Valor inválido inserido para UF! Valor inserido: " + uf);
+    uf = uf.toUpperCase();
 
-		this.uf = uf;
-	}
+    if (!Validator.validaUf(uf))
+      throw new IllegalArgumentException("Valor inválido inserido para UF! Valor inserido: " + uf);
 
-	@Override
-	public String toString() {
-		String endereco = logradouro + ", ";
+    this.uf = uf;
+  }
 
-		if (numero != null && !numero.trim().isEmpty()) endereco += numero + ", ";
+  @Override
+  public String toString() {
+    String endereco = logradouro + ", ";
 
-		if (complemento != null && !complemento.trim().isEmpty()) endereco += complemento + ", ";
+    if (numero != null && !numero.trim().isEmpty()) endereco += numero + ", ";
 
-		endereco += String.format("bairro %s, %s - %s; CEP: %s", bairro, cidade, uf, cep);
+    if (complemento != null && !complemento.trim().isEmpty())
+      endereco += complemento + ", ";
 
-		return endereco;
-	}
+    endereco += String.format("bairro %s, %s - %s; CEP: %s", bairro, cidade, uf, cep);
+
+    return endereco;
+  }
 }
