@@ -1,4 +1,4 @@
-package views;
+package views.vendas;
 
 public class FormularioRegistroVenda extends javax.swing.JInternalFrame {
 

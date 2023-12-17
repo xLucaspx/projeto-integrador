@@ -3,8 +3,8 @@ package controller;
 import java.util.List;
 
 import dao.ProdutoDao;
-import domain.produto.DadosBasicosProduto;
-import domain.produto.Produto;
+import models.produto.DadosBasicosProduto;
+import models.produto.Produto;
 
 public class ProdutoController {
 	private final ProdutoDao produtoDao;
@@ -22,7 +22,7 @@ public class ProdutoController {
 	}
 
 	public void exclui(Produto produto) {
-		produtoDao.exclui(produto);
+		produtoDao.exclui(produto.getCodigo());
 	}
 
 	public List<Produto> listaTodos() {

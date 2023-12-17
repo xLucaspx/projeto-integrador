@@ -1,12 +1,13 @@
-package views;
+package views.fornecedor;
 
 import javax.swing.JOptionPane;
 
 import controller.FornecedorController;
-import domain.fornecedor.DadosBasicosFornecedor;
-import domain.fornecedor.Endereco;
-import domain.fornecedor.Fornecedor;
+
 import factory.ControllerFactory;
+import models.fornecedor.DadosBasicosFornecedor;
+import models.fornecedor.Endereco;
+import models.fornecedor.Fornecedor;
 
 public class FormularioFornecedor extends javax.swing.JInternalFrame {
 

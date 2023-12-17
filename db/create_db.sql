@@ -22,7 +22,8 @@ CREATE TABLE produto (
 	preco_custo DECIMAL(7, 2) DEFAULT 0,
 	preco_venda DECIMAL(7, 2) DEFAULT 0,
 	formato ENUM("Unidade", "Kilograma", "Litro") NOT NULL,
-	estoque DECIMAL(7, 3) DEFAULT 0
+	estoque DECIMAL(7, 3) DEFAULT 0,
+	ativo BOOLEAN NOT NULL DEFAULT TRUE
 );
 
 CREATE TABLE nota_compra (

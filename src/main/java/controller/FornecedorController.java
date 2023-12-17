@@ -3,8 +3,8 @@ package controller;
 import java.util.List;
 
 import dao.FornecedorDao;
-import domain.fornecedor.DadosBasicosFornecedor;
-import domain.fornecedor.Fornecedor;
+import models.fornecedor.DadosBasicosFornecedor;
+import models.fornecedor.Fornecedor;
 
 public class FornecedorController {
 
@@ -23,7 +23,7 @@ public class FornecedorController {
 	}
 
 	public void exclui(Fornecedor fornecedor) {
-		fornecedorDao.exclui(fornecedor);
+		fornecedorDao.exclui(fornecedor.getCnpj());
 	}
 
 	public List<Fornecedor> listaTodos() {

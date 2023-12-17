@@ -1,4 +1,4 @@
-package domain.produto;
+package models.produto;
 
 public enum Formato {
 	UNIDADE("Unidade", 1), KILOGRAMA("Kilograma", 2), LITRO("Litro", 3);

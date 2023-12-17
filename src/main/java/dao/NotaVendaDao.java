@@ -5,11 +5,11 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import domain.nota.NotaVenda;
-import domain.produto.Produto;
+import models.produto.Produto;
+import models.venda.NotaVenda;
 
 public class NotaVendaDao {
-	private Connection con;
+	private final Connection con;
 
 	public NotaVendaDao(Connection con) {
 		this.con = con;

@@ -1,4 +1,4 @@
-package domain.fornecedor;
+package models.fornecedor;
 
 import static utils.Validator.validaCep;
 import static utils.Validator.validaString;

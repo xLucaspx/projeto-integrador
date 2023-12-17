@@ -1,4 +1,4 @@
-package domain.produto;
+package models.produto;
 
 import static utils.Validator.validaString;
 

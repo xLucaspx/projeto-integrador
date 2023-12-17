@@ -1,6 +1,6 @@
 package dao;
 
-import domain.fornecedor.DadosBasicosFornecedor;
+import models.fornecedor.DadosBasicosFornecedor;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,12 +9,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import domain.fornecedor.Endereco;
-import domain.fornecedor.Fornecedor;
+import models.fornecedor.Endereco;
+import models.fornecedor.Fornecedor;
 
 public class FornecedorDao {
 
-  private Connection con;
+  private final Connection con;
 
   public FornecedorDao(Connection con) {
     this.con = con;
@@ -64,10 +64,11 @@ public class FornecedorDao {
     }
   }
 
-  public void exclui(Fornecedor f) {
-    String sql = "DELETE FROM fornecedor WHERE cnpj = ?";
+  public void exclui(String cnpj) {
+    String sql = "UPDATE fornecedor SET ativo = FALSE WHERE cnpj = ?";
+    
     try (PreparedStatement ps = con.prepareStatement(sql)) {
-      ps.setString(1, f.getCnpj());
+      ps.setString(1, cnpj);
 
       ps.execute();
 
@@ -77,7 +78,7 @@ public class FornecedorDao {
   }
 
   public List<Fornecedor> listaTodos() {
-    String sql = "SELECT cnpj, nome, email, telefone, cep, endereco, numero, complemento, bairro, cidade, uf FROM fornecedor";
+    String sql = "SELECT cnpj, nome, email, telefone, cep, endereco, numero, complemento, bairro, cidade, uf FROM fornecedor WHERE ativo = TRUE";
     try (PreparedStatement ps = con.prepareStatement(sql)) {
       List<Fornecedor> fornecedor = transformaResultSet(ps);
       return fornecedor;
@@ -87,7 +88,7 @@ public class FornecedorDao {
   }
 
   public Fornecedor buscaPorCnpj(String cnpj) {
-    String sql = "SELECT cnpj, nome, email, telefone, cep, endereco, numero, complemento, bairro, cidade, uf FROM fornecedor WHERE cnpj=?";
+    String sql = "SELECT cnpj, nome, email, telefone, cep, endereco, numero, complemento, bairro, cidade, uf FROM fornecedor WHERE cnpj = ?";
     try (PreparedStatement ps = con.prepareCall(sql)) {
       ps.setString(1, cnpj);
       List<Fornecedor> fornecedores = transformaResultSet(ps);

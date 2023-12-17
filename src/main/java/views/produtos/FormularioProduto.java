@@ -1,12 +1,12 @@
-package views;
+package views.produtos;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 import controller.ProdutoController;
-import domain.produto.DadosBasicosProduto;
-import domain.produto.Formato;
-import domain.produto.Produto;
+import models.produto.DadosBasicosProduto;
+import models.produto.Formato;
+import models.produto.Produto;
 import exceptions.ValidationException;
 import factory.ControllerFactory;
 

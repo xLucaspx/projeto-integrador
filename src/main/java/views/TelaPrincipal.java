@@ -4,16 +4,20 @@ import factory.ControllerFactory;
 import javax.swing.JInternalFrame;
 import views.constants.Colors;
 import views.constants.Fonts;
+import views.fornecedor.FormularioFornecedor;
+import views.fornecedor.ListaFornecedor;
+import views.produtos.FormularioProduto;
+import views.produtos.ListaProduto;
 
 public class TelaPrincipal extends javax.swing.JFrame {
-  
+
   private final ControllerFactory controllerFactory;
-  
+
   public TelaPrincipal(ControllerFactory controllerFactory) {
     this.controllerFactory = controllerFactory;
     initComponents();
   }
-  
+
   private void showInternalFrame(JInternalFrame frame) {
     desktopPane.add(frame);
     frame.moveToFront();

@@ -1,4 +1,4 @@
-package domain.fornecedor;
+package models.fornecedor;
 
 import exceptions.ValidationException;
 import static utils.Validator.validaCnpj;
