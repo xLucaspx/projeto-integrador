@@ -1,5 +1,6 @@
 package dao;
 
+import models.fornecedor.DadosBasicosFornecedor;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -7,31 +8,33 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import models.Endereco;
-import models.Fornecedor;
+
+import models.fornecedor.Endereco;
+import models.fornecedor.Fornecedor;
 
 public class FornecedorDao {
 
-  private Connection con;
+  private final Connection con;
 
   public FornecedorDao(Connection con) {
     this.con = con;
   }
 
-  public void cadastra(Fornecedor f) {
+  public void cadastra(DadosBasicosFornecedor dados) {
     String sql = "INSERT INTO fornecedor (cnpj, nome, email, telefone, cep, endereco, numero, complemento, bairro, cidade, uf) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+
     try (PreparedStatement ps = con.prepareStatement(sql)) {
-      ps.setString(1, f.getCnpj());
-      ps.setString(2, f.getNome());
-      ps.setString(3, f.getEmail());
-      ps.setString(4, f.getTelefone());
-      ps.setString(5, f.getEndereco().getCep());
-      ps.setString(6, f.getEndereco().getLogradouro());
-      ps.setString(7, f.getEndereco().getNumero());
-      ps.setString(8, f.getEndereco().getComplemento());
-      ps.setString(9, f.getEndereco().getBairro());
-      ps.setString(10, f.getEndereco().getCidade());
-      ps.setString(11, f.getEndereco().getUf());
+      ps.setString(1, dados.cnpj());
+      ps.setString(2, dados.nome());
+      ps.setString(3, dados.email());
+      ps.setString(4, dados.telefone());
+      ps.setString(5, dados.endereco().cep());
+      ps.setString(6, dados.endereco().logradouro());
+      ps.setString(7, dados.endereco().numero());
+      ps.setString(8, dados.endereco().complemento());
+      ps.setString(9, dados.endereco().bairro());
+      ps.setString(10, dados.endereco().cidade());
+      ps.setString(11, dados.endereco().uf());
 
       ps.execute();
     } catch (SQLException e) {
@@ -39,32 +42,33 @@ public class FornecedorDao {
     }
   }
 
-  public void edita(Fornecedor f) {
-    String sql = "UPDATE fornecedor SET nome=?, email=?, telefone=?, cep=?, endereco=?, numero=?, complemento=?, bairro=?, cidade=?, uf=? WHERE cnpj = ?";
+  public void edita(DadosBasicosFornecedor dados) {
+    String sql = "UPDATE fornecedor SET nome = ?, email = ?, telefone = ?, cep = ?, endereco = ?, numero = ?, complemento = ?, bairro = ?, cidade = ?, uf = ? WHERE cnpj = ?";
+
     try (PreparedStatement ps = con.prepareStatement(sql)) {
-      ps.setString(1, f.getNome());
-      ps.setString(2, f.getEmail());
-      ps.setString(3, f.getTelefone());
-      ps.setString(4, f.getEndereco().getCep());
-      ps.setString(5, f.getEndereco().getLogradouro());
-      ps.setString(6, f.getEndereco().getNumero());
-      ps.setString(7, f.getEndereco().getComplemento());
-      ps.setString(8, f.getEndereco().getBairro());
-      ps.setString(9, f.getEndereco().getCidade());
-      ps.setString(10, f.getEndereco().getUf());
-      ps.setString(11, f.getCnpj());
+      ps.setString(1, dados.nome());
+      ps.setString(2, dados.email());
+      ps.setString(3, dados.telefone());
+      ps.setString(4, dados.endereco().cep());
+      ps.setString(5, dados.endereco().logradouro());
+      ps.setString(6, dados.endereco().numero());
+      ps.setString(7, dados.endereco().complemento());
+      ps.setString(8, dados.endereco().bairro());
+      ps.setString(9, dados.endereco().cidade());
+      ps.setString(10, dados.endereco().uf());
+      ps.setString(11, dados.cnpj());
 
       ps.execute();
-
     } catch (SQLException e) {
       throw new RuntimeException(e);
     }
   }
 
-  public void exclui(Fornecedor f) {
-    String sql = "DELETE FROM fornecedor WHERE cnpj = ?";
+  public void exclui(String cnpj) {
+    String sql = "UPDATE fornecedor SET ativo = FALSE WHERE cnpj = ?";
+    
     try (PreparedStatement ps = con.prepareStatement(sql)) {
-      ps.setString(1, f.getCnpj());
+      ps.setString(1, cnpj);
 
       ps.execute();
 
@@ -74,7 +78,7 @@ public class FornecedorDao {
   }
 
   public List<Fornecedor> listaTodos() {
-    String sql = "SELECT cnpj, nome, email, telefone, cep, endereco, numero, complemento, bairro, cidade, uf FROM fornecedor";
+    String sql = "SELECT cnpj, nome, email, telefone, cep, endereco, numero, complemento, bairro, cidade, uf FROM fornecedor WHERE ativo = TRUE";
     try (PreparedStatement ps = con.prepareStatement(sql)) {
       List<Fornecedor> fornecedor = transformaResultSet(ps);
       return fornecedor;
@@ -82,16 +86,18 @@ public class FornecedorDao {
       throw new RuntimeException(e);
     }
   }
-  public Fornecedor buscaPorCnpj(String cnpj){
-    String sql = "SELECT cnpj, nome, email, telefone, cep, endereco, numero, complemento, bairro, cidade, uf FROM fornecedor WHERE cnpj=?";
-    try(PreparedStatement ps = con.prepareCall(sql)){
+
+  public Fornecedor buscaPorCnpj(String cnpj) {
+    String sql = "SELECT cnpj, nome, email, telefone, cep, endereco, numero, complemento, bairro, cidade, uf FROM fornecedor WHERE cnpj = ?";
+    try (PreparedStatement ps = con.prepareCall(sql)) {
       ps.setString(1, cnpj);
       List<Fornecedor> fornecedores = transformaResultSet(ps);
-      if(fornecedores.isEmpty()) throw new RuntimeException("Nenhum fornecedor encontrado para o cnpj "+ cnpj);
-      
+      if (fornecedores.isEmpty())
+        throw new RuntimeException("Nenhum fornecedor encontrado para o cnpj " + cnpj);
+
       return fornecedores.toArray(new Fornecedor[1])[0];
-        
-    }catch (SQLException e){
+
+    } catch (SQLException e) {
       throw new RuntimeException(e);
     }
   }
@@ -112,8 +118,9 @@ public class FornecedorDao {
         String cidade = rs.getString("cidade");
         String uf = rs.getString("uf");
 
-        Fornecedor f = new Fornecedor(cnpj, nome, email, telefone, new Endereco(cep, logradouro, bairro, cidade, uf, numero, complemento));
-        fornecedores.add(f);
+        var endereco = new Endereco(cep, logradouro, complemento, numero, bairro, cidade, uf);
+        var fornecedor = new Fornecedor(cnpj, nome, email, telefone, endereco);
+        fornecedores.add(fornecedor);
       }
       return Collections.unmodifiableList(fornecedores);
     } catch (SQLException e) {

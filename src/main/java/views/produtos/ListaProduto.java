@@ -1,30 +1,38 @@
-package views;
+package views.produtos;
 
-import controller.ProdutoController;
-import factory.ControllerFactory;
 import java.util.List;
+
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import models.Produto;
+
+import controller.ProdutoController;
+import models.produto.Produto;
+import factory.ControllerFactory;
 import views.constants.Colors;
 import views.constants.Fonts;
 
 public class ListaProduto extends javax.swing.JInternalFrame {
   private final ProdutoController produtoController;
-  private ControllerFactory contrFactory;
+  private final ControllerFactory controllerFactory;
   private DefaultTableModel model;
-  
+
   public ListaProduto(ControllerFactory controllerFactory) {
     this.produtoController = controllerFactory.createProdutoController();
-    this.contrFactory = controllerFactory;
+    this.controllerFactory = controllerFactory;
     initComponents();
   }
 
   private void preencheTabela(List<Produto> produtos) {
     model.getDataVector().clear();
+
+    if (produtos.isEmpty()) {
+      tabelaProdutos.repaint();
+      return;
+    }
+
     produtos.forEach(p -> model.addRow(new Object[]{p.getCodigo(), p.getDescricao(), p.getPrecoCusto(), p.getPrecoVenda(), p.getFormato(), p.getEstoque()}));
   }
-  
+
   private Produto getProdutoSelecionado() {
     var linhaSelecionada = tabelaProdutos.getSelectedRow();
     if (linhaSelecionada == -1 || linhaSelecionada >= model.getRowCount()) {
@@ -33,7 +41,7 @@ public class ListaProduto extends javax.swing.JInternalFrame {
     var codigo = (String) model.getValueAt(linhaSelecionada, 0);
     return produtoController.buscaPorCodigo(codigo);
   }
-  
+
   @SuppressWarnings("unchecked")
   // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
   private void initComponents() {
@@ -159,7 +167,7 @@ public class ListaProduto extends javax.swing.JInternalFrame {
   private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
     try {
       var produto = getProdutoSelecionado();
-      var form = new FormularioProduto(contrFactory, produto);
+      var form = new FormularioProduto(controllerFactory, produto);
       getDesktopPane().add(form);
       form.moveToFront();
       form.requestFocus();
@@ -172,7 +180,7 @@ public class ListaProduto extends javax.swing.JInternalFrame {
     try {
       var produto = getProdutoSelecionado();
       String[] opcoes = {"Sim", "Não"};
-      
+
       int res = JOptionPane.showOptionDialog(this, String.format("Tem certeza que deseja excluir o produto %s?\nNão é possível desfazer esta ação",
         produto.getDescricao()),
         getTitle(), JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, opcoes, opcoes[1]);

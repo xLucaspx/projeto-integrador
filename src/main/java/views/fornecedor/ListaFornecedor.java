@@ -1,18 +1,20 @@
-package views;
+package views.fornecedor;
 
-import controller.FornecedorController;
-import factory.ControllerFactory;
 import java.util.List;
+
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import models.Fornecedor;
+
+import controller.FornecedorController;
+import models.fornecedor.Fornecedor;
+import factory.ControllerFactory;
 import views.constants.Colors;
 import views.constants.Fonts;
 
 public class ListaFornecedor extends javax.swing.JInternalFrame {
 
   private final FornecedorController fornecedorController;
-  private ControllerFactory controllerFactory;
+  private final ControllerFactory controllerFactory;
   private DefaultTableModel model;
 
   public ListaFornecedor(ControllerFactory controllerFactory) {
@@ -23,6 +25,12 @@ public class ListaFornecedor extends javax.swing.JInternalFrame {
 
   private void preencheTabela(List<Fornecedor> fornecedores) {
     model.getDataVector().clear();
+
+    if (fornecedores.isEmpty()) {
+      tabelaFornecedores.repaint();
+      return;
+    }
+
     fornecedores.forEach(f -> model.addRow(new Object[]{f.getCnpj(), f.getNome(), f.getEmail(), f.getTelefone()}));
   }
 
@@ -193,7 +201,7 @@ public class ListaFornecedor extends javax.swing.JInternalFrame {
       String[] options = {"Sim", "Não"};
 
       int res = JOptionPane.showOptionDialog(this,
-        String.format("Tem certeza que deseja excluir o fornecedor %s?\nNão é possível desfazer esta ação!",
+        String.format("Tem certeza que deseja excluir o fornecedor %s?",
           fornecedor.getNome()),
         getTitle(), JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
       if (res != 0) {

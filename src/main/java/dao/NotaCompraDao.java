@@ -4,12 +4,12 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import models.compra.NotaCompra;
 
-import models.NotaCompra;
-import models.Produto;
+import models.produto.Produto;
 
 public class NotaCompraDao {
-	private Connection con;
+	private final Connection con;
 
 	public NotaCompraDao(Connection con) {
 		this.con = con;

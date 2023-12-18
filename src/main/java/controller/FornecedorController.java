@@ -1,35 +1,37 @@
 package controller;
 
-import dao.FornecedorDao;
 import java.util.List;
-import models.Fornecedor;
+
+import dao.FornecedorDao;
+import models.fornecedor.DadosBasicosFornecedor;
+import models.fornecedor.Fornecedor;
 
 public class FornecedorController {
 
-  private final FornecedorDao fornecedorDao;
+	private final FornecedorDao fornecedorDao;
 
-  public FornecedorController(FornecedorDao dao) {
-    this.fornecedorDao = dao;
-  }
+	public FornecedorController(FornecedorDao dao) {
+		this.fornecedorDao = dao;
+	}
 
-  public void cadastra(Fornecedor fornecedor) {
-    fornecedorDao.cadastra(fornecedor);
-  }
+	public void cadastra(DadosBasicosFornecedor dados) {
+		fornecedorDao.cadastra(dados);
+	}
 
-  public void edita(Fornecedor fornecedor) {
-    fornecedorDao.edita(fornecedor);
-  }
+	public void edita(DadosBasicosFornecedor dados) {
+		fornecedorDao.edita(dados);
+	}
 
-  public void exclui(Fornecedor fornecedor) {
-    fornecedorDao.exclui(fornecedor);
-  }
+	public void exclui(Fornecedor fornecedor) {
+		fornecedorDao.exclui(fornecedor.getCnpj());
+	}
 
-  public List<Fornecedor> listaTodos() {
-    return fornecedorDao.listaTodos();
-  }
+	public List<Fornecedor> listaTodos() {
+		return fornecedorDao.listaTodos();
+	}
 
-  public Fornecedor buscaPorCnpj(String cnpj) {
-    return fornecedorDao.buscaPorCnpj(cnpj);
-  }
+	public Fornecedor buscaPorCnpj(String cnpj) {
+		return fornecedorDao.buscaPorCnpj(cnpj);
+	}
 
 }
