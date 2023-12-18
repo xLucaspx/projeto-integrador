@@ -7,21 +7,30 @@ import models.Endereco;
 import models.Fornecedor;
 
 public class FormularioFornecedor extends javax.swing.JInternalFrame {
+    
+    private Fornecedor fornecedor;
+    private final FornecedorController fornecedorController;
+    
+    public FormularioFornecedor(ControllerFactory controllerFactory) {
+        this.fornecedorController = controllerFactory.createFornecedorController();
+        initComponents();
+    }
+    
+    public FormularioFornecedor(ControllerFactory controllerFactory, Fornecedor fornecedor) {
+        this.fornecedorController = controllerFactory.createFornecedorController();
+        this.fornecedor = fornecedor;
+        initComponents();
+    }
+    
+    private void cadastraFornecedor(Fornecedor f) {
+        fornecedorController.cadastra(f);
+        JOptionPane.showMessageDialog(this, "Fornecedor cadastrado com sucesso!", this.getTitle(), JOptionPane.INFORMATION_MESSAGE);
+    }
 
-  private Fornecedor fornecedor;
-  private final FornecedorController fornecedorController;
-
-  public FormularioFornecedor(ControllerFactory controllerFactory) {
-    this.fornecedorController = controllerFactory.createFornecedorController();
-    initComponents();
-  }
-
-  public FormularioFornecedor(ControllerFactory controllerFactory, Fornecedor fornecedor) {
-    this.fornecedorController = controllerFactory.createFornecedorController();
-    this.fornecedor = fornecedor;
-    initComponents();
-  }
-
+    private void editaFornecedor(Fornecedor f) {
+        fornecedorController.edita(f);
+        JOptionPane.showMessageDialog(this, "Fornecedor alterado com sucesso!", this.getTitle(), JOptionPane.INFORMATION_MESSAGE);
+    }
   // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
   private void initComponents() {
 
@@ -51,7 +60,12 @@ public class FormularioFornecedor extends javax.swing.JInternalFrame {
     lbBairro = new javax.swing.JLabel();
     inputBairro = new javax.swing.JTextField();
 
+    setClosable(true);
+    setIconifiable(true);
+    setMaximizable(true);
+    setResizable(true);
     setTitle("Formulário de fornecedor");
+    setVisible(true);
 
     labelFormFornecedor.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
     labelFormFornecedor.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -102,6 +116,11 @@ public class FormularioFornecedor extends javax.swing.JInternalFrame {
     jLabel6.setText("Número");
 
     inputComplemento.setText(fornecedor!=null? fornecedor.getEndereco().getComplemento(): "");
+    inputComplemento.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        inputComplementoActionPerformed(evt);
+      }
+    });
 
     jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
     jLabel7.setText("Complemento");
@@ -109,6 +128,7 @@ public class FormularioFornecedor extends javax.swing.JInternalFrame {
     btnSalvar.setBackground(new java.awt.Color(0, 102, 204));
     btnSalvar.setForeground(new java.awt.Color(255, 255, 255));
     btnSalvar.setText("Salvar");
+    btnSalvar.setPreferredSize(null);
     btnSalvar.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
         btnSalvarActionPerformed(evt);
@@ -118,6 +138,7 @@ public class FormularioFornecedor extends javax.swing.JInternalFrame {
     btnCancela.setBackground(new java.awt.Color(204, 0, 0));
     btnCancela.setForeground(new java.awt.Color(255, 255, 255));
     btnCancela.setText("Cancelar");
+    btnCancela.setPreferredSize(null);
     btnCancela.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
         btnCancelaActionPerformed(evt);
@@ -133,65 +154,62 @@ public class FormularioFornecedor extends javax.swing.JInternalFrame {
     layout.setHorizontalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(layout.createSequentialGroup()
-        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        .addContainerGap(50, Short.MAX_VALUE)
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
           .addComponent(labelFormFornecedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-          .addGroup(layout.createSequentialGroup()
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-              .addComponent(labelCnpj)
-              .addComponent(inputCnpj, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-              .addComponent(inputEmail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-              .addComponent(labelEmail)
-              .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                  .addComponent(inputCep, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                  .addComponent(jLabel2))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                  .addComponent(lbBairro)
-                  .addComponent(inputBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                  .addComponent(jLabel3)
-                  .addComponent(inputUf, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
-            .addGap(18, 18, 18)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-              .addComponent(inputCidade, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-              .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                  .addComponent(jLabel1)
-                  .addComponent(labelNome)
-                  .addComponent(inputNome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                  .addComponent(inputFone, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                  .addGroup(layout.createSequentialGroup()
-                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
-                    .addGap(20, 20, 20)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                  .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 0, Short.MAX_VALUE))))
           .addGroup(layout.createSequentialGroup()
             .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGap(18, 18, 18)
             .addComponent(btnCancela, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
           .addGroup(layout.createSequentialGroup()
+            .addComponent(inputEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(18, 18, Short.MAX_VALUE)
+            .addComponent(inputNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(18, 18, Short.MAX_VALUE)
+            .addComponent(inputComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+          .addGroup(layout.createSequentialGroup()
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-              .addComponent(jLabel5)
               .addGroup(layout.createSequentialGroup()
-                .addComponent(inputEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(inputNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
-            .addGap(0, 145, Short.MAX_VALUE))
-          .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-            .addGap(0, 0, Short.MAX_VALUE)
-            .addComponent(inputComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
-        .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                  .addComponent(labelCnpj)
+                  .addComponent(inputCnpj, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                  .addComponent(inputEmail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                  .addComponent(labelEmail)
+                  .addGroup(layout.createSequentialGroup()
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                      .addComponent(inputCep, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                      .addComponent(jLabel2))
+                    .addGap(18, 18, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                      .addComponent(lbBairro)
+                      .addComponent(inputBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(18, 18, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                      .addComponent(jLabel3)
+                      .addComponent(inputUf, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(18, 18, Short.MAX_VALUE))
+              .addGroup(layout.createSequentialGroup()
+                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+              .addComponent(jLabel1)
+              .addComponent(labelNome)
+              .addGroup(layout.createSequentialGroup()
+                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
+                .addGap(18, 18, Short.MAX_VALUE)
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+              .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+              .addComponent(inputNome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+              .addComponent(inputFone, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+              .addComponent(inputCidade, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+        .addContainerGap(50, Short.MAX_VALUE))
     );
     layout.setVerticalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(layout.createSequentialGroup()
-        .addGap(28, 28, 28)
+        .addContainerGap(37, Short.MAX_VALUE)
         .addComponent(labelFormFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addGap(29, 29, 29)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(labelCnpj)
           .addComponent(labelNome))
@@ -207,7 +225,7 @@ public class FormularioFornecedor extends javax.swing.JInternalFrame {
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(inputEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
           .addComponent(inputFone, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-        .addGap(22, 22, 22)
+        .addGap(20, 20, 20)
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(jLabel2)
           .addComponent(jLabel3)
@@ -219,60 +237,69 @@ public class FormularioFornecedor extends javax.swing.JInternalFrame {
           .addComponent(inputUf, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
           .addComponent(inputCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
           .addComponent(inputBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-        .addGap(26, 26, 26)
+        .addGap(20, 20, 20)
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(jLabel5)
           .addComponent(jLabel6)
           .addComponent(jLabel7))
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-          .addComponent(inputEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(inputComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
           .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
             .addComponent(inputNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(inputComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+            .addComponent(inputEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-          .addComponent(btnSalvar)
-          .addComponent(btnCancela))
-        .addGap(17, 17, 17))
+          .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(btnCancela, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        .addContainerGap(52, Short.MAX_VALUE))
     );
 
     pack();
   }// </editor-fold>//GEN-END:initComponents
 
 	private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-    try {
-      Fornecedor f = criaFornecedor();
-      fornecedorController.cadastra(f);
-      JOptionPane.showMessageDialog(this, "Fornecedor cadastrado com sucesso!", this.getTitle(), JOptionPane.INFORMATION_MESSAGE);
-      dispose();
-    } catch (Exception e) {
-      JOptionPane.showMessageDialog(this, "Erro ao cadastrar fornecedor:\n" + e.getMessage(), this.getTitle(), JOptionPane.ERROR_MESSAGE);
-    }
+            try {
+                Fornecedor f = criaFornecedor();
+                if (fornecedor != null) {
+                    editaFornecedor(f);
+                } else {
+                    cadastraFornecedor(f);
+                }
+                dispose();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Erro ao salvar fornecedor:\n" + e.getMessage(), this.getTitle(), JOptionPane.ERROR_MESSAGE);
+            }
 	}//GEN-LAST:event_btnSalvarActionPerformed
 
 	private void btnCancelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelaActionPerformed
-    String[] options = {"Sim", "Não"};
-    int resp = JOptionPane.showOptionDialog(this, "Está certo que deseja cancelar a operação?\nTodas os dados serão perdidos!", this.getTitle(), JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
-    if (resp != 0) return;
-    dispose();
+            String[] options = {"Sim", "Não"};
+            int resp = JOptionPane.showOptionDialog(this, "Está certo que deseja cancelar a operação?\nTodas os dados serão perdidos!", this.getTitle(), JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
+            if (resp != 0) {
+                return;
+            }
+            dispose();
 	}//GEN-LAST:event_btnCancelaActionPerformed
 
-  private Fornecedor criaFornecedor() {
-    String cnpj = inputCnpj.getText();
-    String nome = inputNome.getText();
-    String email = inputEmail.getText();
-    String fone = inputFone.getText();
-    String logradouro = inputEndereco.getText();
-    String cep = inputCep.getText();
-    String bairro = inputBairro.getText();
-    String cidade = inputCidade.getText();
-    String uf = inputUf.getText();
-    String complemento = inputComplemento.getText();
-    String numero = inputNumero.getText();
-
-    return new Fornecedor(cnpj, nome, email, fone, new Endereco(cep, logradouro, bairro, cidade, uf, numero, complemento));
-  }
+    private void inputComplementoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputComplementoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inputComplementoActionPerformed
+    
+    private Fornecedor criaFornecedor() {
+        String cnpj = inputCnpj.getText();
+        String nome = inputNome.getText();
+        String email = inputEmail.getText();
+        String fone = inputFone.getText();
+        String logradouro = inputEndereco.getText();
+        String cep = inputCep.getText();
+        String bairro = inputBairro.getText();
+        String cidade = inputCidade.getText();
+        String uf = inputUf.getText();
+        String complemento = inputComplemento.getText();
+        String numero = inputNumero.getText();
+        
+        return new Fornecedor(cnpj, nome, email, fone, new Endereco(cep, logradouro, bairro, cidade, uf, numero, complemento));
+    }
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JButton btnCancela;

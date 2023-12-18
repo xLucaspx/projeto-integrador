@@ -1,18 +1,24 @@
 package views;
 
 import factory.ControllerFactory;
+import javax.swing.JInternalFrame;
 import views.constants.Colors;
 import views.constants.Fonts;
 
 public class TelaPrincipal extends javax.swing.JFrame {
-
-	public TelaPrincipal() {
-		initComponents();
-		FormularioFornecedor f = new FormularioFornecedor(new ControllerFactory());
-		f.setVisible(true);
-		jDesktopPane1.add(f);
-	}
-
+  
+  private final ControllerFactory controllerFactory;
+  
+  public TelaPrincipal(ControllerFactory controllerFactory) {
+    this.controllerFactory = controllerFactory;
+    initComponents();
+  }
+  
+  private void showInternalFrame(JInternalFrame frame) {
+    desktopPane.add(frame);
+    frame.moveToFront();
+    frame.requestFocus();
+  }
   // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
   private void initComponents() {
 
@@ -33,11 +39,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
     labelProdutos1 = new javax.swing.JLabel();
     btnCadastraFornecedor = new javax.swing.JButton();
     btnListaFornecedor = new javax.swing.JButton();
-    jDesktopPane1 = new javax.swing.JDesktopPane();
+    desktopPane = new javax.swing.JDesktopPane();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     setTitle("Sistema de controle de Estoque");
     setBackground(new java.awt.Color(153, 204, 255));
+    setPreferredSize(null);
 
     jPanelPrincipal.setBackground(Colors.LIGHT_BLUE);
 
@@ -51,7 +58,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     btnRegistroVenda.setFont(Fonts.MEDIUM_FONT);
     btnRegistroVenda.setForeground(Colors.WHITE);
     btnRegistroVenda.setText("Registrar venda");
-    btnRegistroVenda.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    btnRegistroVenda.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
     btnRegistroVenda.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
         btnRegistroVendaActionPerformed(evt);
@@ -62,7 +69,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     btnListaNFCompra.setFont(Fonts.MEDIUM_FONT);
     btnListaNFCompra.setForeground(Colors.WHITE);
     btnListaNFCompra.setText("Listar notas de compra");
-    btnListaNFCompra.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    btnListaNFCompra.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
     javax.swing.GroupLayout jPanelVendasLayout = new javax.swing.GroupLayout(jPanelVendas);
     jPanelVendas.setLayout(jPanelVendasLayout);
@@ -93,13 +100,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
     btnRegitraCompra.setFont(Fonts.MEDIUM_FONT);
     btnRegitraCompra.setForeground(Colors.WHITE);
     btnRegitraCompra.setText("Registrar compra");
-    btnRegitraCompra.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    btnRegitraCompra.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
     btnListaNfCompra.setBackground(Colors.DARK_BLUE);
     btnListaNfCompra.setFont(Fonts.MEDIUM_FONT);
     btnListaNfCompra.setForeground(Colors.WHITE);
     btnListaNfCompra.setText("Listar notas de compra");
-    btnListaNfCompra.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    btnListaNfCompra.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
     labelCompras1.setFont(Fonts.LARGE_FONT);
     labelCompras1.setForeground(Colors.WHITE);
@@ -137,13 +144,23 @@ public class TelaPrincipal extends javax.swing.JFrame {
     btnCadastraProduto.setFont(Fonts.MEDIUM_FONT);
     btnCadastraProduto.setForeground(Colors.WHITE);
     btnCadastraProduto.setText("Cadastrar produto");
-    btnCadastraProduto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    btnCadastraProduto.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+    btnCadastraProduto.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnCadastraProdutoActionPerformed(evt);
+      }
+    });
 
     btnListaProdutos.setBackground(Colors.DARK_BLUE);
     btnListaProdutos.setFont(Fonts.MEDIUM_FONT);
     btnListaProdutos.setForeground(Colors.WHITE);
-    btnListaProdutos.setText("Listar prodtos");
-    btnListaProdutos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    btnListaProdutos.setText("Listar produtos");
+    btnListaProdutos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+    btnListaProdutos.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnListaProdutosActionPerformed(evt);
+      }
+    });
 
     javax.swing.GroupLayout jPanelProdutosLayout = new javax.swing.GroupLayout(jPanelProdutos);
     jPanelProdutos.setLayout(jPanelProdutosLayout);
@@ -177,13 +194,23 @@ public class TelaPrincipal extends javax.swing.JFrame {
     btnCadastraFornecedor.setFont(Fonts.MEDIUM_FONT);
     btnCadastraFornecedor.setForeground(Colors.WHITE);
     btnCadastraFornecedor.setText("Cadastrar fornecedor");
-    btnCadastraFornecedor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    btnCadastraFornecedor.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+    btnCadastraFornecedor.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnCadastraFornecedorActionPerformed(evt);
+      }
+    });
 
     btnListaFornecedor.setBackground(Colors.DARK_BLUE);
     btnListaFornecedor.setFont(Fonts.MEDIUM_FONT);
     btnListaFornecedor.setForeground(Colors.WHITE);
     btnListaFornecedor.setText("Listar Fornecedores");
-    btnListaFornecedor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    btnListaFornecedor.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+    btnListaFornecedor.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnListaFornecedorActionPerformed(evt);
+      }
+    });
 
     javax.swing.GroupLayout jPanelFornecedoresLayout = new javax.swing.GroupLayout(jPanelFornecedores);
     jPanelFornecedores.setLayout(jPanelFornecedoresLayout);
@@ -226,17 +253,19 @@ public class TelaPrincipal extends javax.swing.JFrame {
         .addComponent(jPanelProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
         .addComponent(jPanelFornecedores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addGap(0, 14, Short.MAX_VALUE))
+        .addGap(0, 35, Short.MAX_VALUE))
     );
 
-    javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
-    jDesktopPane1.setLayout(jDesktopPane1Layout);
-    jDesktopPane1Layout.setHorizontalGroup(
-      jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGap(0, 481, Short.MAX_VALUE)
+    desktopPane.setMinimumSize(null);
+
+    javax.swing.GroupLayout desktopPaneLayout = new javax.swing.GroupLayout(desktopPane);
+    desktopPane.setLayout(desktopPaneLayout);
+    desktopPaneLayout.setHorizontalGroup(
+      desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGap(0, 771, Short.MAX_VALUE)
     );
-    jDesktopPane1Layout.setVerticalGroup(
-      jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+    desktopPaneLayout.setVerticalGroup(
+      desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGap(0, 0, Short.MAX_VALUE)
     );
 
@@ -247,21 +276,37 @@ public class TelaPrincipal extends javax.swing.JFrame {
       .addGroup(layout.createSequentialGroup()
         .addComponent(jPanelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addGap(0, 0, 0)
-        .addComponent(jDesktopPane1)
+        .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         .addGap(0, 0, 0))
     );
     layout.setVerticalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addComponent(jPanelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-      .addComponent(jDesktopPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+      .addComponent(desktopPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
     );
 
     pack();
   }// </editor-fold>//GEN-END:initComponents
 
   private void btnRegistroVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroVendaActionPerformed
-    // TODO add your handling code here:
+    //showInternalFrame(new FormularioRegistroVenda(controllerFactory));
   }//GEN-LAST:event_btnRegistroVendaActionPerformed
+
+    private void btnCadastraProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastraProdutoActionPerformed
+      showInternalFrame(new FormularioProduto(controllerFactory));
+    }//GEN-LAST:event_btnCadastraProdutoActionPerformed
+
+    private void btnCadastraFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastraFornecedorActionPerformed
+      showInternalFrame(new FormularioFornecedor(controllerFactory));
+    }//GEN-LAST:event_btnCadastraFornecedorActionPerformed
+
+  private void btnListaFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListaFornecedorActionPerformed
+    showInternalFrame(new ListaFornecedor(controllerFactory));
+  }//GEN-LAST:event_btnListaFornecedorActionPerformed
+
+  private void btnListaProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListaProdutosActionPerformed
+    showInternalFrame(new ListaProduto(controllerFactory));
+  }//GEN-LAST:event_btnListaProdutosActionPerformed
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JButton btnCadastraFornecedor;
@@ -272,7 +317,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
   private javax.swing.JButton btnListaProdutos;
   private javax.swing.JButton btnRegistroVenda;
   private javax.swing.JButton btnRegitraCompra;
-  private javax.swing.JDesktopPane jDesktopPane1;
+  private javax.swing.JDesktopPane desktopPane;
   private javax.swing.JPanel jPanelCompras;
   private javax.swing.JPanel jPanelFornecedores;
   private javax.swing.JPanel jPanelPrincipal;
