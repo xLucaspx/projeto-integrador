@@ -3,6 +3,7 @@ package controller;
 import java.util.List;
 
 import dao.ProdutoDao;
+import exceptions.ValidationException;
 import models.produto.DadosBasicosProduto;
 import models.produto.Produto;
 
@@ -32,4 +33,11 @@ public class ProdutoController {
 	public Produto buscaPorCodigo(String codigo) {
 		return produtoDao.buscaPorCodigo(codigo);
 	}
+
+  public boolean existePorCodigoAndAtivo(String codigo) {
+    var produto = buscaPorCodigo(codigo);
+    
+    return produto.isAtivo();
+  }
+  
 }

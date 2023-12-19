@@ -11,7 +11,8 @@ public class Produto {
 	private Formato formato;
 	private double estoque;
 	private float precoCusto;
-	private float precoVenda;
+  private float precoVenda;
+  private boolean ativo;
 	
 	public Produto(DadosBasicosProduto dados) {
 		this.codigo = dados.codigo();
@@ -19,13 +20,14 @@ public class Produto {
 		this.formato = dados.formato();
 	}
 
-	public Produto(String codigo, String descricao, Formato formato, double estoque, float precoVenda, float precoCusto) {
+	public Produto(String codigo, String descricao, Formato formato, double estoque, float precoVenda, float precoCusto, boolean ativo) {
 		this.codigo = codigo;
 		this.descricao = descricao;
 		this.formato = formato;
 		this.estoque = 0;
 		this.precoVenda = 0;
 		this.precoCusto = 0;
+    this.ativo = ativo;
 	}
 
 	public String getCodigo() {
@@ -52,6 +54,10 @@ public class Produto {
 		return precoVenda;
 	}
 
+  public boolean isAtivo() {
+    return ativo;
+  }
+  
 	@Override
 	public String toString() {
 		return String.format(
