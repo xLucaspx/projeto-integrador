@@ -62,7 +62,7 @@ public class ProdutoDao {
   }
 
   public List<Produto> listaTodos() {
-    String sql = "SELECT codigo, descricao, preco_custo, preco_venda, formato, estoque FROM produto WHERE ativo = TRUE";
+    String sql = "SELECT codigo, descricao, preco_custo, preco_venda, formato, estoque, ativo FROM produto WHERE ativo = TRUE";
     try (PreparedStatement ps = con.prepareStatement(sql)) {
       List<Produto> produtos = transformaResultSet(ps);
       return produtos;
@@ -72,7 +72,7 @@ public class ProdutoDao {
   }
 
   public Produto buscaPorCodigo(String codigo) {
-    String sql = "SELECT codigo, descricao, preco_custo, preco_venda, formato, estoque FROM produto WHERE codigo = ?";
+    String sql = "SELECT codigo, descricao, preco_custo, preco_venda, formato, estoque, ativo FROM produto WHERE codigo = ?";
     try (PreparedStatement ps = con.prepareCall(sql)) {
       ps.setString(1, codigo);
       List<Produto> produtos = transformaResultSet(ps);
@@ -97,9 +97,10 @@ public class ProdutoDao {
         float precoVenda = rs.getFloat("preco_venda");
         String nomeFormato = rs.getString("formato");
         double estoque = rs.getFloat("estoque");
+        var ativo = rs.getBoolean("ativo");
 
         Formato formato = Formato.valueOf(nomeFormato.toUpperCase());
-        Produto p = new Produto(codigo, descricao, formato, estoque, precoVenda, precoCusto);
+        Produto p = new Produto(codigo, descricao, formato, estoque, precoVenda, precoCusto, ativo);
         produtos.add(p);
       }
       return Collections.unmodifiableList(produtos);
