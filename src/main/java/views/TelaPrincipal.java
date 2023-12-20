@@ -2,18 +2,24 @@ package views;
 
 import factory.ControllerFactory;
 import javax.swing.JInternalFrame;
+import views.compras.FormularioRegistroCompra;
 import views.constants.Colors;
 import views.constants.Fonts;
+import views.fornecedor.FormularioFornecedor;
+import views.fornecedor.ListaFornecedor;
+import views.produtos.FormularioProduto;
+import views.produtos.ListaProduto;
+import views.vendas.FormularioRegistroVenda;
 
 public class TelaPrincipal extends javax.swing.JFrame {
-  
+
   private final ControllerFactory controllerFactory;
-  
+
   public TelaPrincipal(ControllerFactory controllerFactory) {
     this.controllerFactory = controllerFactory;
     initComponents();
   }
-  
+
   private void showInternalFrame(JInternalFrame frame) {
     desktopPane.add(frame);
     frame.moveToFront();
@@ -101,6 +107,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
     btnRegitraCompra.setForeground(Colors.WHITE);
     btnRegitraCompra.setText("Registrar compra");
     btnRegitraCompra.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+    btnRegitraCompra.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnRegitraCompraActionPerformed(evt);
+      }
+    });
 
     btnListaNfCompra.setBackground(Colors.DARK_BLUE);
     btnListaNfCompra.setFont(Fonts.MEDIUM_FONT);
@@ -307,6 +318,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
   private void btnListaProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListaProdutosActionPerformed
     showInternalFrame(new ListaProduto(controllerFactory));
   }//GEN-LAST:event_btnListaProdutosActionPerformed
+
+  private void btnRegitraCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegitraCompraActionPerformed
+    showInternalFrame(new FormularioRegistroCompra(controllerFactory));
+  }//GEN-LAST:event_btnRegitraCompraActionPerformed
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JButton btnCadastraFornecedor;

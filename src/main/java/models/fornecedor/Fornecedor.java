@@ -1,4 +1,4 @@
-package models;
+package models.fornecedor;
 
 import utils.Validator;
 
@@ -75,7 +75,6 @@ public class Fornecedor {
 
 	@Override
 	public String toString() {
-		return String.format("CNPJ: %s\nNome : %s\nEmail: %s\nTelefone: %s\nEndereço: %s", cnpj, nome, email, telefone,
-				endereco);
+		return nome;
 	}
 }

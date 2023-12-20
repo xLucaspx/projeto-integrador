@@ -1,14 +1,14 @@
-package views;
+package views.produtos;
 
-import controller.ProdutoController;
-import exceptions.ValidationException;
-import factory.ControllerFactory;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.InputMap;
 import javax.swing.JOptionPane;
 
-import models.Formato;
-import models.Produto;
+import controller.ProdutoController;
+import models.produto.DadosBasicosProduto;
+import models.produto.Formato;
+import models.produto.Produto;
+import exceptions.ValidationException;
+import factory.ControllerFactory;
 
 public class FormularioProduto extends javax.swing.JInternalFrame {
 
@@ -26,13 +26,13 @@ public class FormularioProduto extends javax.swing.JInternalFrame {
         initComponents();
     }
 
-    private void cadastraProduto(Produto p) {
-        produtoController.cadastra(p);
+    private void cadastraProduto(DadosBasicosProduto dados) {
+        produtoController.cadastra(dados);
         JOptionPane.showMessageDialog(this, "Produto cadastrado com sucesso!", this.getTitle(), JOptionPane.INFORMATION_MESSAGE);
     }
 
-    private void editaProduto(Produto p) {
-        produtoController.edita(p);
+    private void editaProduto(DadosBasicosProduto dados) {
+        produtoController.edita(dados);
         JOptionPane.showMessageDialog(this, "Produto alterado com sucesso!", this.getTitle(), JOptionPane.INFORMATION_MESSAGE);
     }
 
@@ -43,12 +43,12 @@ public class FormularioProduto extends javax.swing.JInternalFrame {
         return (Formato) comboFormato.getSelectedItem();
     }
 
-    private Produto criaProduto() {
+    private DadosBasicosProduto criaDadosProduto() {
         String codigo = inputCodigo.getText();
         String descricao = inputDescricao.getText();
         Formato formato = selecionaFormato();
 
-        return new Produto(codigo, descricao, formato, 0, 0, 0);
+        return new DadosBasicosProduto(codigo, descricao, formato);
     }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -159,12 +159,11 @@ public class FormularioProduto extends javax.swing.JInternalFrame {
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         try {
-            Produto p = criaProduto();
-            if (produto != null) {
-                editaProduto(p);
-            } else {
-                cadastraProduto(p);
-            }
+            var dados = criaDadosProduto();
+            
+            if (produto != null) editaProduto(dados);
+            else cadastraProduto(dados);
+
             dispose();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Erro ao salvar produto:\n" + e.getMessage(), this.getTitle(), JOptionPane.ERROR_MESSAGE);
