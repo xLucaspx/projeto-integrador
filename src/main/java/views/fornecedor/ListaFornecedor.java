@@ -195,9 +195,10 @@ public class ListaFornecedor extends javax.swing.JInternalFrame {
   }// </editor-fold>//GEN-END:initComponents
 
   private String getEnderecoFormatado(Endereco endereco) {
-    var str = endereco.logradouro();
+    var str = endereco.logradouro() + ", ";
 
-    if (validaString(endereco.numero())) str += ", " + endereco.numero();
+    str += validaString(endereco.numero()) ? endereco.numero() : "S/Nº";
+    
     if (validaString(endereco.complemento()))
       str += " - " + endereco.complemento();
 
