@@ -8,8 +8,10 @@ import javax.swing.table.DefaultTableModel;
 import controller.FornecedorController;
 import models.fornecedor.Fornecedor;
 import factory.ControllerFactory;
+import models.fornecedor.Endereco;
 import views.constants.Colors;
 import views.constants.Fonts;
+import static utils.Validator.validaString;
 
 public class ListaFornecedor extends javax.swing.JInternalFrame {
 
@@ -46,11 +48,8 @@ public class ListaFornecedor extends javax.swing.JInternalFrame {
   // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
   private void initComponents() {
 
-    jLabel1 = new javax.swing.JLabel();
-    btnExclui = new javax.swing.JButton();
-    btnEdita = new javax.swing.JButton();
-    btnSeleciona = new javax.swing.JButton();
-    jScrollPane2 = new javax.swing.JScrollPane();
+    title = new javax.swing.JLabel();
+    jScrollPane = new javax.swing.JScrollPane();
     var fornecedores = fornecedorController.listaTodos();
     String[] columnNames = {
       "CNPJ",
@@ -65,12 +64,17 @@ public class ListaFornecedor extends javax.swing.JInternalFrame {
       }
     };
     tabelaFornecedores = new javax.swing.JTable();
+    btnDetalhes = new javax.swing.JButton();
+    btnEdita = new javax.swing.JButton();
+    btnExclui = new javax.swing.JButton();
 
+    setBackground(Colors.BACKGROUND_COLOR);
     setClosable(true);
     setIconifiable(true);
     setMaximizable(true);
     setResizable(true);
     setTitle("Listagem de fornecedores");
+    setMinimumSize(null);
     setVisible(true);
     addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
       public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
@@ -90,29 +94,16 @@ public class ListaFornecedor extends javax.swing.JInternalFrame {
       }
     });
 
-    jLabel1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-    jLabel1.setText("Lista de Fornecedores");
+    title.setFont(Fonts.TITLE_FONT);
+    title.setForeground(Colors.FONT_COLOR);
+    title.setLabelFor(this);
+    title.setText("Lista de Fornecedores");
+    title.setMinimumSize(null);
+    title.setPreferredSize(null);
 
-    btnExclui.setText("excluir");
-    btnExclui.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(java.awt.event.ActionEvent evt) {
-        btnExcluiActionPerformed(evt);
-      }
-    });
-
-    btnEdita.setText("editar");
-    btnEdita.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(java.awt.event.ActionEvent evt) {
-        btnEditaActionPerformed(evt);
-      }
-    });
-
-    btnSeleciona.setText("detalhes");
-    btnSeleciona.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(java.awt.event.ActionEvent evt) {
-        btnDetalhesActionPerformed(evt);
-      }
-    });
+    jScrollPane.setBackground(Colors.BACKGROUND_COLOR);
+    jScrollPane.setMinimumSize(null);
+    jScrollPane.setPreferredSize(null);
 
     tabelaFornecedores.setBackground(Colors.WHITE);
     tabelaFornecedores.setFont(Fonts.SMALL_FONT);
@@ -120,50 +111,100 @@ public class ListaFornecedor extends javax.swing.JInternalFrame {
     tabelaFornecedores.setModel(model);
     tabelaFornecedores.setGridColor(Colors.FONT_COLOR);
     tabelaFornecedores.setIntercellSpacing(new java.awt.Dimension(5, 5));
+    tabelaFornecedores.setMinimumSize(null);
+    tabelaFornecedores.setPreferredSize(null);
+    tabelaFornecedores.setRowHeight(25);
     tabelaFornecedores.setSelectionBackground(Colors.DARK_GREEN);
     tabelaFornecedores.setSelectionForeground(Colors.WHITE);
     tabelaFornecedores.setShowHorizontalLines(true);
-    jScrollPane2.setViewportView(tabelaFornecedores);
+    jScrollPane.setViewportView(tabelaFornecedores);
     preencheTabela(fornecedores);
+
+    btnDetalhes.setBackground(Colors.GREEN);
+    btnDetalhes.setFont(Fonts.MEDIUM_FONT);
+    btnDetalhes.setForeground(Colors.WHITE);
+    btnDetalhes.setText("Detalhes");
+    btnDetalhes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    btnDetalhes.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnDetalhesActionPerformed(evt);
+      }
+    });
+
+    btnEdita.setBackground(Colors.BLUE);
+    btnEdita.setFont(Fonts.MEDIUM_FONT);
+    btnEdita.setForeground(Colors.WHITE);
+    btnEdita.setText("Editar");
+    btnEdita.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    btnEdita.setMinimumSize(null);
+    btnEdita.setPreferredSize(null);
+    btnEdita.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnEditaActionPerformed(evt);
+      }
+    });
+
+    btnExclui.setBackground(Colors.RED);
+    btnExclui.setFont(Fonts.MEDIUM_FONT);
+    btnExclui.setForeground(Colors.WHITE);
+    btnExclui.setText("Excluir");
+    btnExclui.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    btnExclui.setMinimumSize(null);
+    btnExclui.setPreferredSize(null);
+    btnExclui.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnExcluiActionPerformed(evt);
+      }
+    });
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
     getContentPane().setLayout(layout);
     layout.setHorizontalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(layout.createSequentialGroup()
+        .addContainerGap(45, Short.MAX_VALUE)
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
           .addGroup(layout.createSequentialGroup()
-            .addContainerGap(50, Short.MAX_VALUE)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 431, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(27, 27, 27)
+            .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 545, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(18, 18, 18)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-              .addComponent(btnSeleciona, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-              .addComponent(btnEdita, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-              .addComponent(btnExclui, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-          .addGroup(layout.createSequentialGroup()
-            .addGap(204, 204, 204)
-            .addComponent(jLabel1)))
-        .addContainerGap(50, Short.MAX_VALUE))
+              .addComponent(btnEdita, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+              .addComponent(btnDetalhes, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+              .addComponent(btnExclui, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))))
+        .addContainerGap(45, Short.MAX_VALUE))
     );
     layout.setVerticalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(layout.createSequentialGroup()
         .addContainerGap(35, Short.MAX_VALUE)
-        .addComponent(jLabel1)
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-          .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-            .addComponent(btnSeleciona)
-            .addGap(51, 51, 51)
-            .addComponent(btnEdita)
-            .addGap(56, 56, 56)
-            .addComponent(btnExclui))
-          .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+        .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addGap(18, 18, 18)
+        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addGroup(layout.createSequentialGroup()
+            .addComponent(btnDetalhes, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(18, 18, 18)
+            .addComponent(btnEdita, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(18, 18, 18)
+            .addComponent(btnExclui, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+          .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
         .addContainerGap(50, Short.MAX_VALUE))
     );
 
     pack();
   }// </editor-fold>//GEN-END:initComponents
+
+  private String getEnderecoFormatado(Endereco endereco) {
+    var str = endereco.logradouro();
+
+    if (validaString(endereco.numero())) str += ", " + endereco.numero();
+    if (validaString(endereco.complemento()))
+      str += " - " + endereco.complemento();
+
+    str += ", bairro %s, %s - %s\nCEP: %s".formatted(endereco.bairro(), endereco.cidade(), endereco.uf(), endereco.cep());
+
+    return str;
+  }
 
   private void btnDetalhesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetalhesActionPerformed
     try {
@@ -171,10 +212,10 @@ public class ListaFornecedor extends javax.swing.JInternalFrame {
       var mensagem = """
                     Nome: %s
                     CNPJ: %s
-                    e-mail: %s
+                    E-mail: %s
                     Telefone: %s
-                    Endereço: %s
-                    """.formatted(fornecedor.getNome(), fornecedor.getCnpj(), fornecedor.getEmail(), fornecedor.getTelefone(), fornecedor.getEndereco());
+                    Endereço:\n%s
+                    """.formatted(fornecedor.getNome(), fornecedor.getCnpj(), fornecedor.getEmail(), fornecedor.getTelefone(), getEnderecoFormatado(fornecedor.getEndereco()));
       JOptionPane.showMessageDialog(this, mensagem, getTitle(), JOptionPane.PLAIN_MESSAGE);
     } catch (Exception e) {
       JOptionPane.showMessageDialog(this, String.format("Erro ao tentar mostrar detalhes do fornecedor:\n%s", e.getMessage()),
@@ -220,11 +261,11 @@ public class ListaFornecedor extends javax.swing.JInternalFrame {
   }//GEN-LAST:event_formInternalFrameActivated
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
+  private javax.swing.JButton btnDetalhes;
   private javax.swing.JButton btnEdita;
   private javax.swing.JButton btnExclui;
-  private javax.swing.JButton btnSeleciona;
-  private javax.swing.JLabel jLabel1;
-  private javax.swing.JScrollPane jScrollPane2;
+  private javax.swing.JScrollPane jScrollPane;
   private javax.swing.JTable tabelaFornecedores;
+  private javax.swing.JLabel title;
   // End of variables declaration//GEN-END:variables
 }
