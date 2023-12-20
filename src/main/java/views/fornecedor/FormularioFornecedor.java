@@ -8,6 +8,8 @@ import factory.ControllerFactory;
 import models.fornecedor.DadosBasicosFornecedor;
 import models.fornecedor.Endereco;
 import models.fornecedor.Fornecedor;
+import views.constants.Colors;
+import views.constants.Fonts;
 
 public class FormularioFornecedor extends javax.swing.JInternalFrame {
 
@@ -38,99 +40,245 @@ public class FormularioFornecedor extends javax.swing.JInternalFrame {
   private void initComponents() {
 
     labelFormFornecedor = new javax.swing.JLabel();
-    inputCnpj = new javax.swing.JTextField();
     labelCnpj = new javax.swing.JLabel();
-    inputNome = new javax.swing.JTextField();
+    inputCnpj = new javax.swing.JTextField();
     labelNome = new javax.swing.JLabel();
-    inputEmail = new javax.swing.JTextField();
+    inputNome = new javax.swing.JTextField();
     labelEmail = new javax.swing.JLabel();
+    inputEmail = new javax.swing.JTextField();
+    labelFone = new javax.swing.JLabel();
     inputFone = new javax.swing.JTextField();
-    jLabel1 = new javax.swing.JLabel();
+    labelCep = new javax.swing.JLabel();
     inputCep = new javax.swing.JTextField();
-    jLabel2 = new javax.swing.JLabel();
-    inputUf = new javax.swing.JTextField();
-    jLabel3 = new javax.swing.JLabel();
-    inputCidade = new javax.swing.JTextField();
-    jLabel4 = new javax.swing.JLabel();
-    inputEndereco = new javax.swing.JTextField();
-    jLabel5 = new javax.swing.JLabel();
-    inputNumero = new javax.swing.JTextField();
-    jLabel6 = new javax.swing.JLabel();
-    inputComplemento = new javax.swing.JTextField();
-    jLabel7 = new javax.swing.JLabel();
-    btnSalvar = new javax.swing.JButton();
-    btnCancela = new javax.swing.JButton();
     lbBairro = new javax.swing.JLabel();
     inputBairro = new javax.swing.JTextField();
+    labelUf = new javax.swing.JLabel();
+    inputUf = new javax.swing.JTextField();
+    labelCidade = new javax.swing.JLabel();
+    inputCidade = new javax.swing.JTextField();
+    labelEndereco = new javax.swing.JLabel();
+    inputEndereco = new javax.swing.JTextField();
+    labelNumero = new javax.swing.JLabel();
+    inputNumero = new javax.swing.JTextField();
+    labelComplemento = new javax.swing.JLabel();
+    inputComplemento = new javax.swing.JTextField();
+    btnSalvar = new javax.swing.JButton();
+    btnCancela = new javax.swing.JButton();
 
+    setBackground(Colors.BACKGROUND_COLOR);
     setClosable(true);
     setIconifiable(true);
     setMaximizable(true);
     setResizable(true);
     setTitle("Formulário de fornecedor");
+    setMinimumSize(null);
     setVisible(true);
 
-    labelFormFornecedor.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+    labelFormFornecedor.setFont(Fonts.TITLE_FONT);
+    labelFormFornecedor.setForeground(Colors.FONT_COLOR);
     labelFormFornecedor.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    labelFormFornecedor.setLabelFor(this);
     labelFormFornecedor.setText("Formulário de fornecedor");
+    labelFormFornecedor.setMinimumSize(null);
+    labelFormFornecedor.setPreferredSize(null);
 
-    inputCnpj.setText(fornecedor!=null? fornecedor.getCnpj() : "");
-    inputCnpj.setMinimumSize(null);
-
+    labelCnpj.setFont(Fonts.DEFAULT_FONT);
+    labelCnpj.setForeground(Colors.FONT_COLOR);
+    labelCnpj.setLabelFor(inputCnpj);
     labelCnpj.setText("CNPJ");
+    labelCnpj.setMinimumSize(null);
+    labelCnpj.setPreferredSize(null);
 
-    inputNome.setText(fornecedor!=null? fornecedor.getNome(): "");
-    inputNome.setMinimumSize(null);
+    inputCnpj.setBackground(Colors.WHITE);
+    inputCnpj.setFont(Fonts.DEFAULT_FONT);
+    inputCnpj.setForeground(Colors.FONT_COLOR);
+    inputCnpj.setText(fornecedor!=null? fornecedor.getCnpj() : "");
+    inputCnpj.setCaretColor(Colors.FONT_COLOR);
+    inputCnpj.setMinimumSize(null);
+    inputCnpj.setPreferredSize(null);
+    inputCnpj.setSelectedTextColor(Colors.WHITE);
+    inputCnpj.setSelectionColor(Colors.DARK_BLUE);
 
+    labelNome.setFont(Fonts.DEFAULT_FONT);
+    labelNome.setForeground(Colors.FONT_COLOR);
+    labelNome.setLabelFor(inputNome);
     labelNome.setText("Nome");
+    labelNome.setMinimumSize(null);
+    labelNome.setPreferredSize(null);
 
-    inputEmail.setText(fornecedor!=null? fornecedor.getEmail(): "");
-    inputEmail.setMinimumSize(null);
+    inputNome.setBackground(Colors.WHITE);
+    inputNome.setFont(Fonts.DEFAULT_FONT);
+    inputNome.setForeground(Colors.FONT_COLOR);
+    inputNome.setText(fornecedor!=null? fornecedor.getNome(): "");
+    inputNome.setCaretColor(Colors.FONT_COLOR);
+    inputNome.setMinimumSize(null);
+    inputNome.setPreferredSize(null);
+    inputNome.setSelectedTextColor(Colors.WHITE);
+    inputNome.setSelectionColor(Colors.DARK_BLUE);
 
+    labelEmail.setFont(Fonts.DEFAULT_FONT);
+    labelEmail.setForeground(Colors.FONT_COLOR);
+    labelEmail.setLabelFor(inputEmail);
     labelEmail.setText("E-mail");
+    labelEmail.setMinimumSize(null);
+    labelEmail.setPreferredSize(null);
 
+    inputEmail.setBackground(Colors.WHITE);
+    inputEmail.setFont(Fonts.DEFAULT_FONT);
+    inputEmail.setForeground(Colors.FONT_COLOR);
+    inputEmail.setText(fornecedor!=null? fornecedor.getEmail(): "");
+    inputEmail.setCaretColor(Colors.FONT_COLOR);
+    inputEmail.setMinimumSize(null);
+    inputEmail.setPreferredSize(null);
+    inputEmail.setSelectedTextColor(Colors.WHITE);
+    inputEmail.setSelectionColor(Colors.DARK_BLUE);
+
+    labelFone.setFont(Fonts.DEFAULT_FONT);
+    labelFone.setForeground(Colors.FONT_COLOR);
+    labelFone.setLabelFor(inputFone);
+    labelFone.setText("Telefone");
+    labelFone.setMinimumSize(null);
+    labelFone.setPreferredSize(null);
+
+    inputFone.setBackground(Colors.WHITE);
+    inputFone.setFont(Fonts.DEFAULT_FONT);
+    inputFone.setForeground(Colors.FONT_COLOR);
     inputFone.setText(fornecedor!=null? fornecedor.getTelefone(): "");
+    inputFone.setCaretColor(Colors.FONT_COLOR);
     inputFone.setMinimumSize(null);
+    inputFone.setPreferredSize(null);
+    inputFone.setSelectedTextColor(Colors.WHITE);
+    inputFone.setSelectionColor(Colors.DARK_BLUE);
 
-    jLabel1.setText("Telefone");
+    labelCep.setFont(Fonts.DEFAULT_FONT);
+    labelCep.setForeground(Colors.FONT_COLOR);
+    labelCep.setLabelFor(inputCep);
+    labelCep.setText("CEP");
+    labelCep.setMinimumSize(null);
+    labelCep.setPreferredSize(null);
 
+    inputCep.setBackground(Colors.WHITE);
+    inputCep.setFont(Fonts.DEFAULT_FONT);
+    inputCep.setForeground(Colors.FONT_COLOR);
     inputCep.setText(fornecedor!=null? fornecedor.getEndereco().cep(): "");
+    inputCep.setCaretColor(Colors.FONT_COLOR);
+    inputCep.setMinimumSize(null);
+    inputCep.setPreferredSize(null);
+    inputCep.setSelectedTextColor(Colors.WHITE);
+    inputCep.setSelectionColor(Colors.DARK_BLUE);
 
-    jLabel2.setText("CEP");
+    lbBairro.setFont(Fonts.DEFAULT_FONT);
+    lbBairro.setForeground(Colors.FONT_COLOR);
+    lbBairro.setLabelFor(inputBairro);
+    lbBairro.setText("Bairro");
+    lbBairro.setMinimumSize(null);
+    lbBairro.setPreferredSize(null);
 
+    inputBairro.setBackground(Colors.WHITE);
+    inputBairro.setFont(Fonts.DEFAULT_FONT);
+    inputBairro.setForeground(Colors.FONT_COLOR);
+    inputBairro.setText(fornecedor!=null? fornecedor.getEndereco().bairro(): "");
+    inputBairro.setCaretColor(Colors.FONT_COLOR);
+    inputBairro.setMinimumSize(null);
+    inputBairro.setPreferredSize(null);
+    inputBairro.setSelectedTextColor(Colors.WHITE);
+    inputBairro.setSelectionColor(Colors.DARK_BLUE);
+
+    labelUf.setFont(Fonts.DEFAULT_FONT);
+    labelUf.setForeground(Colors.FONT_COLOR);
+    labelUf.setLabelFor(inputUf);
+    labelUf.setText("UF");
+    labelUf.setMinimumSize(null);
+    labelUf.setPreferredSize(null);
+
+    inputUf.setBackground(Colors.WHITE);
+    inputUf.setFont(Fonts.DEFAULT_FONT);
+    inputUf.setForeground(Colors.FONT_COLOR);
     inputUf.setText(fornecedor!=null? fornecedor.getEndereco().uf(): "");
+    inputUf.setCaretColor(Colors.FONT_COLOR);
+    inputUf.setMinimumSize(null);
+    inputUf.setPreferredSize(null);
+    inputUf.setSelectedTextColor(Colors.WHITE);
+    inputUf.setSelectionColor(Colors.DARK_BLUE);
 
-    jLabel3.setText("UF");
+    labelCidade.setFont(Fonts.DEFAULT_FONT);
+    labelCidade.setForeground(Colors.FONT_COLOR);
+    labelCidade.setLabelFor(inputCidade);
+    labelCidade.setText("Cidade");
+    labelCidade.setMinimumSize(null);
+    labelCidade.setPreferredSize(null);
 
+    inputCidade.setBackground(Colors.WHITE);
+    inputCidade.setFont(Fonts.DEFAULT_FONT);
+    inputCidade.setForeground(Colors.FONT_COLOR);
     inputCidade.setText(fornecedor!=null? fornecedor.getEndereco().cidade(): "");
+    inputCidade.setCaretColor(Colors.FONT_COLOR);
     inputCidade.setMinimumSize(null);
+    inputCidade.setPreferredSize(null);
+    inputCidade.setSelectedTextColor(Colors.WHITE);
+    inputCidade.setSelectionColor(Colors.DARK_BLUE);
 
-    jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-    jLabel4.setText("Cidade");
+    labelEndereco.setFont(Fonts.DEFAULT_FONT);
+    labelEndereco.setForeground(Colors.FONT_COLOR);
+    labelEndereco.setLabelFor(inputEndereco);
+    labelEndereco.setText("Endereço");
+    labelEndereco.setMinimumSize(null);
+    labelEndereco.setPreferredSize(null);
 
+    inputEndereco.setBackground(Colors.WHITE);
+    inputEndereco.setFont(Fonts.DEFAULT_FONT);
+    inputEndereco.setForeground(Colors.FONT_COLOR);
     inputEndereco.setText(fornecedor!=null? fornecedor.getEndereco().logradouro(): "");
+    inputEndereco.setCaretColor(Colors.FONT_COLOR);
     inputEndereco.setMinimumSize(null);
+    inputEndereco.setPreferredSize(null);
+    inputEndereco.setSelectedTextColor(Colors.WHITE);
+    inputEndereco.setSelectionColor(Colors.DARK_BLUE);
 
-    jLabel5.setText("Endereço");
+    labelNumero.setFont(Fonts.DEFAULT_FONT);
+    labelNumero.setForeground(Colors.FONT_COLOR);
+    labelNumero.setLabelFor(inputNumero);
+    labelNumero.setText("Número");
+    labelNumero.setMinimumSize(null);
+    labelNumero.setPreferredSize(null);
 
+    inputNumero.setBackground(Colors.WHITE);
+    inputNumero.setFont(Fonts.DEFAULT_FONT);
+    inputNumero.setForeground(Colors.FONT_COLOR);
     inputNumero.setText(fornecedor!=null? fornecedor.getEndereco().numero(): "");
+    inputNumero.setCaretColor(Colors.FONT_COLOR);
+    inputNumero.setMinimumSize(null);
+    inputNumero.setPreferredSize(null);
+    inputNumero.setSelectedTextColor(Colors.WHITE);
+    inputNumero.setSelectionColor(Colors.DARK_BLUE);
 
-    jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-    jLabel6.setText("Número");
+    labelComplemento.setFont(Fonts.DEFAULT_FONT);
+    labelComplemento.setForeground(Colors.FONT_COLOR);
+    labelComplemento.setText("Complemento");
+    labelComplemento.setMinimumSize(null);
+    labelComplemento.setPreferredSize(null);
 
+    inputComplemento.setBackground(Colors.WHITE);
+    inputComplemento.setFont(Fonts.DEFAULT_FONT);
+    inputComplemento.setForeground(Colors.FONT_COLOR);
     inputComplemento.setText(fornecedor!=null? fornecedor.getEndereco().complemento(): "");
+    inputComplemento.setCaretColor(Colors.FONT_COLOR);
+    inputComplemento.setMinimumSize(null);
+    inputComplemento.setPreferredSize(null);
+    inputComplemento.setSelectedTextColor(Colors.WHITE);
+    inputComplemento.setSelectionColor(Colors.DARK_BLUE);
     inputComplemento.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
         inputComplementoActionPerformed(evt);
       }
     });
 
-    jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-    jLabel7.setText("Complemento");
-
-    btnSalvar.setBackground(new java.awt.Color(0, 102, 204));
-    btnSalvar.setForeground(new java.awt.Color(255, 255, 255));
+    btnSalvar.setBackground(Colors.BLUE);
+    btnSalvar.setFont(Fonts.MEDIUM_FONT);
+    btnSalvar.setForeground(Colors.WHITE);
     btnSalvar.setText("Salvar");
+    btnSalvar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    btnSalvar.setMinimumSize(null);
     btnSalvar.setPreferredSize(null);
     btnSalvar.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -138,9 +286,12 @@ public class FormularioFornecedor extends javax.swing.JInternalFrame {
       }
     });
 
-    btnCancela.setBackground(new java.awt.Color(204, 0, 0));
-    btnCancela.setForeground(new java.awt.Color(255, 255, 255));
+    btnCancela.setBackground(Colors.RED);
+    btnCancela.setFont(Fonts.MEDIUM_FONT);
+    btnCancela.setForeground(Colors.WHITE);
     btnCancela.setText("Cancelar");
+    btnCancela.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    btnCancela.setMinimumSize(null);
     btnCancela.setPreferredSize(null);
     btnCancela.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -148,92 +299,94 @@ public class FormularioFornecedor extends javax.swing.JInternalFrame {
       }
     });
 
-    lbBairro.setText("Bairro");
-
-    inputBairro.setText(fornecedor!=null? fornecedor.getEndereco().bairro(): "");
-
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
     getContentPane().setLayout(layout);
     layout.setHorizontalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(layout.createSequentialGroup()
-        .addContainerGap(50, Short.MAX_VALUE)
+        .addContainerGap(45, Short.MAX_VALUE)
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-          .addComponent(labelFormFornecedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
           .addGroup(layout.createSequentialGroup()
-            .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(18, 18, 18)
-            .addComponent(btnCancela, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-          .addGroup(layout.createSequentialGroup()
-            .addComponent(inputEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(18, 18, Short.MAX_VALUE)
-            .addComponent(inputNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(18, 18, Short.MAX_VALUE)
-            .addComponent(inputComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-          .addGroup(layout.createSequentialGroup()
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
               .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                  .addComponent(labelCnpj)
+                  .addComponent(labelCnpj, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                   .addComponent(inputCnpj, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                   .addComponent(inputEmail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                  .addComponent(labelEmail)
+                  .addComponent(labelEmail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                   .addGroup(layout.createSequentialGroup()
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                       .addComponent(inputCep, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                      .addComponent(jLabel2))
+                      .addComponent(labelCep, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGap(18, 18, Short.MAX_VALUE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                      .addComponent(lbBairro)
+                      .addComponent(lbBairro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                       .addComponent(inputBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGap(18, 18, Short.MAX_VALUE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                      .addComponent(jLabel3)
+                      .addComponent(labelUf, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                       .addComponent(inputUf, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(18, 18, Short.MAX_VALUE))
+                .addGap(18, 18, 18))
               .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, Short.MAX_VALUE)))
+                .addComponent(labelEndereco, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, 0)))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-              .addComponent(jLabel1)
-              .addComponent(labelNome)
-              .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
+              .addComponent(labelFone, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+              .addComponent(labelNome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+              .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(labelNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, Short.MAX_VALUE)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-              .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(labelComplemento, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE))
+              .addComponent(labelCidade, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
               .addComponent(inputNome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
               .addComponent(inputFone, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-              .addComponent(inputCidade, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-        .addContainerGap(50, Short.MAX_VALUE))
+              .addComponent(inputCidade, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+          .addGroup(layout.createSequentialGroup()
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+              .addComponent(inputEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+              .addComponent(labelFormFornecedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+              .addGroup(layout.createSequentialGroup()
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addGap(18, 18, 18)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+              .addGroup(layout.createSequentialGroup()
+                .addComponent(inputNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, Short.MAX_VALUE)
+                .addComponent(inputComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+              .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(btnCancela, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+        .addContainerGap(45, Short.MAX_VALUE))
     );
     layout.setVerticalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(layout.createSequentialGroup()
-        .addContainerGap(37, Short.MAX_VALUE)
-        .addComponent(labelFormFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+        .addContainerGap(35, Short.MAX_VALUE)
+        .addComponent(labelFormFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addGap(18, 18, 18)
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-          .addComponent(labelCnpj)
-          .addComponent(labelNome))
+          .addComponent(labelCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(labelNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(inputCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
           .addComponent(inputNome, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
         .addGap(20, 20, 20)
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-          .addComponent(labelEmail)
-          .addComponent(jLabel1))
+          .addComponent(labelEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(labelFone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(inputEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
           .addComponent(inputFone, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
         .addGap(20, 20, 20)
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-          .addComponent(jLabel2)
-          .addComponent(jLabel3)
-          .addComponent(jLabel4)
-          .addComponent(lbBairro))
+          .addComponent(labelCep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(labelUf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(labelCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(lbBairro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(inputCep, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -242,20 +395,20 @@ public class FormularioFornecedor extends javax.swing.JInternalFrame {
           .addComponent(inputBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
         .addGap(20, 20, 20)
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-          .addComponent(jLabel5)
-          .addComponent(jLabel6)
-          .addComponent(jLabel7))
+          .addComponent(labelEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(labelNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(labelComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
           .addComponent(inputComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
           .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
             .addComponent(inputNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(inputEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+        .addGap(18, 18, 18)
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-          .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-          .addComponent(btnCancela, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        .addContainerGap(52, Short.MAX_VALUE))
+          .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(btnCancela, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+        .addContainerGap(50, Short.MAX_VALUE))
     );
 
     pack();
@@ -317,17 +470,17 @@ public class FormularioFornecedor extends javax.swing.JInternalFrame {
   private javax.swing.JTextField inputNome;
   private javax.swing.JTextField inputNumero;
   private javax.swing.JTextField inputUf;
-  private javax.swing.JLabel jLabel1;
-  private javax.swing.JLabel jLabel2;
-  private javax.swing.JLabel jLabel3;
-  private javax.swing.JLabel jLabel4;
-  private javax.swing.JLabel jLabel5;
-  private javax.swing.JLabel jLabel6;
-  private javax.swing.JLabel jLabel7;
+  private javax.swing.JLabel labelCep;
+  private javax.swing.JLabel labelCidade;
   private javax.swing.JLabel labelCnpj;
+  private javax.swing.JLabel labelComplemento;
   private javax.swing.JLabel labelEmail;
+  private javax.swing.JLabel labelEndereco;
+  private javax.swing.JLabel labelFone;
   private javax.swing.JLabel labelFormFornecedor;
   private javax.swing.JLabel labelNome;
+  private javax.swing.JLabel labelNumero;
+  private javax.swing.JLabel labelUf;
   private javax.swing.JLabel lbBairro;
   // End of variables declaration//GEN-END:variables
 }
