@@ -58,11 +58,23 @@ public class FormularioRegistroCompra extends javax.swing.JInternalFrame {
       }
 
       produtos.add(dados);
-      preencheTabela();
+      updateView();
       limpaCamposProduto();
     } catch (Exception e) {
       JOptionPane.showMessageDialog(this, "Erro ao tentar adicionar produto:\n" + e.getMessage(), getTitle(), JOptionPane.ERROR_MESSAGE);
     }
+  }
+  
+  private void updateView() {
+    float total = 0;
+    
+    for (var p : produtos) {
+      total += p.precoCusto() * p.quantidade();
+    }
+    
+    labelTotal.setText("Total R$ %.2f".formatted(total));
+    
+    preencheTabela();
   }
 
   private void preencheTabela() {
@@ -95,7 +107,7 @@ public class FormularioRegistroCompra extends javax.swing.JInternalFrame {
       throw new RuntimeException("Você deve selecionar um produto!");
 
     produtos.remove(linhaSelecionada);
-    preencheTabela();
+    updateView();
   }
 
   private Fornecedor selecionaFornecedor() {
@@ -149,6 +161,7 @@ public class FormularioRegistroCompra extends javax.swing.JInternalFrame {
     };
     tabelaProdutos = new javax.swing.JTable();
     btnRemoveProduto = new javax.swing.JButton();
+    labelTotal = new javax.swing.JLabel();
     btnRegistraCompra = new javax.swing.JButton();
     btnCancela = new javax.swing.JButton();
 
@@ -338,6 +351,13 @@ public class FormularioRegistroCompra extends javax.swing.JInternalFrame {
       }
     });
 
+    labelTotal.setFont(Fonts.LARGE_FONT);
+    labelTotal.setForeground(Colors.FONT_COLOR);
+    labelTotal.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    labelTotal.setText("Total R$ --,--");
+    labelTotal.setMinimumSize(null);
+    labelTotal.setPreferredSize(null);
+
     btnRegistraCompra.setBackground(Colors.BLUE);
     btnRegistraCompra.setFont(Fonts.MEDIUM_FONT);
     btnRegistraCompra.setForeground(Colors.WHITE);
@@ -401,7 +421,8 @@ public class FormularioRegistroCompra extends javax.swing.JInternalFrame {
                 .addComponent(btnCancela, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnRegistraCompra, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
                 .addComponent(btnRemoveProduto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnAdicionaProduto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                .addComponent(btnAdicionaProduto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(labelTotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
         .addGap(0, 45, Short.MAX_VALUE))
     );
     layout.setVerticalGroup(
@@ -452,7 +473,9 @@ public class FormularioRegistroCompra extends javax.swing.JInternalFrame {
           .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
           .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
             .addComponent(btnRemoveProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(labelTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnRegistraCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
             .addComponent(btnCancela, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -510,6 +533,7 @@ public class FormularioRegistroCompra extends javax.swing.JInternalFrame {
   private javax.swing.JLabel labelFornecedor;
   private javax.swing.JLabel labelNumeroNota;
   private javax.swing.JLabel labelQuantidade;
+  private javax.swing.JLabel labelTotal;
   private javax.swing.JTable tabelaProdutos;
   private javax.swing.JLabel title;
   // End of variables declaration//GEN-END:variables
