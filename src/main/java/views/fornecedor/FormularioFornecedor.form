@@ -33,10 +33,10 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
+          <Group type="102" attributes="0">
               <EmptySpace pref="45" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -63,18 +63,22 @@
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" attributes="0">
-                              <Component id="labelEndereco" max="32767" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="labelEndereco" max="32767" attributes="0"/>
                       </Group>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="labelFone" max="32767" attributes="0"/>
                           <Component id="labelNome" max="32767" attributes="0"/>
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="labelNumero" min="-2" pref="125" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="labelNumero" alignment="1" pref="125" max="32767" attributes="0"/>
+                                  <Component id="inputNumero" alignment="0" pref="125" max="32767" attributes="0"/>
+                              </Group>
                               <EmptySpace type="separate" max="32767" attributes="0"/>
-                              <Component id="labelComplemento" pref="125" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="labelComplemento" alignment="1" min="-2" pref="125" max="-2" attributes="0"/>
+                                  <Component id="inputComplemento" alignment="0" max="32767" attributes="0"/>
+                              </Group>
                           </Group>
                           <Component id="labelCidade" alignment="0" max="32767" attributes="0"/>
                           <Component id="inputNome" alignment="0" max="32767" attributes="0"/>
@@ -82,28 +86,14 @@
                           <Component id="inputCidade" max="32767" attributes="0"/>
                       </Group>
                   </Group>
+                  <Component id="inputEndereco" alignment="0" min="-2" pref="270" max="-2" attributes="0"/>
+                  <Component id="labelFormFornecedor" alignment="0" max="-2" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="inputEndereco" alignment="0" min="-2" pref="270" max="-2" attributes="0"/>
-                          <Component id="labelFormFornecedor" alignment="0" max="-2" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="btnSalvar" min="-2" pref="145" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="inputNumero" min="-2" pref="125" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="32767" attributes="0"/>
-                              <Component id="inputComplemento" min="-2" pref="125" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                              <Component id="btnCancela" min="-2" pref="145" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                          </Group>
-                      </Group>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="btnSalvar" min="-2" pref="145" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="btnCancela" min="-2" pref="145" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace pref="45" max="32767" attributes="0"/>
@@ -156,17 +146,15 @@
                   <Component id="labelComplemento" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="inputComplemento" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="inputNumero" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                      <Component id="inputEndereco" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                  </Group>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="inputNumero" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                  <Component id="inputEndereco" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                  <Component id="inputComplemento" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="btnSalvar" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
-                  <Component id="btnCancela" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
+                  <Component id="btnCancela" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                  <Component id="btnSalvar" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="50" max="32767" attributes="0"/>
           </Group>
