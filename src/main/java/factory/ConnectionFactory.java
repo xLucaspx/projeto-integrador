@@ -8,8 +8,8 @@ import com.zaxxer.hikari.HikariDataSource;
 
 public class ConnectionFactory {
 
-	private static final String USERNAME = "root";
-	private static final String PASSWORD = "root";
+	private static final String USERNAME = "user01";
+	private static final String PASSWORD = "admin";
 	private static final String DATABASE = "projeto_integrador";
 
 	public static Connection getConnection() {

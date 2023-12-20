@@ -40,7 +40,7 @@ public class FormularioRegistroCompra extends javax.swing.JInternalFrame {
   private void adicionaProduto() {
     try {
       var codigo = inputCodigo.getText();
-      var quantidade = Integer.parseInt(inputQuantidade.getText());
+      var quantidade = Double.parseDouble(inputQuantidade.getText());
       var custo = Float.parseFloat(inputCusto.getText());
 
       var dados = new DadosCompraProduto(codigo, quantidade, custo);
@@ -53,7 +53,6 @@ public class FormularioRegistroCompra extends javax.swing.JInternalFrame {
       preencheTabela();
       limpaCamposProduto();
     } catch (Exception e) {
-      e.printStackTrace();
       JOptionPane.showMessageDialog(this, "Erro ao tentar adicionar produto:\n" + e.getMessage(), getTitle(), JOptionPane.ERROR_MESSAGE);
     }
   }

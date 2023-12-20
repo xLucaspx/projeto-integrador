@@ -1,9 +1,5 @@
 package models.produto;
 
-import static utils.Validator.validaString;
-
-import exceptions.ValidationException;
-
 public class Produto {
 
 	private String codigo;
@@ -11,23 +7,24 @@ public class Produto {
 	private Formato formato;
 	private double estoque;
 	private float precoCusto;
-  private float precoVenda;
-  private boolean ativo;
-	
+	private float precoVenda;
+	private boolean ativo;
+
 	public Produto(DadosBasicosProduto dados) {
 		this.codigo = dados.codigo();
 		this.descricao = dados.descricao();
 		this.formato = dados.formato();
 	}
 
-	public Produto(String codigo, String descricao, Formato formato, double estoque, float precoVenda, float precoCusto, boolean ativo) {
+	public Produto(String codigo, String descricao, Formato formato, double estoque, float precoVenda, float precoCusto,
+			boolean ativo) {
 		this.codigo = codigo;
 		this.descricao = descricao;
 		this.formato = formato;
-		this.estoque = 0;
-		this.precoVenda = 0;
-		this.precoCusto = 0;
-    this.ativo = ativo;
+		this.estoque = estoque;
+		this.precoVenda = precoVenda;
+		this.precoCusto = precoCusto;
+		this.ativo = ativo;
 	}
 
 	public String getCodigo() {
@@ -54,10 +51,10 @@ public class Produto {
 		return precoVenda;
 	}
 
-  public boolean isAtivo() {
-    return ativo;
-  }
-  
+	public boolean isAtivo() {
+		return ativo;
+	}
+
 	@Override
 	public String toString() {
 		return String.format(

@@ -30,13 +30,16 @@ public class ProdutoController {
 	}
 
 	public Produto buscaPorCodigo(String codigo) {
-		return produtoDao.buscaPorCodigo(codigo);
+		var produto = produtoDao.buscaPorCodigo(codigo);
+
+		if (produto != null) return produto;
+
+		throw new RuntimeException("Nenhum produto encontrado para o código " + codigo);
 	}
 
-  public boolean existePorCodigoAndAtivo(String codigo) {
-    var produto = buscaPorCodigo(codigo);
-    
-    return produto.isAtivo();
-  }
-  
+	public boolean existePorCodigoAndAtivo(String codigo) {
+		var produto = buscaPorCodigo(codigo);
+
+		return produto.isAtivo();
+	}
 }

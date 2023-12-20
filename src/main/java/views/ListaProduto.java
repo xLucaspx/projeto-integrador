@@ -12,12 +12,12 @@ import views.produtos.FormularioProduto;
 
 public class ListaProduto extends javax.swing.JInternalFrame {
   private final ProdutoController produtoController;
-  private ControllerFactory contrFactory;
+  private ControllerFactory controllerFactory;
   private DefaultTableModel model;
   
   public ListaProduto(ControllerFactory controllerFactory) {
+  	this.controllerFactory = controllerFactory;
     this.produtoController = controllerFactory.createProdutoController();
-    this.contrFactory = controllerFactory;
     initComponents();
   }
 
@@ -160,7 +160,7 @@ public class ListaProduto extends javax.swing.JInternalFrame {
   private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
     try {
       var produto = getProdutoSelecionado();
-      var form = new FormularioProduto(contrFactory, produto);
+      var form = new FormularioProduto(controllerFactory, produto);
       getDesktopPane().add(form);
       form.moveToFront();
       form.requestFocus();
