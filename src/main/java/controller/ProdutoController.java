@@ -3,7 +3,6 @@ package controller;
 import java.util.List;
 
 import dao.ProdutoDao;
-import exceptions.ValidationException;
 import models.produto.DadosBasicosProduto;
 import models.produto.Produto;
 

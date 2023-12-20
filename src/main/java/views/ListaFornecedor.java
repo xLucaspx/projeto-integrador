@@ -5,9 +5,10 @@ import factory.ControllerFactory;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import models.Fornecedor;
+import models.fornecedor.Fornecedor;
 import views.constants.Colors;
 import views.constants.Fonts;
+import views.fornecedor.FormularioFornecedor;
 
 public class ListaFornecedor extends javax.swing.JInternalFrame {
 

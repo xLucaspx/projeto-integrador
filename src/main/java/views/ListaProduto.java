@@ -5,9 +5,10 @@ import factory.ControllerFactory;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import models.Produto;
+import models.produto.Produto;
 import views.constants.Colors;
 import views.constants.Fonts;
+import views.produtos.FormularioProduto;
 
 public class ListaProduto extends javax.swing.JInternalFrame {
   private final ProdutoController produtoController;

@@ -47,7 +47,7 @@ public class Validator {
 	public static boolean validaUf(String uf) {
 		if (uf == null) return false;
 
-		Pattern p = Pattern.compile("^[A-Z]{2}$");
+		Pattern p = Pattern.compile("^[A-Za-z]{2}$");
 		Matcher m = p.matcher(uf);
 		return m.matches();
 	}

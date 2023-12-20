@@ -14,12 +14,6 @@ public class FornecedorController {
     this.fornecedorDao = dao;
   }
 
-	private final FornecedorDao fornecedorDao;
-
-	public FornecedorController(FornecedorDao dao) {
-		this.fornecedorDao = dao;
-	}
-
 	public void cadastra(DadosBasicosFornecedor dados) {
 		fornecedorDao.cadastra(dados);
 	}
@@ -39,5 +33,4 @@ public class FornecedorController {
 	public Fornecedor buscaPorCnpj(String cnpj) {
 		return fornecedorDao.buscaPorCnpj(cnpj);
 	}
-
 }

@@ -38,7 +38,6 @@
                       <EmptySpace pref="31" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="btnRemoveProduto" alignment="0" max="32767" attributes="0"/>
-                          <Component id="btBuscarProd" alignment="0" max="32767" attributes="0"/>
                           <Component id="btnRegistraCompra" alignment="0" max="32767" attributes="0"/>
                           <Component id="btCancela" alignment="0" max="32767" attributes="0"/>
                           <Component id="btnAddProduto" alignment="1" max="32767" attributes="0"/>
@@ -68,14 +67,14 @@
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="lbNumNota" min="-2" max="-2" attributes="0"/>
-                                      <Component id="tfNumNota" min="-2" pref="132" max="-2" attributes="0"/>
+                                      <Component id="inputNumeroNota" min="-2" pref="132" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="tfDataCompra" min="-2" pref="130" max="-2" attributes="0"/>
                                       <Component id="lbDataCompra" min="-2" max="-2" attributes="0"/>
+                                      <Component id="inputDataCompra" min="-2" pref="106" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                       <Component id="lbFornecedor" min="-2" pref="100" max="-2" attributes="0"/>
                                       <Component id="comboFornecedor" alignment="0" max="32767" attributes="0"/>
@@ -99,12 +98,12 @@
                   <Group type="102" attributes="0">
                       <Component id="lbNumNota" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="tfNumNota" min="-2" max="-2" attributes="0"/>
+                      <Component id="inputNumeroNota" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <Component id="lbDataCompra" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="tfDataCompra" min="-2" max="-2" attributes="0"/>
+                      <Component id="inputDataCompra" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <Component id="lbFornecedor" min="-2" max="-2" attributes="0"/>
@@ -135,12 +134,10 @@
               <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="btBuscarProd" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btnRemoveProduto" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                       <Component id="btnRegistraCompra" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                       <Component id="btCancela" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Component id="jScrollPane1" min="-2" pref="162" max="-2" attributes="0"/>
@@ -183,31 +180,12 @@
           <Connection code="null" type="code"/>
         </Property>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="comboFornecedorActionPerformed"/>
-      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="var listaFornecedores = fornecedorController.listaTodos();&#xd;&#xa;var fornecedorComboModel = new DefaultComboBoxModel&lt;&gt;(listaFornecedores.toArray(Fornecedor[]::new));&#xd;&#xa;fornecedorComboModel.insertElementAt(null, 0);&#xd;&#xa;"/>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;Fornecedor&gt;"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JTextField" name="tfNumNota">
-    </Component>
-    <Component class="javax.swing.JFormattedTextField" name="tfDataCompra">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfDataCompraActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="btBuscarProd">
-      <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="Colors.GREEN" type="code"/>
-        </Property>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="Colors.WHITE" type="code"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Buscar produto"/>
-      </Properties>
+    <Component class="javax.swing.JTextField" name="inputNumeroNota">
     </Component>
     <Component class="javax.swing.JButton" name="btnRemoveProduto">
       <Properties>
@@ -294,9 +272,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="inputQuantidade">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="inputQuantidadeActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lbFornecedor1">
       <Properties>
@@ -304,9 +279,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="inputCusto">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="inputCustoActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JSeparator" name="jSeparator1">
       <Properties>
@@ -314,6 +286,11 @@
           <Dimension value="null"/>
         </Property>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JFormattedTextField" name="inputDataCompra">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JFormattedTextField(dateFormat);"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>

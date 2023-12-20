@@ -1,15 +1,21 @@
 package views.compras;
 
+import controller.CompraController;
 import controller.FornecedorController;
 import controller.ProdutoController;
 import exceptions.ValidationException;
 import factory.ControllerFactory;
+import java.text.Format;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import models.compra.DadosCompraProduto;
+import models.compra.DadosRegistroNotaCompra;
 import models.fornecedor.Fornecedor;
 import views.constants.Colors;
 
@@ -19,8 +25,12 @@ public class FormularioRegistroCompra extends javax.swing.JInternalFrame {
   private final ProdutoController produtoController;
   private final FornecedorController fornecedorController;
   private List<DadosCompraProduto> produtos;
+  private final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+  private final Format dateFormat = dateFormatter.toFormat();
+  private final CompraController compraController;
 
   public FormularioRegistroCompra(ControllerFactory controllerFactory) {
+    this.compraController  = controllerFactory.createCompraController();
     this.produtoController = controllerFactory.createProdutoController();
     this.fornecedorController = controllerFactory.createFornecedorController();
     this.produtos = new ArrayList<>();
@@ -32,9 +42,9 @@ public class FormularioRegistroCompra extends javax.swing.JInternalFrame {
       var codigo = inputCodigo.getText();
       var quantidade = Integer.parseInt(inputQuantidade.getText());
       var custo = Float.parseFloat(inputCusto.getText());
-      
+
       var dados = new DadosCompraProduto(codigo, quantidade, custo);
-      
+
       if (!produtoController.existePorCodigoAndAtivo(codigo)) {
         throw new ValidationException("O produto de código %s não se encontra ativo no sistema!".formatted(codigo));
       }
@@ -56,31 +66,45 @@ public class FormularioRegistroCompra extends javax.swing.JInternalFrame {
       return;
     }
 
-    for (int i = 0; i< produtos.size(); i++){
+    for (int i = 0; i < produtos.size(); i++) {
       var dados = produtos.get(i);
       var produto = produtoController.buscaPorCodigo(dados.codigoProduto());
       var subtotal = String.format("R$ %.2f", dados.quantidade() * dados.precoCusto());
 
-      model.addRow(new Object[]{i+1 , dados.codigoProduto(), produto.getDescricao(), dados.quantidade(), String.format("R$ %.2f", dados.precoCusto()), subtotal});
+      model.addRow(new Object[]{i + 1, dados.codigoProduto(), produto.getDescricao(), dados.quantidade(), String.format("R$ %.2f", dados.precoCusto()), subtotal});
     }
   }
-  
-  
-  private void limpaCamposProduto(){
+
+  private void limpaCamposProduto() {
     inputCodigo.setText("");
     inputQuantidade.setText("");
     inputCusto.setText("");
   }
-  
-  private void removeProduto(){
+
+  private void removeProduto() {
     var linhaSelecionada = tabelaProdutos.getSelectedRow();
-    
-    if(linhaSelecionada < 0 || linhaSelecionada > model.getRowCount()) throw new RuntimeException("Você deve selecionar um produto!");
-    
+
+    if (linhaSelecionada < 0 || linhaSelecionada > model.getRowCount())
+      throw new RuntimeException("Você deve selecionar um produto!");
+
     produtos.remove(linhaSelecionada);
     preencheTabela();
   }
 
+  private Fornecedor selecionaFornecedor() {
+    if (comboFornecedor.getSelectedIndex() < 0) {
+      throw new ValidationException("Selecione um fornecedor");
+    }
+    return (Fornecedor) comboFornecedor.getSelectedItem();
+  }
+
+  private DadosRegistroNotaCompra criaDadosCompra() {
+    var numeroNota = inputNumeroNota.getText();
+    var dataCompra = LocalDate.parse(inputDataCompra.getText(), dateFormatter);
+    var fornecedor = selecionaFornecedor();
+
+    return new DadosRegistroNotaCompra(numeroNota, dataCompra, fornecedor.getCnpj(), produtos);
+  }
   // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
   private void initComponents() {
 
@@ -92,9 +116,7 @@ public class FormularioRegistroCompra extends javax.swing.JInternalFrame {
     var fornecedorComboModel = new DefaultComboBoxModel<>(listaFornecedores.toArray(Fornecedor[]::new));
     fornecedorComboModel.insertElementAt(null, 0);
     comboFornecedor = new javax.swing.JComboBox<>();
-    tfNumNota = new javax.swing.JTextField();
-    tfDataCompra = new javax.swing.JFormattedTextField();
-    btBuscarProd = new javax.swing.JButton();
+    inputNumeroNota = new javax.swing.JTextField();
     btnRemoveProduto = new javax.swing.JButton();
     btnRegistraCompra = new javax.swing.JButton();
     btCancela = new javax.swing.JButton();
@@ -115,6 +137,7 @@ public class FormularioRegistroCompra extends javax.swing.JInternalFrame {
     lbFornecedor1 = new javax.swing.JLabel();
     inputCusto = new javax.swing.JFormattedTextField();
     jSeparator1 = new javax.swing.JSeparator();
+    inputDataCompra = new JFormattedTextField(dateFormat);
 
     setClosable(true);
     setIconifiable(true);
@@ -134,21 +157,6 @@ public class FormularioRegistroCompra extends javax.swing.JInternalFrame {
 
     comboFornecedor.setModel(fornecedorComboModel);
     comboFornecedor.setSelectedItem(null);
-    comboFornecedor.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(java.awt.event.ActionEvent evt) {
-        comboFornecedorActionPerformed(evt);
-      }
-    });
-
-    tfDataCompra.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(java.awt.event.ActionEvent evt) {
-        tfDataCompraActionPerformed(evt);
-      }
-    });
-
-    btBuscarProd.setBackground(Colors.GREEN);
-    btBuscarProd.setForeground(Colors.WHITE);
-    btBuscarProd.setText("Buscar produto");
 
     btnRemoveProduto.setBackground(Colors.DARK_RED);
     btnRemoveProduto.setForeground(Colors.WHITE);
@@ -188,19 +196,7 @@ public class FormularioRegistroCompra extends javax.swing.JInternalFrame {
 
     lbQuantidade.setText("Quantidade");
 
-    inputQuantidade.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(java.awt.event.ActionEvent evt) {
-        inputQuantidadeActionPerformed(evt);
-      }
-    });
-
     lbFornecedor1.setText("Preço de custo");
-
-    inputCusto.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(java.awt.event.ActionEvent evt) {
-        inputCustoActionPerformed(evt);
-      }
-    });
 
     jSeparator1.setPreferredSize(null);
 
@@ -218,7 +214,6 @@ public class FormularioRegistroCompra extends javax.swing.JInternalFrame {
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
               .addComponent(btnRemoveProduto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-              .addComponent(btBuscarProd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
               .addComponent(btnRegistraCompra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
               .addComponent(btCancela, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
               .addComponent(btnAddProduto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -242,12 +237,12 @@ public class FormularioRegistroCompra extends javax.swing.JInternalFrame {
                 .addGroup(layout.createSequentialGroup()
                   .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbNumNota)
-                    .addComponent(tfNumNota, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(inputNumeroNota, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
                   .addGap(44, 44, 44)
                   .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tfDataCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbDataCompra))
-                  .addGap(46, 46, 46)
+                    .addComponent(lbDataCompra)
+                    .addComponent(inputDataCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                  .addGap(26, 26, 26)
                   .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lbFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(comboFornecedor, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
@@ -263,11 +258,11 @@ public class FormularioRegistroCompra extends javax.swing.JInternalFrame {
           .addGroup(layout.createSequentialGroup()
             .addComponent(lbNumNota)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-            .addComponent(tfNumNota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(inputNumeroNota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
           .addGroup(layout.createSequentialGroup()
             .addComponent(lbDataCompra)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-            .addComponent(tfDataCompra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(inputDataCompra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
           .addGroup(layout.createSequentialGroup()
             .addComponent(lbFornecedor)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -291,12 +286,10 @@ public class FormularioRegistroCompra extends javax.swing.JInternalFrame {
         .addGap(42, 42, 42)
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
           .addGroup(layout.createSequentialGroup()
-            .addComponent(btBuscarProd)
-            .addGap(18, 18, 18)
             .addComponent(btnRemoveProduto)
-            .addGap(18, 18, 18)
+            .addGap(41, 41, 41)
             .addComponent(btnRegistraCompra)
-            .addGap(18, 18, 18)
+            .addGap(39, 39, 39)
             .addComponent(btCancela))
           .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
         .addGap(31, 31, 31))
@@ -305,36 +298,26 @@ public class FormularioRegistroCompra extends javax.swing.JInternalFrame {
     pack();
   }// </editor-fold>//GEN-END:initComponents
 
-	private void tfDataCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfDataCompraActionPerformed
-    // TODO add your handling code here:
-	}//GEN-LAST:event_tfDataCompraActionPerformed
-
 	private void btnRemoveProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveProdutoActionPerformed
     removeProduto();
 	}//GEN-LAST:event_btnRemoveProdutoActionPerformed
 
 	private void btnRegistraCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistraCompraActionPerformed
-    // TODO add your handling code here:
+    try{
+      compraController.cadastra(criaDadosCompra());
+      
+      JOptionPane.showMessageDialog(this, "Nota de compra registrada com sucesso!", getTitle(), JOptionPane.INFORMATION_MESSAGE);
+      dispose();
+    }catch (Exception e){
+      JOptionPane.showMessageDialog(this, "Erro ao registrar nota de compra:\n" + e.getMessage(), this.getTitle(), JOptionPane.ERROR_MESSAGE);
+    }
 	}//GEN-LAST:event_btnRegistraCompraActionPerformed
 
   private void btnAddProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddProdutoActionPerformed
     adicionaProduto();
   }//GEN-LAST:event_btnAddProdutoActionPerformed
 
-  private void inputQuantidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputQuantidadeActionPerformed
-    // TODO add your handling code here:
-  }//GEN-LAST:event_inputQuantidadeActionPerformed
-
-  private void inputCustoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputCustoActionPerformed
-    // TODO add your handling code here:
-  }//GEN-LAST:event_inputCustoActionPerformed
-
-  private void comboFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboFornecedorActionPerformed
-    // TODO add your handling code here:
-  }//GEN-LAST:event_comboFornecedorActionPerformed
-
   // Variables declaration - do not modify//GEN-BEGIN:variables
-  private javax.swing.JButton btBuscarProd;
   private javax.swing.JButton btCancela;
   private javax.swing.JButton btnAddProduto;
   private javax.swing.JButton btnRegistraCompra;
@@ -342,6 +325,8 @@ public class FormularioRegistroCompra extends javax.swing.JInternalFrame {
   private javax.swing.JComboBox<Fornecedor> comboFornecedor;
   private javax.swing.JTextField inputCodigo;
   private javax.swing.JFormattedTextField inputCusto;
+  private javax.swing.JFormattedTextField inputDataCompra;
+  private javax.swing.JTextField inputNumeroNota;
   private javax.swing.JFormattedTextField inputQuantidade;
   private javax.swing.JScrollPane jScrollPane1;
   private javax.swing.JSeparator jSeparator1;
@@ -353,7 +338,5 @@ public class FormularioRegistroCompra extends javax.swing.JInternalFrame {
   private javax.swing.JLabel lbQuantidade;
   private javax.swing.JLabel lbRegistroCompra;
   private javax.swing.JTable tabelaProdutos;
-  private javax.swing.JFormattedTextField tfDataCompra;
-  private javax.swing.JTextField tfNumNota;
   // End of variables declaration//GEN-END:variables
 }

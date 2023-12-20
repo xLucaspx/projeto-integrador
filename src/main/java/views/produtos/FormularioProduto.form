@@ -90,6 +90,9 @@
     </Component>
     <Component class="javax.swing.JTextField" name="inputCodigo">
       <Properties>
+        <Property name="editable" type="boolean" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="produto == null" type="code"/>
+        </Property>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
           <Connection code="produto!=null? produto.getCodigo() : &quot;&quot;" type="code"/>
         </Property>

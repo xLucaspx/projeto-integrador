@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import models.Formato;
 
 import models.produto.DadosBasicosProduto;
 import models.produto.Formato;
