@@ -50,7 +50,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     setTitle("Sistema de controle de Estoque");
     setBackground(Colors.BACKGROUND_COLOR);
     setMinimumSize(null);
-    setPreferredSize(null);
 
     sidebarPanel.setBackground(Colors.LIGHT_BLUE);
 
@@ -301,7 +300,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         .addComponent(panelMenuProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
         .addComponent(panelMenuFornecedores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addGap(0, 0, Short.MAX_VALUE))
+        .addGap(0, 61, Short.MAX_VALUE))
     );
 
     desktopPane.setBackground(Colors.BACKGROUND_COLOR);
@@ -312,11 +311,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
     desktopPane.setLayout(desktopPaneLayout);
     desktopPaneLayout.setHorizontalGroup(
       desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGap(0, 826, Short.MAX_VALUE)
+      .addGap(0, 814, Short.MAX_VALUE)
     );
     desktopPaneLayout.setVerticalGroup(
       desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGap(0, 525, Short.MAX_VALUE)
+      .addGap(0, 0, Short.MAX_VALUE)
     );
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -326,15 +325,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
       .addGroup(layout.createSequentialGroup()
         .addComponent(sidebarPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addGap(0, 0, 0)
-        .addComponent(desktopPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addGap(0, 0, Short.MAX_VALUE))
+        .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        .addGap(0, 0, 0))
     );
     layout.setVerticalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addComponent(sidebarPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
       .addGroup(layout.createSequentialGroup()
-        .addComponent(desktopPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addGap(0, 0, Short.MAX_VALUE))
+        .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        .addGap(0, 0, 0))
     );
 
     pack();
