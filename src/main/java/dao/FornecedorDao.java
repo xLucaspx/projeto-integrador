@@ -1,10 +1,12 @@
 package dao;
 
+import exceptions.ValidationException;
 import models.fornecedor.DadosBasicosFornecedor;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -37,7 +39,10 @@ public class FornecedorDao {
       ps.setString(11, dados.endereco().uf());
 
       ps.execute();
-    } catch (SQLException e) {
+    } catch(SQLIntegrityConstraintViolationException e) {
+      throw new ValidationException("Já existe um fornecedor cadastrado com o CNPJ " + dados.cnpj() );
+    }
+    catch (SQLException e) {
       throw new RuntimeException(e);
     }
   }
