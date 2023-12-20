@@ -173,7 +173,7 @@ public class FormularioProduto extends javax.swing.JInternalFrame {
 
     private void btnCancelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelaActionPerformed
         String[] options = {"Sim", "Não"};
-        int resp = JOptionPane.showOptionDialog(this, "Está certo que deseja cancelar a operação?\nTodas os dados serão perdidos!", this.getTitle(), JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
+        int resp = JOptionPane.showOptionDialog(this, "Está certo que deseja cancelar a operação?\nTodas as alterações serão perdidas!", this.getTitle(), JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
         if (resp != 0) {
             return;
         }

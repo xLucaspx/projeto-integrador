@@ -7,39 +7,51 @@ import models.produto.DadosBasicosProduto;
 import models.produto.Produto;
 
 public class ProdutoController {
-	private final ProdutoDao produtoDao;
+  private final ProdutoDao produtoDao;
 
-	public ProdutoController(ProdutoDao produtoDao) {
-		this.produtoDao = produtoDao;
-	}
+  public ProdutoController(ProdutoDao produtoDao) {
+    this.produtoDao = produtoDao;
+  }
 
-	public void cadastra(DadosBasicosProduto dados) {
-		produtoDao.cadastra(dados);
-	}
+  public void cadastra(DadosBasicosProduto dados) {
+    produtoDao.cadastra(dados);
+  }
 
-	public void edita(DadosBasicosProduto dados) {
-		produtoDao.edita(dados);
-	}
+  public void edita(DadosBasicosProduto dados) {
+    produtoDao.edita(dados);
+  }
 
-	public void exclui(Produto produto) {
-		produtoDao.exclui(produto.getCodigo());
-	}
+  public void exclui(Produto produto) {
+    produtoDao.exclui(produto.getCodigo());
+  }
+  
+  public void atualizaEstoque(double estoque, String codigo) {
+    produtoDao.atualizaEstoque(estoque, codigo);
+  }
 
-	public List<Produto> listaTodos() {
-		return produtoDao.listaTodos();
-	}
+  public void atualizaPrecoCusto(float preco, String codigo) {
+    produtoDao.atualizaPrecoCusto(preco, codigo);
+  }
 
-	public Produto buscaPorCodigo(String codigo) {
-		var produto = produtoDao.buscaPorCodigo(codigo);
+  public void atualizaPrecoVenda(float preco, String codigo) {
+    produtoDao.atualizaPrecoVenda(preco, codigo);
+  }
 
-		if (produto != null) return produto;
+  public List<Produto> listaTodos() {
+    return produtoDao.listaTodos();
+  }
 
-		throw new RuntimeException("Nenhum produto encontrado para o código " + codigo);
-	}
+  public Produto buscaPorCodigo(String codigo) {
+    var produto = produtoDao.buscaPorCodigo(codigo);
 
-	public boolean existePorCodigoAndAtivo(String codigo) {
-		var produto = buscaPorCodigo(codigo);
+    if (produto != null) return produto;
 
-		return produto.isAtivo();
-	}
+    throw new RuntimeException("Nenhum produto encontrado para o código " + codigo);
+  }
+
+  public boolean existePorCodigoAndAtivo(String codigo) {
+    var produto = buscaPorCodigo(codigo);
+
+    return produto.isAtivo();
+  }
 }
