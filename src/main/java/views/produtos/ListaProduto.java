@@ -107,10 +107,9 @@ public class ListaProduto extends javax.swing.JInternalFrame {
 
     jScrollPane1.setBackground(Colors.BACKGROUND_COLOR);
     jScrollPane1.setMinimumSize(null);
-    jScrollPane1.setPreferredSize(null);
 
     tabelaProdutos.setBackground(Colors.WHITE);
-    tabelaProdutos.setFont(Fonts.DEFAULT_FONT);
+    tabelaProdutos.setFont(Fonts.SMALL_FONT);
     tabelaProdutos.setForeground(Colors.FONT_COLOR);
     tabelaProdutos.setModel(model);
     tabelaProdutos.setGridColor(Colors.FONT_COLOR);
@@ -237,7 +236,7 @@ public class ListaProduto extends javax.swing.JInternalFrame {
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
             .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
           .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
-        .addContainerGap(35, Short.MAX_VALUE))
+        .addContainerGap(50, Short.MAX_VALUE))
     );
 
     pack();

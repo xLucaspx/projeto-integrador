@@ -9,7 +9,6 @@ import views.fornecedor.FormularioFornecedor;
 import views.fornecedor.ListaFornecedor;
 import views.produtos.FormularioProduto;
 import views.produtos.ListaProduto;
-import views.vendas.FormularioRegistroVenda;
 
 public class TelaPrincipal extends javax.swing.JFrame {
 
