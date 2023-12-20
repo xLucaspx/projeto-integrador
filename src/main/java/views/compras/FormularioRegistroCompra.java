@@ -152,6 +152,7 @@ public class FormularioRegistroCompra extends javax.swing.JInternalFrame {
     btnRegistraCompra = new javax.swing.JButton();
     btnCancela = new javax.swing.JButton();
 
+    setBackground(Colors.BACKGROUND_COLOR);
     setClosable(true);
     setIconifiable(true);
     setMaximizable(true);
