@@ -116,7 +116,10 @@ public class ListaFornecedor extends javax.swing.JInternalFrame {
     tabelaFornecedores.setRowHeight(25);
     tabelaFornecedores.setSelectionBackground(Colors.DARK_GREEN);
     tabelaFornecedores.setSelectionForeground(Colors.WHITE);
+    tabelaFornecedores.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+    tabelaFornecedores.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
     tabelaFornecedores.setShowHorizontalLines(true);
+    tabelaFornecedores.getTableHeader().setReorderingAllowed(false);
     jScrollPane.setViewportView(tabelaFornecedores);
     preencheTabela(fornecedores);
 

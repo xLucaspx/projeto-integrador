@@ -107,6 +107,7 @@ public class ListaProduto extends javax.swing.JInternalFrame {
 
     jScrollPane1.setBackground(Colors.BACKGROUND_COLOR);
     jScrollPane1.setMinimumSize(null);
+    jScrollPane1.setPreferredSize(null);
 
     tabelaProdutos.setBackground(Colors.WHITE);
     tabelaProdutos.setFont(Fonts.SMALL_FONT);
@@ -117,6 +118,8 @@ public class ListaProduto extends javax.swing.JInternalFrame {
     tabelaProdutos.setRowHeight(25);
     tabelaProdutos.setSelectionBackground(Colors.DARK_GREEN);
     tabelaProdutos.setSelectionForeground(Colors.WHITE);
+    tabelaProdutos.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+    tabelaProdutos.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
     tabelaProdutos.setShowHorizontalLines(true);
     tabelaProdutos.getTableHeader().setReorderingAllowed(false);
     var colunaCodigo = tabelaProdutos.getColumnModel().getColumn(0);

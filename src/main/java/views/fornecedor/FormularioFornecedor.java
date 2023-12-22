@@ -89,6 +89,7 @@ public class FormularioFornecedor extends javax.swing.JInternalFrame {
     labelCnpj.setMinimumSize(null);
     labelCnpj.setPreferredSize(null);
 
+    inputCnpj.setEditable(fornecedor == null);
     inputCnpj.setBackground(Colors.WHITE);
     inputCnpj.setFont(Fonts.DEFAULT_FONT);
     inputCnpj.setForeground(Colors.FONT_COLOR);
@@ -267,11 +268,6 @@ public class FormularioFornecedor extends javax.swing.JInternalFrame {
     inputComplemento.setPreferredSize(null);
     inputComplemento.setSelectedTextColor(Colors.WHITE);
     inputComplemento.setSelectionColor(Colors.DARK_BLUE);
-    inputComplemento.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(java.awt.event.ActionEvent evt) {
-        inputComplementoActionPerformed(evt);
-      }
-    });
 
     btnSalvar.setBackground(Colors.BLUE);
     btnSalvar.setFont(Fonts.MEDIUM_FONT);
@@ -332,7 +328,6 @@ public class FormularioFornecedor extends javax.swing.JInternalFrame {
               .addComponent(labelFone, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
               .addComponent(labelNome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
               .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, 0)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                   .addComponent(labelNumero, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
                   .addComponent(inputNumero, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE))
@@ -347,11 +342,9 @@ public class FormularioFornecedor extends javax.swing.JInternalFrame {
           .addComponent(inputEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
           .addComponent(labelFormFornecedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
           .addGroup(layout.createSequentialGroup()
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btnCancela, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addComponent(btnCancela, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
         .addContainerGap(45, Short.MAX_VALUE))
     );
     layout.setVerticalGroup(
@@ -428,12 +421,8 @@ public class FormularioFornecedor extends javax.swing.JInternalFrame {
     dispose();
 	}//GEN-LAST:event_btnCancelaActionPerformed
 
-    private void inputComplementoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputComplementoActionPerformed
-      // TODO add your handling code here:
-    }//GEN-LAST:event_inputComplementoActionPerformed
-
   private DadosBasicosFornecedor criaDadosFornecedor() {
-    String cnpj = inputCnpj.getText();
+    String cnpj = inputCnpj.getText().replace(".", "").replace("/", "").replace("-", "");
     String nome = inputNome.getText();
     String email = inputEmail.getText();
     String fone = inputFone.getText();
